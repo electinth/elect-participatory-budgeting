@@ -1,0 +1,14 @@
+{
+  "Conclusion": {
+    "description": "Auto imported from components/Conclusion.vue"
+  },
+  "EndCredit": {
+    "description": "Auto imported from components/EndCredit.vue"
+  },
+  "IntroSection": {
+    "description": "Auto imported from components/IntroSection.vue"
+  },
+  "ProblemSection": {
+    "description": "Auto imported from components/ProblemSection.vue"
+  }
+}
