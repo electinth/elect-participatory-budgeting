@@ -4,8 +4,10 @@
     <ProblemSection />
     <ScoreSection />
     <TreeMapSection />
-    <!-- <Conclusion />
-    <EndCredit /> -->
+    <ProjectSection />
+    <EndSection />
+    <VideoSection />
+    <!-- <Conclusion />-->
     <div class="cookie-tab">
       <div class="d-flex justify-content-center box">
         <button class="text-1 font-weight-bold mr-3">ยอมรับ</button>

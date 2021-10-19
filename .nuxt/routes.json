@@ -1,5 +1,12 @@
 [
   {
+    "name": "about",
+    "path": "/about",
+    "component": "D:\\\\Punch Up\\\\elect-participatory-budgeting\\\\pages\\\\about.vue",
+    "chunkName": "pages/about",
+    "_name": "_de694b2e"
+  },
+  {
     "name": "ogimage-variation",
     "path": "/ogimage/:variation?",
     "component": "D:\\\\Punch Up\\\\elect-participatory-budgeting\\\\pages\\\\ogimage\\\\_variation.vue",

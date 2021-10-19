@@ -8,7 +8,10 @@ You can directly use them in pages and other components without the need to impo
 
 - `<Conclusion>` | `<conclusion>` (components/Conclusion.vue)
 - `<EndCredit>` | `<end-credit>` (components/EndCredit.vue)
+- `<EndSection>` | `<end-section>` (components/EndSection.vue)
 - `<IntroSection>` | `<intro-section>` (components/IntroSection.vue)
 - `<ProblemSection>` | `<problem-section>` (components/ProblemSection.vue)
+- `<ProjectSection>` | `<project-section>` (components/ProjectSection.vue)
 - `<ScoreSection>` | `<score-section>` (components/ScoreSection.vue)
 - `<TreeMapSection>` | `<tree-map-section>` (components/TreeMapSection.vue)
+- `<VideoSection>` | `<video-section>` (components/VideoSection.vue)

@@ -4,6 +4,7 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
+const _de694b2e = () => interopDefault(import('..\\pages\\about.vue' /* webpackChunkName: "pages/about" */))
 const _63ce4e1a = () => interopDefault(import('..\\pages\\ogimage\\_variation.vue' /* webpackChunkName: "pages/ogimage/_variation" */))
 const _9ef995a4 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
 
@@ -13,12 +14,16 @@ Vue.use(Router)
 
 export const routerOptions = {
   mode: 'history',
-  base: '/',
+  base: '/participatory-budgeting/',
   linkActiveClass: 'nuxt-link-active',
   linkExactActiveClass: 'nuxt-link-exact-active',
   scrollBehavior,
 
   routes: [{
+    path: "/about",
+    component: _de694b2e,
+    name: "about"
+  }, {
     path: "/ogimage/:variation?",
     component: _63ce4e1a,
     name: "ogimage-variation"
