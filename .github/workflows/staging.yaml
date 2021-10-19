@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build project
-        run: npm run generate
+        run: npm run build
         env:
           BASE_URL: /participatory-budgeting
           SITE_URL: https://electinth.github.io/participatory-budgeting/
