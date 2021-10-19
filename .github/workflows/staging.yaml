@@ -13,9 +13,12 @@ jobs:
       - name: Setup Node v12
         uses: actions/setup-node@v2
       - name: Install dependencies
-        run: yarn
+        run: npm install
       - name: Build
-        run: yarn build  # Trigger build command
+        run: npm run generate
+         env:
+          BASE_URL: /participatory-budgeting
+          SITE_URL: https://electinth.github.io/participatory-budgeting/
       - name: Publish to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
