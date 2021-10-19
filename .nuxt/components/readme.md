@@ -10,3 +10,5 @@ You can directly use them in pages and other components without the need to impo
 - `<EndCredit>` | `<end-credit>` (components/EndCredit.vue)
 - `<IntroSection>` | `<intro-section>` (components/IntroSection.vue)
 - `<ProblemSection>` | `<problem-section>` (components/ProblemSection.vue)
+- `<ScoreSection>` | `<score-section>` (components/ScoreSection.vue)
+- `<TreeMapSection>` | `<tree-map-section>` (components/TreeMapSection.vue)

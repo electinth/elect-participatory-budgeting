@@ -10,5 +10,11 @@
   },
   "ProblemSection": {
     "description": "Auto imported from components/ProblemSection.vue"
+  },
+  "ScoreSection": {
+    "description": "Auto imported from components/ScoreSection.vue"
+  },
+  "TreeMapSection": {
+    "description": "Auto imported from components/TreeMapSection.vue"
   }
 }

@@ -2,6 +2,8 @@ export { default as Conclusion } from '../..\\components\\Conclusion.vue'
 export { default as EndCredit } from '../..\\components\\EndCredit.vue'
 export { default as IntroSection } from '../..\\components\\IntroSection.vue'
 export { default as ProblemSection } from '../..\\components\\ProblemSection.vue'
+export { default as ScoreSection } from '../..\\components\\ScoreSection.vue'
+export { default as TreeMapSection } from '../..\\components\\TreeMapSection.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

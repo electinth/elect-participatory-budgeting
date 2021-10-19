@@ -7,7 +7,6 @@ html {
 }
 
 body {
-  font-family: "Maitree", serif;
   min-height: 100%;
   height: 100%;
 }
@@ -28,6 +27,7 @@ body {
 
 .header-1 {
   //font-weight: 300;
+  font-family: "KondolarThai", serif;
   font-size: 48px;
   //line-height: 130%;
   @media #{$mq-mini-mobile} {
@@ -36,6 +36,7 @@ body {
 }
 .header-2 {
   //font-weight: 300;
+  font-family: "KondolarThai", serif;
   font-size: 36px;
   //line-height: 130%;
   @media #{$mq-mini-mobile} {
@@ -44,6 +45,7 @@ body {
 }
 .header-3 {
   //font-weight: 300;
+  font-family: "KondolarThai", serif;
   font-size: 24px;
   //line-height: 130%;
   @media #{$mq-mini-mobile} {
@@ -53,6 +55,7 @@ body {
 
 .text-1 {
   //line-height: 150%;
+  font-family: "KondolarThai", serif;
   font-size: 21px;
   @media #{$mq-mini-mobile} {
     font-size: 16px;
@@ -60,6 +63,7 @@ body {
 }
 .text-2 {
   //line-height: 150%;
+  font-family: "KondolarThai", serif;
   font-size: 18px;
   @media #{$mq-mini-mobile} {
     font-size: 14px;
@@ -67,6 +71,7 @@ body {
 }
 .text-3 {
   //line-height: 150%;
+  font-family: "KondolarThai", serif;
   font-size: 16px;
   @media #{$mq-mini-mobile} {
     font-size: 12px;
@@ -74,6 +79,7 @@ body {
 }
 .text-4 {
   //line-height: 150%;
+  font-family: "KondolarThai", serif;
   font-size: 14px;
   @media #{$mq-mini-mobile} {
     font-size: 10px;
@@ -82,6 +88,7 @@ body {
 
 .subtitle {
   //line-height: 150%;
+  font-family: "Anuphan", serif;
   font-size: 24px;
   @media #{$mq-mini-mobile} {
     font-size: 18px;
@@ -89,6 +96,7 @@ body {
 }
 .body-text {
   //line-height: 150%;
+  font-family: "BaiJamjuree", serif;
   font-size: 17px;
   @media #{$mq-mini-mobile} {
     font-size: 15px;
@@ -96,6 +104,7 @@ body {
 }
 .btn-text-1 {
   //line-height: 150%;
+  font-family: "Anuphan", serif;
   font-size: 14px;
   @media #{$mq-mini-mobile} {
     font-size: 10px;
@@ -103,6 +112,7 @@ body {
 }
 .btn-text-2 {
   //line-height: 150%;
+  font-family: "Anuphan", serif;
   font-size: 10px;
   @media #{$mq-mini-mobile} {
     font-size: 8px;
@@ -110,6 +120,7 @@ body {
 }
 .caption-1 {
   //line-height: 150%;
+  font-family: "Anuphan", serif;
   font-size: 14px;
   @media #{$mq-mini-mobile} {
     font-size: 10px;
@@ -117,6 +128,7 @@ body {
 }
 .caption-2 {
   //line-height: 150%;
+  font-family: "Anuphan", serif;
   font-size: 10px;
   @media #{$mq-mini-mobile} {
     font-size: 8px;
@@ -124,6 +136,7 @@ body {
 }
 .link-text {
   //line-height: 150%;
+  font-family: "BaiJamjuree", serif;
   font-size: 12px;
   @media #{$mq-mini-mobile} {
     font-size: 10px;

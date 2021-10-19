@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="bg-main text-center">
-      <p class="text-1">
-        รู้หรือไม่...กรุงเทพมหานครวางแผนพัฒนาระยะ 20 ปี <br />
+      <p class="text-1 m-0">
+        รู้หรือไม่<br />กรุงเทพมหานครวางแผนพัฒนาระยะ 20 ปี <br />
         (พ.ศ. 2556-2575) ขึ้นมา เพื่อจะก้าวไปสู่การเป็น
       </p>
-      <div class="header-2 border-black-box">“มหานครแห่งเอเชีย”</div>
-      <p class="text-1">แล้วปี 2565 เรากำลังเดินมาถึงครึ่งทางแล้ว</p>
-      <img :src="year_chart" alt="" class="my-5" />
+      <div class="header-2 font-weight-bold">“มหานครแห่งเอเชีย”</div>
+      <img :src="illus_open_01" alt="" class="my-5 w-50" />
+      <img :src="year_chart" alt="" class="my-5 w-50" />
       <p class="header-3">
         แต่ทุกวันนี้...กรุงเทพมหานครก็ยังดูไม่เหมือนเมืองในฝันที่เราวาดไว้ใช่ไหม?<br />
         แล้วอะไรล่ะที่ยังเป็นปัญหาที่ค้างคาใจคุณอยู่ทุกวันนี้
@@ -99,6 +99,7 @@ export default {
     return {
       year_chart: require("~/assets/images/year_chart.png"),
       sample: require("~/assets/images/sample.png"),
+      illus_open_01: require("~/assets/images/illus_open_01.png"),
     };
   },
   methods: {},
