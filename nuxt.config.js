@@ -1,14 +1,14 @@
-const BASE_URL = 'https://projects.punchup.world/booksonshelf/'
-const array = [];
-for (var i = 0; i < 51; i++) {
-  for (var j = 0; j < 51; j++) {
-    array.push("/ogimage/" + i + "-" + j);
-  }
-}
+// const BASE_URL = 'https://projects.punchup.world/booksonshelf/'
+// const array = [];
+// for (var i = 0; i < 51; i++) {
+//   for (var j = 0; j < 51; j++) {
+//     array.push("/ogimage/" + i + "-" + j);
+//   }
+// }
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: true,
+  ssr: false,
   target: 'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -68,9 +68,9 @@ export default {
   // generate: {
   //   dir: 'dist/booksonshelf',
   // },
-  // router: {
-  //   base: '/booksonshelf/',
-  // },
+  router: {
+    base: '/participatory-budgeting/',
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -116,7 +116,7 @@ export default {
   build: {
   },
 
-  generate: {
-    routes: array
-  }
+  // generate: {
+  //   routes: array
+  // }
 }
