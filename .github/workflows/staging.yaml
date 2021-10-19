@@ -8,16 +8,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout source code
         uses: actions/checkout@v2
-      - name: Setup Node v12
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
       - name: Install dependencies
-        run: yarn
-      - name: Build
-        run: yarn build
-      - name: Publish to Github Pages
+        run: npm install
+      - name: Build project
+        run: npm run generate
+        env:
+          BASE_URL: /participatory-budgeting
+          SITE_URL: https://electinth.github.io/participatory-budgeting/
+      - name: Deploy to Github Page
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          publish_dir: ./dist
