@@ -1,7 +1,9 @@
 
-<<<<<<< HEAD
 # This is a basic workflow to help you get started with Actions
 # Controls when the workflow will run
+
+name: Staging deployment
+
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
@@ -64,4 +66,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
->>>>>>> gh-pages
+
