@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="h-100vh p-5">
+    <div class="h-100vh p-5 d-none">
       <!-- For Tree Map -->
     </div>
     <div class="h-100vh p-5">
@@ -35,7 +35,7 @@
                   มาแสดงให้ทุกคนดูกันได้
                 </p>
 
-                <a href="#" class="text-1">ลองกดเพื่อเข้าไปดูระบบ</a>
+                <a href="http://dp2.bangkok.go.th/mobile/mymenu.php" class="text-1" target="_blank">ลองกดเพื่อเข้าไปดูระบบ</a>
 
                 <p class="text-4">
                   หมายเหตุ : ทางทีมได้สอบถามไปยังหน่วยงานและได้รับคำตอบว่า

@@ -1,13 +1,27 @@
 <template>
   <div>
+    <elect-navbar title="articipatory-budgeting 101" dark="true">
+      <div class="menu-wrap">
+        <nuxt-link
+          v-for="(menu, index) in menu_list"
+          :key="index"
+          :to="menu.value"
+          :class="{ active: menu.value === $route.fullPath }"
+          class="menus"
+        >
+          {{ menu.name }}
+        </nuxt-link>
+      </div></elect-navbar
+    >
     <IntroSection />
-    <ProblemSection />
+    <ProblemSection /> 
     <ScoreSection />
     <TreeMapSection />
     <ProjectSection />
+    <ChooseProjectSection />
     <EndSection />
     <VideoSection />
-    <!-- <Conclusion />-->
+    <Conclusion />
     <div class="cookie-tab">
       <div class="d-flex justify-content-center box">
         <button class="text-1 font-weight-bold mr-3">ยอมรับ</button>
@@ -21,11 +35,35 @@
         </p>
       </div>
     </div>
+    <elect-footer />
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      menu_list: [
+        {
+          name: "Home",
+          value: "/",
+        },
+        {
+          name: "Explore",
+          value: "/#tree-map",
+        },
+        {
+          name: "Idea",
+          value: "/#idea",
+        },
+        {
+          name: "About",
+          value: "/about",
+        },
+      ],
+      drawer: false,
+    };
+  },
   mounted() {
     // this.$nextTick(() => {
     //   this.$nuxt.$loading.start();
@@ -38,14 +76,12 @@ export default {
         {
           hid: "og-image",
           property: "og:image",
-          content:
-            "https://d365h3igfpfyap.cloudfront.net/og-image/og_image.jpg",
+          content: "https://d208eq9ndr4893.cloudfront.net/og_image.png",
         },
         {
           hid: "twitter:image",
           name: "twitter:image:src",
-          content:
-            "https://d365h3igfpfyap.cloudfront.net/og-image/og_image.jpg",
+          content: "https://d208eq9ndr4893.cloudfront.net/og_image.png",
         },
       ],
     };
@@ -73,5 +109,23 @@ export default {
       padding: 0 20px;
     }
   }
+}
+
+.menu-wrap {
+  display: flex;
+  align-items: center;
+  a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 32px;
+  }
+  a.active {
+    font-weight: bold;
+  }
+}
+
+.menus {
+  font-size: 12px;
+  font-weight: bold;
 }
 </style>

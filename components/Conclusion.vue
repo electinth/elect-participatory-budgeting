@@ -1,67 +1,79 @@
 <template>
   <div>
-    <div class="min-h-screen main-bg d-flex flex-column justify-content-around">
-      <div class="text-center text-1 text-conclusion">
-        <p class="text-1">
-          ทั้งหมดนี้ เราเพียงอยากชวนคุณดูเรื่องใกล้ตัวอย่าง "หนังสือ"
-          ผ่านชุดข้อมูลเมื่อหนังสือหลายๆ เล่มมาอยู่รวมกัน หนังสือหนึ่งเล่ม
-          อาจบอกเล่าได้หลายเรื่องราว ยิ่งหนังสือหลายเล่ม
-          ก็ทำให้เราเห็นเทรนด์หรือเรื่องราวที่ต่างออกไป
-        </p>
-        <p class="text-3">
-          One book tells so many stories, while many books tells more. This data
-          story just wants to reveals some new insights when many books come
-          together.
-        </p>
+    <div class="h-100vh bg-main text-center">
+      <p class="text-1 w-50 mx-auto">
+        โปรเจกต์นี้ทดลองสร้าง “งบประมาณแบบมีส่วนร่วม” ให้กับจังหวัด/เมืองต่าง ๆ
+        ในประเทศไทย โดยเริ่มจากกรุงเทพมหานครเป็นต้นแบบพัฒนาไปสู่เมืองอื่น....
+      </p>
+      <p class="text-1 font-weight-bold">
+        มาทำความรู้จักงบประมาณแบบมีส่วนร่วมเพิ่มเติมกัน
+      </p>
+      <div class="accordion" role="tablist">
+        <b-card no-body class="mb-1">
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-button block v-b-toggle.accordion-1 class="text-1 btn-accordion"
+              >งบประมาณแบบมีส่วนร่วม คืออะไร?</b-button
+            >
+          </b-card-header>
+          <b-collapse
+            id="accordion-1"
+            visible
+            accordion="my-accordion"
+            role="tabpanel"
+          >
+            <b-card-body>
+              <b-card-text class="text-3 text-left"
+                >Participatory Budgeting (PB) หรือที่เรียกว่า
+                งบประมาณแบบมีส่วนร่วม เป็นกระบวนการหรือเครื่องมือทางการบริหาร
+                ที่ให้ประชาชนเข้าไปมีส่วนร่วมโดยตรง ในการเข้าถึงทรัพยากร
+                และตัดสินใจจัดสรรงบประมาณสอดคล้องกับความต้องการของประชาชนเอง
+              </b-card-text>
+            </b-card-body>
+          </b-collapse>
+        </b-card>
 
-        <div class="mt-5">
-          <p class="text-1 font-weight-bold">
-            แล้วคุณล่ะ.. ในปี 2021 ที่ผ่านมานี้ ได้ค้นหาเรื่องราวใหม่ๆ
-            ผ่านการอ่านหนังสือไปกี่เล่มบ้าง?
-          </p>
-          <p class="text-3">
-            What's about yours? How many books have you read to discover new
-            stories in this 2021?
-          </p>
-        </div>
-      </div>
-      <div class="share-section mt-5">
-        <p class="text-1 font-weight-bold">แชร์ไปขิงเพื่อน</p>
+        <b-card no-body class="mb-1">
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-button block v-b-toggle.accordion-2 class="text-1 btn-accordion"
+              >ทำอย่างไรจะเป็นงบประมาณแบบมีส่วนร่วม?</b-button
+            >
+          </b-card-header>
+          <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+            <b-card-body>
+              <pre class="text-3 text-left">
+ตาม citizenlab ได้อธิบายถึง 8 ขั้นตอนที่เป็นได้
+1.  การวางรากฐาน ต้องวางแผนการมีส่วนร่วมของประชาชนแบบไหน
+2. ชี้แจงรายละเอียดให้ผู้เข้าร่วม ให้ประชาชนได้รับรู้เข้าใจตรงกัน
+3. สร้างวิธีการหรือเครื่องมือรวบรวมข้อมูล มีส่วนร่วมได้ง่าย
+4. วิเคราะห์ข้อมูลที่ได้รับ  โดยผู้เชี่ยวชาญที่เกี่ยวข้อง
+5. แบ่งรูปแบบการมีส่วนร่วม ต้องแบ่งแยกการให้แสดงความคิดเชัดเจน
+6. ชี้แจงผลลัพธ์ที่ได้ สื่อสารให้ประชาชนทุกคนทราบ ว่าผลลัพธ์ที่เกิดขึ้นได้อะไร
+7. แผนงาน โครงการ ได้รับงบอนุมัติและเกิดขึ้นจริง รัฐต้องเปิดเผย 
+‘อย่างโปร่งใสต่อสาธารณะ’ 
+8. ทำอย่างต่อเนื่องและเป็นระบบ สร้างการมีส่วนร่วมของประชาชนให้เพิ่มขึ้นต่อไปอย่างต่อเนื่อง
+</pre
+              >
+            </b-card-body>
+          </b-collapse>
+        </b-card>
 
-        <div class="d-flex justify-content-center mt-3">
-          <!-- <img
-            :src="social_fb"
-            class="sharer social-icon pointer mx-1"
-            alt=""
-            v-sharer
-            data-sharer="facebook"
-            :data-url="`https://projects.punchup.world/booksonshelf/ogimage/${count_fiction}-${count_nonfiction}`"
-          />
-          <img
-            :src="social_twitter"
-            class="sharer social-icon pointer mx-1"
-            alt=""
-            v-sharer
-            data-sharer="twitter"
-            :data-url="`https://projects.punchup.world/booksonshelf/ogimage/${count_fiction}-${count_nonfiction}`"
-          />
-          <img
-            :src="social_line"
-            class="sharer social-icon pointer mx-1"
-            alt=""
-            v-sharer
-            data-sharer="line"
-            :data-url="`https://projects.punchup.world/booksonshelf/ogimage/${count_fiction}-${count_nonfiction}`"
-          /> -->
-        </div>
-      </div>
-      <div class="mt-5 position-relative">
-        <img class="w-100" :src="conclusion_shelf" alt="" />
-        <div
-          style="display: flex; position: absolute; bottom: 10%"
-          class="w-100"
-        >
-        </div>
+        <b-card no-body class="mb-1">
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-button block v-b-toggle.accordion-3 class="text-1 btn-accordion"
+              >ตัวอย่างงบประมาณแบบมีส่วนร่วมที่เกิดขึ้นแล้ว</b-button
+            >
+          </b-card-header>
+          <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+            <b-card-body>
+              <pre class="text-3 text-left">
+1. Peñalolen, Chile เป็นการให้ประชาชนได้มีส่วนร่วมในการจัดการงบฯ ในแพลตฟอร์มออนไลน์ ภายใต้โครงการ (ในชุมชนของฉัน ฉันตัดสินใจ!) ประชาชนสามารถระบุความต้องการของชุมชนได้
+2. Govanhill, Glasgow ดำเนินโครงการ ‘ความไม่เท่าเทียมทางสุขภาพ Equally Well ’ เป็นโครงการนำร่องเปิดโอกาสให้ประชาชนมีส่วนร่วมในงบฯ
+3. Tower  Hamlets, ‘You Decide!’ โครงการชื่อว่า ‘คุณตัดสินใจ’ ช่วยกำหนดรูปแบบและตรวจสอบสิ่งที่สำคัญที่ควรจัดในชุมชนเป็นอันดับแรกๆ
+4. Porto Alegre, BrazilI ให้คนยากจนและผู้ที่มักถูกกีดกันทางการเมือง เข้ามามีบทบาทด้วย จัดสรรงบประมาณได้มาสู่ส่วนที่จำเป็นหรือเหมาะสมมากที่สุด
+              </pre>
+            </b-card-body>
+          </b-collapse>
+        </b-card>
       </div>
     </div>
   </div>
@@ -82,92 +94,33 @@ export default {
       is_max_count_nonfiction: false,
     };
   },
-  methods: {
-    addCountFiction() {
-      if (this.count_fiction < 50) {
-        this.count_fiction++;
-      } else {
-        this.is_max_count_fiction = true;
-      }
-    },
-    minusCountFiction() {
-      if (this.count_fiction > 0) this.count_fiction--;
-      if (this.count_fiction < 50) this.is_max_count_fiction = false;
-    },
-    addCountNonFiction() {
-      if (this.count_nonfiction < 50) {
-        this.count_nonfiction++;
-      } else {
-        this.is_max_count_nonfiction = true;
-      }
-    },
-    minusCountNonFiction() {
-      if (this.count_nonfiction > 0) this.count_nonfiction--;
-      if (this.count_nonfiction < 50) this.is_max_count_nonfiction = false;
-    },
-  },
+  methods: {},
 };
 </script>
 
 <style lang="scss" scoped>
-.main-bg {
-  background: #fffbdb;
+.bg-main {
+  padding: 100px;
 }
 
-.text-conclusion {
-  color: #4b4b40;
-  max-width: 650px;
-  margin: 131px auto;
-  @media #{$mq-mini-mobile} {
-    padding: 0 10px;
-    margin: 34px auto;
+.accordion {
+  width: 650px;
+  margin: auto;
+}
+
+.accordion > .card > .card-header {
+  background: #e8e4d8;
+
+  .btn-accordion {
+    text-align: left;
+    background: none;
+    color: #000;
+    border: none;
   }
 }
 
-.non-fiction-text {
-  color: #689553;
-  font-weight: bold;
-}
-
-.fiction-text {
-  color: #208bbd;
-  font-weight: bold;
-}
-
-.minus,
-.plus {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  background: white;
-  cursor: pointer;
-}
-
-.count {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  background: white;
-}
-
-.counts {
-  @media #{$mq-mini-mobile} {
-    flex-direction: column;
-    align-items: center;
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
-}
-
-.share-section {
-  text-align: center;
-  color: #4b4b40;
-}
-
-.lines {
-  width: 1px;
-  background: #e0e0e0;
-}
 </style>

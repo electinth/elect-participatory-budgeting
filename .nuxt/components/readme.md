@@ -6,12 +6,15 @@ You can directly use them in pages and other components without the need to impo
 
 **Tip:** If a component is conditionally rendered with `v-if` and is big, it is better to use `Lazy` or `lazy-` prefix to lazy load.
 
+- `<ChooseProjectSection>` | `<choose-project-section>` (components/ChooseProjectSection..vue)
 - `<Conclusion>` | `<conclusion>` (components/Conclusion.vue)
+- `<DistrictDropdown>` | `<district-dropdown>` (components/DistrictDropdown.vue)
 - `<EndCredit>` | `<end-credit>` (components/EndCredit.vue)
 - `<EndSection>` | `<end-section>` (components/EndSection.vue)
 - `<IntroSection>` | `<intro-section>` (components/IntroSection.vue)
 - `<ProblemSection>` | `<problem-section>` (components/ProblemSection.vue)
 - `<ProjectSection>` | `<project-section>` (components/ProjectSection.vue)
+- `<ProvinceSection>` | `<province-section>` (components/ProvinceSection.vue)
 - `<ScoreSection>` | `<score-section>` (components/ScoreSection.vue)
 - `<TreeMapSection>` | `<tree-map-section>` (components/TreeMapSection.vue)
 - `<VideoSection>` | `<video-section>` (components/VideoSection.vue)

@@ -55,7 +55,7 @@ body {
 
 .text-1 {
   //line-height: 150%;
-  font-family: "KondolarThai", serif;
+  font-family: "Anuphan", serif;
   font-size: 21px;
   @media #{$mq-mini-mobile} {
     font-size: 16px;
@@ -63,7 +63,7 @@ body {
 }
 .text-2 {
   //line-height: 150%;
-  font-family: "KondolarThai", serif;
+  font-family: "Anuphan", serif;
   font-size: 18px;
   @media #{$mq-mini-mobile} {
     font-size: 14px;
@@ -71,7 +71,7 @@ body {
 }
 .text-3 {
   //line-height: 150%;
-  font-family: "KondolarThai", serif;
+  font-family: "Anuphan", serif;
   font-size: 16px;
   @media #{$mq-mini-mobile} {
     font-size: 12px;
@@ -79,7 +79,7 @@ body {
 }
 .text-4 {
   //line-height: 150%;
-  font-family: "KondolarThai", serif;
+  font-family: "Anuphan", serif;
   font-size: 14px;
   @media #{$mq-mini-mobile} {
     font-size: 10px;
@@ -146,59 +146,83 @@ body {
 // ------------ color ----------------
 
 .orange {
-  color: #ff7539;
+  color: #FF8310;
 }
 
 .purple {
-  color: #c49ff3;
+  color: #D170FF;
 }
 
 .blue {
-  color: #5bc3c3;
+  color: #538DFF;
 }
 
 .green {
-  color: #689553;
+  color: #6ADC7B;
 }
 
-.green {
-  color: #689553;
+.green-2 {
+  color: #C3DA14;
+}
+
+.red {
+  color: #FF583E;
+}
+
+.pink {
+  color: #FF9FDF;
 }
 
 .gray-1 {
-  color: #4b4b40;
+  color: #B2B2B2;
 }
 
-.yellow-2 {
-  color: #dfbe69;
+.gray-2 {
+  color: #DDDDDD;
 }
 
-.bg-yellow {
-  background-color: #ffc540;
+.gray-3 {
+  color: #E8E4D8;
 }
 
-.bg-gold-1 {
-  background-color: #ffdd87 !important;
+.bg-orange {
+  background-color: #FF8310;
 }
 
-.bg-gold-2 {
-  background-color: #dfbe69;
-}
-
-.bg-light-yellow {
-  background-color: #fffbdb;
+.bg-purple {
+  background-color: #D170FF;
 }
 
 .bg-blue {
-  background-color: #208bbd;
+  background-color: #538DFF;
 }
 
 .bg-green {
-  background-color: #689553;
+  background-color: #6ADC7B;
+}
+
+.bg-green-2 {
+  background-color: #C3DA14;
+}
+
+.bg-red {
+  background-color: #FF583E;
+}
+
+.bg-pink {
+  background-color: #FF9FDF;
 }
 
 .bg-gray-1 {
-  background-color: #4b4b40;
+  background-color: #B2B2B2;
+}
+
+.bg-gray-2 {
+  background-color: #DDDDDD;
+}
+
+.bg-gray-3 {
+  background-color: #E8E4D8;
 }
 
 // ----------------------------

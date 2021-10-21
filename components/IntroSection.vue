@@ -12,17 +12,17 @@
       <div class="h-100vh bg-main d-flex justify-content-center flex-column">
         <div class="black-box text-center">
           <p class="text-1 m-0">
-            ทุกวันนี้...เมืองที่เราใช้ชีวิต
+            ทุกวันนี้เมืองที่เราใช้ชีวิต
             ยังมีหลายอย่างไม่ได้เป็นแบบที่เราวาดฝันไว้ใช่ไหม? <br /><br />
 
             เราเองในฐานะประชาชนผู้เสียภาษีทางตรงและทางอ้อม
             ก็ควรได้ร่วมออกแบบการใช้งบประมาณของเมือง
-            เพื่อสร้างเมืองในแบบที่เราต้องการได้ <br /><br />
-
-            ถ้างั้น...ขอชวนมาลองเริ่มต้นที่เมืองหลวงอย่าง กรุงเทพมหานคร
-            กันก่อนเลย
+            เพื่อสร้างเมืองในแบบที่เราต้องการได้
           </p>
-          <p class="text-4 mt-5">
+          <p class="header-3 mt-4 green">
+            ถ้างั้นขอชวนมาลองเริ่มต้นที่เมืองหลวง อย่างกรุงเทพมหานครกันก่อนเลย!!
+          </p>
+          <p class="text-4 mt-5 text-uppercase">
             โปรเจกต์นี้เป็นเพียงจุดเริ่มต้นที่ตั้งใจให้ทุกคน
             ได้ทดลองมีส่วนร่วมกับงบประมาณ<br />
             เพื่อจะผลักดันสังคมให้ดีขึ้นได้ (Good Society)<br />
@@ -31,9 +31,30 @@
         </div>
         <div class="d-flex justify-content-center mt-5 align-items-center">
           <p class="btn-text-1 text mb-0 mr-2">Share</p>
-          <img :src="icon_fb" class="mx-1" width="" />
-          <img :src="icon_line" class="mx-1" width="" />
-          <img :src="icon_twitter" class="mx-1" width="" />
+          <img
+            :src="icon_fb"
+            class="mx-1"
+            width=""
+            v-sharer
+            data-sharer="facebook"
+            :data-url="`https://electinth.github.io/participatory-budgeting/`"
+          />
+          <img
+            :src="icon_line"
+            class="mx-1"
+            width=""
+            v-sharer
+            data-sharer="line"
+            :data-url="`https://electinth.github.io/participatory-budgeting/`"
+          />
+          <img
+            :src="icon_twitter"
+            class="mx-1"
+            width=""
+            v-sharer
+            data-sharer="twitter"
+            :data-url="`https://electinth.github.io/participatory-budgeting/`"
+          />
         </div>
       </div>
     </div>

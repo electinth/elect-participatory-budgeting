@@ -1,6 +1,12 @@
 {
+  "ChooseProjectSection": {
+    "description": "Auto imported from components/ChooseProjectSection..vue"
+  },
   "Conclusion": {
     "description": "Auto imported from components/Conclusion.vue"
+  },
+  "DistrictDropdown": {
+    "description": "Auto imported from components/DistrictDropdown.vue"
   },
   "EndCredit": {
     "description": "Auto imported from components/EndCredit.vue"
@@ -16,6 +22,9 @@
   },
   "ProjectSection": {
     "description": "Auto imported from components/ProjectSection.vue"
+  },
+  "ProvinceSection": {
+    "description": "Auto imported from components/ProvinceSection.vue"
   },
   "ScoreSection": {
     "description": "Auto imported from components/ScoreSection.vue"

@@ -13,7 +13,7 @@
       <p class="text-center m-auto text-3">(กดเล่นคลิปเพื่อฟังคำตอบ)</p>
 
       <div class="videos mt-5">
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center mb-3">
           <img :src="video_pic_1" alt="" class="w-25 h-25" />
           <div class="w-25 p-5">
             <p class="header-3">
@@ -29,7 +29,7 @@
           </div>
         </div>
 
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center  mb-3">
           <img :src="video_pic_2" alt="" class="w-25 h-25" />
           <div class="w-25 p-5">
             <p class="header-3">ตอนนี้กรุงเทพมหานคร กำลังดำเนินการอะไรอยู่?</p>

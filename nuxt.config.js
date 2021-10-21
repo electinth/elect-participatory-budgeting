@@ -61,7 +61,8 @@ export default {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: 'https://elect.in.th/wp-content/uploads/2018/10/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'https://elect.in.th/wp-content/uploads/2018/10/favicon.ico' },
+      { rel: "stylesheet", href: "https://assets.elect.in.th/typography.css" },
     ]
   },
 
@@ -84,7 +85,8 @@ export default {
   plugins: [
     { src: './plugins/vue-slick-carousel.js' },
     { src: './plugins/vue-dragscroll.js', mode: 'client' },
-    { src: '~/plugins/vue-awesome-swiper', mode: 'client' }
+    { src: '~/plugins/vue-awesome-swiper', mode: 'client' },
+    { src: "~/plugins/elect", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -93,7 +95,23 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxtjs/style-resources',
-    '@nuxtjs/fontawesome'
+    '@nuxtjs/fontawesome',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: 'AIzaSyCwIBLPmMURCSdqe_rQqC4gFrUtteLwbfI',
+          authDomain: 'participatory-budgeting-a5f34.firebaseapp.com',
+          projectId: 'participatory-budgeting-a5f34',
+          storageBucket: 'participatory-budgeting-a5f34.appspot.com',
+          messagingSenderId: '412280397430',
+          appId: '1:412280397430:web:d2fd56e866108d5c3c0957'
+        },
+        services: {
+          storage: true
+        }
+      }
+    ]
   ],
 
   fontawesome: {

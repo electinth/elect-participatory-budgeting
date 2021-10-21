@@ -14,10 +14,12 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 import nuxt_plugin_plugin_60d73103 from 'nuxt_plugin_plugin_60d73103' // Source: .\\components\\plugin.js (mode: 'all')
 import nuxt_plugin_bootstrapvue_313da9d5 from 'nuxt_plugin_bootstrapvue_313da9d5' // Source: .\\bootstrap-vue.js (mode: 'all')
+import nuxt_plugin_index_846d3856 from 'nuxt_plugin_index_846d3856' // Source: .\\firebase\\index.js (mode: 'all')
 import nuxt_plugin_fontawesome_c8755f30 from 'nuxt_plugin_fontawesome_c8755f30' // Source: .\\fontawesome.js (mode: 'all')
 import nuxt_plugin_vueslickcarousel_d8b69d56 from 'nuxt_plugin_vueslickcarousel_d8b69d56' // Source: ..\\plugins\\vue-slick-carousel.js (mode: 'all')
 import nuxt_plugin_vuedragscroll_3497e76e from 'nuxt_plugin_vuedragscroll_3497e76e' // Source: ..\\plugins\\vue-dragscroll.js (mode: 'client')
 import nuxt_plugin_vueawesomeswiper_4af85e3f from 'nuxt_plugin_vueawesomeswiper_4af85e3f' // Source: ..\\plugins\\vue-awesome-swiper (mode: 'client')
+import nuxt_plugin_elect_3500f84e from 'nuxt_plugin_elect_3500f84e' // Source: ..\\plugins\\elect (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -67,7 +69,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"มหานครของเรา?","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"},{"hid":"description","name":"description","content":"ส่องงบ ส่งไอเดีย ร่วมออกแบบ การใช้งบประมาณในเมืองของเรา"},{"name":"format-detection","content":"telephone=no"},{"hid":"og:title","property":"og:title","content":"มหานครของเรา?"},{"hid":"og:description","property":"og:description","content":"ส่องงบ ส่งไอเดีย ร่วมออกแบบ การใช้งบประมาณในเมืองของเรา"},{"hid":"og:type","property":"og:type","content":"website"},{"hid":"twitter:title","name":"twitter:title","content":"มหานครของเรา?"},{"hid":"twitter:description","name":"twitter:description","content":"ส่องงบ ส่งไอเดีย ร่วมออกแบบ การใช้งบประมาณในเมืองของเรา"},{"hid":"twitter:card","name":"twitter:card","content":"summary_large_image"},{"hid":"twitter:url","property":"twitter:url","content":"https:\u002F\u002Felectinth.github.io\u002Fparticipatory-budgeting\u002F"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"https:\u002F\u002Felect.in.th\u002Fwp-content\u002Fuploads\u002F2018\u002F10\u002Ffavicon.ico"}],"style":[],"script":[]},
+    head: {"title":"มหานครของเรา?","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"},{"hid":"description","name":"description","content":"ส่องงบ ส่งไอเดีย ร่วมออกแบบ การใช้งบประมาณในเมืองของเรา"},{"name":"format-detection","content":"telephone=no"},{"hid":"og:title","property":"og:title","content":"มหานครของเรา?"},{"hid":"og:description","property":"og:description","content":"ส่องงบ ส่งไอเดีย ร่วมออกแบบ การใช้งบประมาณในเมืองของเรา"},{"hid":"og:type","property":"og:type","content":"website"},{"hid":"twitter:title","name":"twitter:title","content":"มหานครของเรา?"},{"hid":"twitter:description","name":"twitter:description","content":"ส่องงบ ส่งไอเดีย ร่วมออกแบบ การใช้งบประมาณในเมืองของเรา"},{"hid":"twitter:card","name":"twitter:card","content":"summary_large_image"},{"hid":"twitter:url","property":"twitter:url","content":"https:\u002F\u002Felectinth.github.io\u002Fparticipatory-budgeting\u002F"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"https:\u002F\u002Felect.in.th\u002Fwp-content\u002Fuploads\u002F2018\u002F10\u002Ffavicon.ico"},{"rel":"stylesheet","href":"https:\u002F\u002Fassets.elect.in.th\u002Ftypography.css"}],"style":[],"script":[]},
 
     router,
     nuxt: {
@@ -189,6 +191,10 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_bootstrapvue_313da9d5(app.context, inject)
   }
 
+  if (typeof nuxt_plugin_index_846d3856 === 'function') {
+    await nuxt_plugin_index_846d3856(app.context, inject)
+  }
+
   if (typeof nuxt_plugin_fontawesome_c8755f30 === 'function') {
     await nuxt_plugin_fontawesome_c8755f30(app.context, inject)
   }
@@ -203,6 +209,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (process.client && typeof nuxt_plugin_vueawesomeswiper_4af85e3f === 'function') {
     await nuxt_plugin_vueawesomeswiper_4af85e3f(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_elect_3500f84e === 'function') {
+    await nuxt_plugin_elect_3500f84e(app.context, inject)
   }
 
   // Lock enablePreview in context
