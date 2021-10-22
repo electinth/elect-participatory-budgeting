@@ -1,15 +1,15 @@
-export const ChooseProjectSection = () => import('../..\\components\\ChooseProjectSection..vue' /* webpackChunkName: "components/choose-project-section" */).then(c => wrapFunctional(c.default || c))
-export const Conclusion = () => import('../..\\components\\Conclusion.vue' /* webpackChunkName: "components/conclusion" */).then(c => wrapFunctional(c.default || c))
-export const DistrictDropdown = () => import('../..\\components\\DistrictDropdown.vue' /* webpackChunkName: "components/district-dropdown" */).then(c => wrapFunctional(c.default || c))
-export const EndCredit = () => import('../..\\components\\EndCredit.vue' /* webpackChunkName: "components/end-credit" */).then(c => wrapFunctional(c.default || c))
-export const EndSection = () => import('../..\\components\\EndSection.vue' /* webpackChunkName: "components/end-section" */).then(c => wrapFunctional(c.default || c))
-export const IntroSection = () => import('../..\\components\\IntroSection.vue' /* webpackChunkName: "components/intro-section" */).then(c => wrapFunctional(c.default || c))
-export const ProblemSection = () => import('../..\\components\\ProblemSection.vue' /* webpackChunkName: "components/problem-section" */).then(c => wrapFunctional(c.default || c))
-export const ProjectSection = () => import('../..\\components\\ProjectSection.vue' /* webpackChunkName: "components/project-section" */).then(c => wrapFunctional(c.default || c))
-export const ProvinceSection = () => import('../..\\components\\ProvinceSection.vue' /* webpackChunkName: "components/province-section" */).then(c => wrapFunctional(c.default || c))
-export const ScoreSection = () => import('../..\\components\\ScoreSection.vue' /* webpackChunkName: "components/score-section" */).then(c => wrapFunctional(c.default || c))
-export const TreeMapSection = () => import('../..\\components\\TreeMapSection.vue' /* webpackChunkName: "components/tree-map-section" */).then(c => wrapFunctional(c.default || c))
-export const VideoSection = () => import('../..\\components\\VideoSection.vue' /* webpackChunkName: "components/video-section" */).then(c => wrapFunctional(c.default || c))
+export { default as ChooseProjectSection } from '../..\\components\\ChooseProjectSection..vue'
+export { default as Conclusion } from '../..\\components\\Conclusion.vue'
+export { default as DistrictDropdown } from '../..\\components\\DistrictDropdown.vue'
+export { default as EndCredit } from '../..\\components\\EndCredit.vue'
+export { default as EndSection } from '../..\\components\\EndSection.vue'
+export { default as IntroSection } from '../..\\components\\IntroSection.vue'
+export { default as ProblemSection } from '../..\\components\\ProblemSection.vue'
+export { default as ProjectSection } from '../..\\components\\ProjectSection.vue'
+export { default as ProvinceSection } from '../..\\components\\ProvinceSection.vue'
+export { default as ScoreSection } from '../..\\components\\ScoreSection.vue'
+export { default as TreeMapSection } from '../..\\components\\TreeMapSection.vue'
+export { default as VideoSection } from '../..\\components\\VideoSection.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

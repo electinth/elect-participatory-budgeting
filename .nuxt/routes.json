@@ -3,21 +3,18 @@
     "name": "about",
     "path": "/about",
     "component": "D:\\\\Punch Up\\\\elect-participatory-budgeting\\\\pages\\\\about.vue",
-    "chunkName": "pages/about",
-    "_name": "_de694b2e"
+    "chunkName": "pages/about"
   },
   {
     "name": "ogimage-variation",
     "path": "/ogimage/:variation?",
     "component": "D:\\\\Punch Up\\\\elect-participatory-budgeting\\\\pages\\\\ogimage\\\\_variation.vue",
-    "chunkName": "pages/ogimage/_variation",
-    "_name": "_63ce4e1a"
+    "chunkName": "pages/ogimage/_variation"
   },
   {
     "name": "index",
     "path": "/",
     "component": "D:\\\\Punch Up\\\\elect-participatory-budgeting\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_9ef995a4"
+    "chunkName": "pages/index"
   }
 ]
