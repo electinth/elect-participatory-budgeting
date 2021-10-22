@@ -45,6 +45,7 @@ import { uuid } from "vue-uuid";
 export default {
   data() {
     return {
+      cookies:true,
       menu_list: [
         {
           name: "Home",
@@ -67,11 +68,11 @@ export default {
     };
   },
   mounted() {
-    if (this.$cookies.get("uuid") === undefined) {
-      this.cookies = false;
-    } else {
-      this.cookies = true;
-    }
+    // if (this.$cookies.get("uuid") === undefined) {
+    //   this.cookies = false;
+    // } else {
+    //   this.cookies = true;
+    // }
   },
   head() {
     return {
