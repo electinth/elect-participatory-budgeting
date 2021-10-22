@@ -1,7 +1,7 @@
 
 
 export default async function (session) {
-  await import(/* webpackChunkName: 'firebase-storage' */'firebase/storage')
+  await import('firebase/storage')
 
   const storageService = session.storage()
 
