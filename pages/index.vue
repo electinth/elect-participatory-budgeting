@@ -14,7 +14,7 @@
       </div></elect-navbar
     >
     <IntroSection />
-    <ProblemSection /> 
+    <ProblemSection />
     <ScoreSection />
     <TreeMapSection />
     <ProjectSection />
@@ -22,7 +22,7 @@
     <EndSection />
     <VideoSection />
     <Conclusion />
-    <div class="cookie-tab">
+    <div class="cookie-tab" v-if="cookies">
       <div class="d-flex justify-content-center box">
         <button class="text-1 font-weight-bold mr-3">ยอมรับ</button>
         <p class="btn-text-2 m-0">
@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import { uuid } from "vue-uuid";
+
 export default {
   data() {
     return {
@@ -65,13 +67,16 @@ export default {
     };
   },
   mounted() {
-    // this.$nextTick(() => {
-    //   this.$nuxt.$loading.start();
-    //   setTimeout(() => this.$nuxt.$loading.finish(), 2000);
-    // });
+    if (this.$cookies.get("uuid") === undefined) {
+      this.cookies = false;
+    } else {
+      this.cookies = true;
+    }
   },
   head() {
     return {
+      uuid: uuid.v1(),
+      cookies: true,
       meta: [
         {
           hid: "og-image",
