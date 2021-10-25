@@ -1,8 +1,8 @@
 import createApp from './app.js'
 
-import storageService from './service.storage.js'
+import databaseService from './service.database.js'
 
-const appConfig = {"apiKey":"AIzaSyCwIBLPmMURCSdqe_rQqC4gFrUtteLwbfI","authDomain":"participatory-budgeting-a5f34.firebaseapp.com","projectId":"participatory-budgeting-a5f34","storageBucket":"participatory-budgeting-a5f34.appspot.com","messagingSenderId":"412280397430","appId":"1:412280397430:web:d2fd56e866108d5c3c0957"}
+const appConfig = {"apiKey":"AIzaSyCwIBLPmMURCSdqe_rQqC4gFrUtteLwbfI","authDomain":"participatory-budgeting-a5f34.firebaseapp.com","databaseURL":"https:\u002F\u002Fparticipatory-budgeting-a5f34-default-rtdb.asia-southeast1.firebasedatabase.app","projectId":"participatory-budgeting-a5f34","storageBucket":"participatory-budgeting-a5f34.appspot.com","messagingSenderId":"412280397430","appId":"1:412280397430:web:d2fd56e866108d5c3c0957"}
 
 export default async (ctx, inject) => {
   const { firebase, session } = await createApp(appConfig, ctx)
@@ -11,24 +11,24 @@ export default async (ctx, inject) => {
 
   if (process.server) {
     servicePromises = [
-      storageService(session, firebase, ctx, inject),
+      databaseService(session, firebase, ctx, inject),
 
     ]
   }
 
   if (process.client) {
     servicePromises = [
-      storageService(session, firebase, ctx, inject),
+      databaseService(session, firebase, ctx, inject),
 
     ]
   }
 
   const [
-    storage
+    database
   ] = await Promise.all(servicePromises)
 
   const fire = {
-    storage: storage
+    database: database
   }
 
     inject('fireModule', firebase)

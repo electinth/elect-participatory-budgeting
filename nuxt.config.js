@@ -12,25 +12,25 @@ export default {
   target: 'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'มหานครของเรา?',
+    title: 'อยู่เมืองนี้ ต้องรู้เยอะ',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1' },
-      { hid: 'description', name: 'description', content: 'ส่องงบ ส่งไอเดีย ร่วมออกแบบ การใช้งบประมาณในเมืองของเรา' },
+      { hid: 'description', name: 'description', content: 'ร่วมสร้างสรรค์ ชวนจับตาให้งบกรุงเทพฯ ถูกใช้อย่างตรงจุด' },
       { name: 'format-detection', content: 'telephone=no' },
       {
         hid: 'og:title',
         property: 'og:title',
-        content: 'มหานครของเรา?'
+        content: 'อยู่เมืองนี้ ต้องรู้เยอะ'
       },
       {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'ส่องงบ ส่งไอเดีย ร่วมออกแบบ การใช้งบประมาณในเมืองของเรา'
+          'ร่วมสร้างสรรค์ ชวนจับตาให้งบกรุงเทพฯ ถูกใช้อย่างตรงจุด'
       },
       {
         hid: 'og:type',
@@ -40,13 +40,13 @@ export default {
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: 'มหานครของเรา?'
+        content: 'อยู้เมืองนี้ ต้องรู้เยอะ'
       },
       {
         hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          'ส่องงบ ส่งไอเดีย ร่วมออกแบบ การใช้งบประมาณในเมืองของเรา'
+          'ร่วมสร้างสรรค์ ชวนจับตาให้งบกรุงเทพฯ ถูกใช้อย่างตรงจุด'
       },
       {
         hid: 'twitter:card',
@@ -96,27 +96,33 @@ export default {
   buildModules: [
     '@nuxtjs/style-resources',
     '@nuxtjs/fontawesome',
+    '@nuxtjs/moment',
     [
       '@nuxtjs/firebase',
       {
         config: {
           apiKey: 'AIzaSyCwIBLPmMURCSdqe_rQqC4gFrUtteLwbfI',
           authDomain: 'participatory-budgeting-a5f34.firebaseapp.com',
+          databaseURL: "https://participatory-budgeting-a5f34-default-rtdb.asia-southeast1.firebasedatabase.app",
           projectId: 'participatory-budgeting-a5f34',
           storageBucket: 'participatory-budgeting-a5f34.appspot.com',
           messagingSenderId: '412280397430',
           appId: '1:412280397430:web:d2fd56e866108d5c3c0957'
         },
         services: {
-          storage: true
+          database: true
         }
       }
     ]
   ],
 
+  moment: {
+    locales: ['th']
+  },
+
   fontawesome: {
     icons: {
-      solid: ['faStar', 'faChevronDown', 'faArrowDown', 'faArrowRight']
+      solid: ['faStar', 'faChevronDown', 'faArrowDown', 'faArrowRight','faTimes']
     }
   },
 
@@ -126,6 +132,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    'cookie-universal-nuxt'
   ],
   styleResources: {
     scss: ['~/assets/styles/variables.scss'],

@@ -10,14 +10,16 @@ import {
   faStar as freeFasFaStar,
   faChevronDown as freeFasFaChevronDown,
   faArrowDown as freeFasFaArrowDown,
-  faArrowRight as freeFasFaArrowRight
+  faArrowRight as freeFasFaArrowRight,
+  faTimes as freeFasFaTimes
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   freeFasFaStar,
   freeFasFaChevronDown,
   freeFasFaArrowDown,
-  freeFasFaArrowRight
+  freeFasFaArrowRight,
+  freeFasFaTimes
 )
 
 config.autoAddCss = false

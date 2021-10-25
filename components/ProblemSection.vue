@@ -55,31 +55,36 @@
     </div>
     <div
       class="h-100vh result d-flex justify-content-center align-items-center"
+      v-if="isShow"
+      id="result-box"
     >
       <div
         class="result-box text-center"
         :style="{
-          background: color,
+          background: results[0].color,
         }"
       >
-        <h1 class="header-3 font-weight-bold my-3">{{ title }}</h1>
-        <img :src="pic" alt="" class="mb-3" width="150" />
+        <h1 class="header-3 font-weight-bold my-3">{{ results[0].title }}</h1>
+        <img :src="results[0].pic" alt="" class="mb-3" width="150" />
         <p class="text-2 m-0 font-weight-bold">
           ยังเป็นปัญหาที่ยังค้างคาใจคุณอยู่
         </p>
         <p class="text-4 m-0">
           กรุงเทพมหานครวางแผนแก้ไขประเด็นนี้เช่นกัน เพื่อกรุงเทพมหานครเป็น
         </p>
-        <p class="text-2 m-0 font-weight-bold">มหานครปลอดภัย</p>
-        <div class="header-3 header-box my-3">ในมิติ “ปลอดมลพิษ”</div>
+        <p class="text-2 m-0 font-weight-bold">{{ results[0].side }}</p>
+        <div class="header-3 header-box my-3">
+          ในมิติ “{{ results[0].dimemsion }}”
+        </div>
 
         <div class="text-2 institute-box">
           หน่วยงาน <b> “ต้องรับผิดชอบ ในการแก้ปัญหานี้”</b> คือ
-          <ul class="text-left">
+          <!-- <ul class="text-left">
             <li>สำนักการระบายน้ำ</li>
             <li>สำนักสิ่งแวดล้อม</li>
             <li>สำนักงานเขต</li>
-          </ul>
+          </ul> -->
+          {{ results[0].institute }}
         </div>
       </div>
     </div>
@@ -98,57 +103,103 @@ export default {
       color: "#FFF",
       title: "น้ำเน่าเสีย ขยะ ฝุ่นละออง",
       pic: require("~/assets/images/problem/problem_1.png"),
+      results: [
+        {
+          color: "#FFF",
+          title: "",
+          pic: "",
+          dimemsion: "",
+          institute: "",
+          side: "",
+        },
+      ],
+      isShow: false,
       problems: [
         {
           id: 1,
           name: "น้ำเน่าเสีย ขยะ ฝุ่นละออง",
           img: require("~/assets/images/problem/problem_1.png"),
           color: "#538DFF",
+          dimemsion: "ปลอดมลพิษ",
+          institute: '"สำนักการระบายน้ำ \nสำนักสิ่งแวดล้อม\nสำนักงานเขต"',
+          side: "มหานครปลอดภัย",
         },
         {
           id: 2,
           name: "พื้นที่สีเขียว และสวนสาธารณะ",
           img: require("~/assets/images/problem/problem_2.png"),
           color: "#6ADC7B",
+          dimemsion: "พื้นที่สวนสาธารณะ พื้นที่สีเขียวกระจายทั่วพื้นที่",
+          institute: "สำนักสิ่งแวดล้อม \nสำนักผังเมือง \nสำนักงานเขต",
+          side: "\nมหานครสีเขียวสะดวกสบาย",
         },
         {
           id: 3,
           name: "การทุจริต คอร์รัปชั่น",
           img: require("~/assets/images/problem/problem_3.png"),
           color: "#FF8310",
+          dimemsion: "การเมืองสีขาว",
+          institute:
+            "สำนักงานคณะกรรมการข้าราชการกรุงเทพมหานคร \nสำนักปลัดกรุงเทพมหานคร",
+          side: "\nมหานครประชาธิปไตย",
         },
         {
           id: 4,
           name: "สาธารณูปโภคพื้นฐาน ให้ผู้พิการ",
           img: require("~/assets/images/problem/problem_4.png"),
           color: "#FF583E",
+          dimemsion:
+            "การจัดสิ่งอำนวยความสะดวก สวัสดิการและการสงเคราะห์ และการดูแลสุขภาพให้กับผู้สูงอายุคนพิการ และผู้ด้อยโอกาส",
+          institute:
+            "หน่วยงานในสังกัด กทม. ได้แก่ \nสำนักพัฒนาสังคม \nสำนักอนามัย \nสำนักการโยธา \nสำนักงานเขต\n\nหน่วยงานนอกสังกัด กทม. ได้แก่ กระทรวงแรงงานกระทรวงพัฒนาสังคมและความมั่นคงของมนุษย์กรมโยธาธิการ",
+          side: "\nมหานครสำหรับทุกคน",
         },
         {
           id: 5,
           name: "ระบบสารสนเทศ ในการให้บริการ ประชาชน",
           img: require("~/assets/images/problem/problem_5.png"),
           color: "#D170FF",
+          dimemsion: "เทคโนโลยีสารสนเทศ",
+          institute:
+            "สำนักยุทธศาสตร์และประเมินผล หน่วยงานด้านไอทีภายในสำนักและเขตต่าง ๆ ",
+          side: "\nการบริหารจัดการเมืองมหานคร",
         },
         {
           id: 6,
           name: "แหล่งท่องเที่ยว เสื่อมโทรม",
           img: require("~/assets/images/problem/problem_6.png"),
           color: "#C3DA14",
+          dimemsion: "\nเมืองแห่งนักท่องเที่ยวระดับโลก",
+          institute:
+            "หน่วยงานในสังกัด กทม. ได้แก่ \nสำนักวัฒนธรรม กีฬาและการท่องเที่ยว \nสำนักยุทธศาสตร์และประเมินผล\n\nส่วนราชการ/หน่วยงานภายนอก กทม. ได้แก่ \nกรมการท่องเที่ยว\nการท่องเที่ยวแห่งประเทศไทย\n",
+          side: "\nมหานครแห่งเศรษฐกิจและเรียนรู้",
         },
         {
           id: 7,
           name: "การจัดระบียบ ความหนาแน่น ของเมือง",
           img: require("~/assets/images/problem/problem_7.png"),
           color: "#FF9FDF",
+          dimemsion: "\nกรุงเทพมหานครเติบโตอย่างเป็นระเบียบตามผังเมืองรวม",
+          institute: "สำนักผังเมือง สำนักงานเขต",
+          side: "\nมหานครกระชับ",
         },
       ],
     };
   },
+  created() {},
   methods: {
     showProblemResult(data) {
-      this.color = data.color;
-      this.title = data.name;
-      this.pic = data.img;
+      this.isShow = true;
+           setTimeout(
+          () => document.getElementById("result-box").scrollIntoView(),
+          500
+        );
+      this.results[0].color = data.color;
+      this.results[0].title = data.name;
+      this.results[0].pic = data.img;
+      this.results[0].dimemsion = data.dimemsion;
+      this.results[0].institute = data.institute;
+      this.results[0].side = data.side;
     },
   },
 };

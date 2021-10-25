@@ -24,7 +24,9 @@
     <Conclusion />
     <div class="cookie-tab" v-if="cookies">
       <div class="d-flex justify-content-center box">
-        <button class="text-1 font-weight-bold mr-3">ยอมรับ</button>
+        <button class="text-1 font-weight-bold mr-3" @click="saveCookies()">
+          ยอมรับ
+        </button>
         <p class="btn-text-2 m-0">
           ELECT ให้ความสำคัญต่อข้อมูลส่วนบุคคลของท่าน และใช้คุกกี้ (Cookies)
           เพื่อจุดประสงค์ในการพัฒนาประสบการณ์
@@ -45,7 +47,8 @@ import { uuid } from "vue-uuid";
 export default {
   data() {
     return {
-      cookies:true,
+      uuid: uuid.v1(),
+      cookies: true,
       menu_list: [
         {
           name: "Home",
@@ -68,11 +71,11 @@ export default {
     };
   },
   mounted() {
-    // if (this.$cookies.get("uuid") === undefined) {
-    //   this.cookies = false;
-    // } else {
-    //   this.cookies = true;
-    // }
+    if (this.$cookies.get("uuid") === undefined) {
+      this.cookies = true;
+    } else {
+      this.cookies = false;
+    }
   },
   head() {
     return {
@@ -91,6 +94,14 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    saveCookies() {
+      if (!this.$cookies.get("uuid")) {
+        this.$cookies.set("uuid", this.uuid);
+        this.cookies = false;
+      }
+    },
   },
 };
 </script>
