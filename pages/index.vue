@@ -1,6 +1,9 @@
 <template>
   <div>
-    <elect-navbar title="articipatory-budgeting 101" dark="true">
+    <div class="h-100vh bg-main d-flex justify-content-center align-items-center">
+      <h1 class="header-1 font-weight-bold">coming soon on 12 November</h1>
+    </div>
+    <!-- <elect-navbar title="articipatory-budgeting 101" dark="true">
       <div class="menu-wrap">
         <nuxt-link
           v-for="(menu, index) in menu_list"
@@ -28,7 +31,7 @@
           ยอมรับ
         </button>
         <p class="btn-text-2 m-0">
-          ELECT ให้ความสำคัญต่อข้อมูลส่วนบุคคลของท่าน และใช้คุกกี้ (Cookies)
+          Punch Up ให้ความสำคัญต่อข้อมูลส่วนบุคคลของท่าน และใช้คุกกี้ (Cookies)
           เพื่อจุดประสงค์ในการพัฒนาประสบการณ์
           การใช้งานในเว็บไซต์นี้เท่านั้นและจะไม่กระทำการเก็บรวบรวม ใช้
           หรือเปิดเผยข้อมูลส่วนบุคคลของท่าน เพื่อประโยชน์อย่างอื่น
@@ -36,8 +39,7 @@
           เงื่อนไขที่แจ้งไว้
         </p>
       </div>
-    </div>
-    <elect-footer />
+    </div> -->
   </div>
 </template>
 
@@ -107,6 +109,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.bg-main {
+  background: #e8e4d8;
+}
+
 .cookie-tab {
   position: fixed;
   bottom: 0;

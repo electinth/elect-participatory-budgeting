@@ -11,7 +11,7 @@
         "institude": "สำนักงานวิศวกรรมจราจร/สํานักการจราจรและขนส่ง",
         "dimension": "มหานครปลอดภัย",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=17000000-3486",
-        "path": "pic_issue_1.0.png"
+        "path": "pic_issue_1.0.jpg"
     },
     {
         "id": "2",
@@ -25,7 +25,7 @@
         "institude": "สำนักงานวิศวกรรมจราจร/สํานักการจราจรและขนส่ง",
         "dimension": "มหานครปลอดภัย",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=17000000-3485",
-        "path": "pic_issue_1.1.png"
+        "path": "pic_issue_1.0.jpg"
     },
     {
         "id": "3",
@@ -39,7 +39,7 @@
         "institude": "กองจัดการขยะ ของเสียอันตรายและสิ่งปฏิกูล/สํานักสิ่งแวดล้อม",
         "dimension": "มหานครปลอดภัย",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=22000000-4051",
-        "path": "pic_issue_1.2.png"
+        "path": "pic_issue_1.1.jpg"
     },
     {
         "id": "4",
@@ -53,7 +53,7 @@
         "institude": "กองจัดการขยะ ของเสียอันตรายและสิ่งปฏิกูล/สํานักสิ่งแวดล้อม",
         "dimension": "มหานครปลอดภัย",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=22000000-4058",
-        "path": "pic_issue_1.3.png"
+        "path": "pic_issue_1.2.jpg"
     },
     {
         "id": "5",
@@ -67,7 +67,7 @@
         "institude": "กองจัดการขยะ ของเสียอันตรายและสิ่งปฏิกูล/สํานักสิ่งแวดล้อม",
         "dimension": "มหานครปลอดภัย",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=22000000-4065",
-        "path": "pic_issue_1.4.png"
+        "path": "pic_issue_1.3.jpg"
     },
     {
         "id": "6",
@@ -81,7 +81,7 @@
         "institude": "กองควบคุมการก่อสร้าง/สำนักการโยธา",
         "dimension": "มหานครสีเขียวสะดวกสบาย",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=10000000-4204",
-        "path": "pic_issue_2.0.png"
+        "path": "pic_issue_2.1.jpg"
     },
     {
         "id": "7",
@@ -95,7 +95,7 @@
         "institude": "กองควบคุมการก่อสร้าง/สำนักการโยธา",
         "dimension": "มหานครสีเขียวสะดวกสบาย",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=10000000-4209",
-        "path": "pic_issue_2.0.png"
+        "path": "pic_issue_2.2.jpg"
     },
     {
         "id": "8",
@@ -109,11 +109,11 @@
         "institude": "สำนักงานระบบขนส่ง/สํานักการจราจรและขนส่ง",
         "dimension": "มหานครสีเขียวสะดวกสบาย",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=17000000-3502",
-        "path": "pic_issue_2.1.png"
+        "path": "pic_issue_2.3.jpg"
     },
     {
         "id": "9",
-        "name": "โครงการจัดหารถและบริหารจัดการเดินรถสำหรับผู้พิการ ผู้สูงอายุ และผู้ที่ไม่สามารถช่วยเหลือตัวเองได",
+        "name": "โครงการจัดหารถและบริหารจัดการเดินรถสำหรับผู้พิการ ผู้สูงอายุ และผู้ที่ไม่สามารถช่วยเหลือตัวเองได้",
         "startdate": "2020-10-01",
         "enddate": "2021-09-30",
         "status": "กำลังดำเนินการ",
@@ -123,7 +123,7 @@
         "institude": "สำนักงานระบบขนส่ง/สํานักการจราจรและขนส่ง",
         "dimension": "มหานครสีเขียวสะดวกสบาย",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=17000000-3511",
-        "path": "pic_issue_2.2.png"
+        "path": "pic_issue_2.4.jpg"
     },
     {
         "id": "10",
@@ -137,7 +137,7 @@
         "institude": "กองระบบเทคโนโลยีจราจร/สำนักการจราจรและขนส่ง",
         "dimension": "มหานครสีเขียวสะดวกสบาย",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=17000000-3496",
-        "path": "pic_issue_2.3.png"
+        "path": "pic_issue_2.5.jpg"
     },
     {
         "id": "11",
@@ -151,7 +151,7 @@
         "institude": "สำนักงานพัฒนาระบบสาธารณสุข/สำนักอนามัย",
         "dimension": "มหานครสำหรับทุกคน",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=08000000-6575",
-        "path": "pic_issue_3.0.png"
+        "path": "pic_issue_3.1.jpg"
     },
     {
         "id": "12",
@@ -165,7 +165,7 @@
         "institude": "สำนักงานการเจ้าหน้าที่/สำนักการศึกษา",
         "dimension": "มหานครสำหรับทุกคน",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=09000000-4204",
-        "path": "pic_issue_3.1.png"
+        "path": "pic_issue_3.2.jpg"
     },
     {
         "id": "13",
@@ -179,7 +179,7 @@
         "institude": "หน่วยงานศึกษานิเทศก์/สำนักการศึกษา",
         "dimension": "มหานครสำหรับทุกคน",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=09000000-4214",
-        "path": "pic_issue_3.2.png"
+        "path": "pic_issue_3.3.jpg"
     },
     {
         "id": "14",
@@ -193,7 +193,7 @@
         "institude": "สำนักงานระบบขนส่ง/สํานักการจราจรและขนส่ง",
         "dimension": "มหานครสำหรับทุกคน",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=17000000-3567",
-        "path": "pic_issue_3.3.png"
+        "path": "pic_issue_3.4.jpg"
     },
     {
         "id": "15",
@@ -207,7 +207,7 @@
         "institude": "สำนักงานเขตทวีวัฒนา",
         "dimension": "มหานครประชาธิปไตย",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=50480000-3444",
-        "path": "pic_issue_5.0.png"
+        "path": "pic_issue_5.0.jpg"
     },
     {
         "id": "16",
@@ -221,7 +221,7 @@
         "institude": "กองแผนงานและประสานสาธารณูปโภค/สำนักการโยธา",
         "dimension": "มหานครแห่งเศรษฐกิจและการเรียนรู้",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=10000000-4253",
-        "path": "pic_issue_6.0.png"
+        "path": "pic_issue_6.1.jpg"
     },
     {
         "id": "17",
@@ -235,7 +235,7 @@
         "institude": "สำนักงานพัฒนาและฟื้นฟูเมือง/สำนักการวางผังและพัฒนาเมือง",
         "dimension": "มหานครแห่งเศรษฐกิจและการเรียนรู้",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=18000000-2530",
-        "path": "pic_issue_6.1.png"
+        "path": "pic_issue_6.4.jpg"
     },
     {
         "id": "18",
@@ -249,7 +249,7 @@
         "institude": "สำนักงานการส่งเสริมอาชีพ/สํานักพัฒนาสังคม",
         "dimension": "มหานครแห่งเศรษฐกิจและการเรียนรู้",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=24000000-3021",
-        "path": "pic_issue_6.2.png"
+        "path": "pic_issue_6.2.jpg"
     },
     {
         "id": "19",
@@ -263,7 +263,7 @@
         "institude": "สำนักงานการส่งเสริมอาชีพ/สํานักพัฒนาสังคม",
         "dimension": "มหานครแห่งเศรษฐกิจและการเรียนรู้",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=24000000-3022",
-        "path": "pic_issue_6.3.png"
+        "path": "pic_issue_6.3.jpg"
     },
     {
         "id": "20",
@@ -277,7 +277,7 @@
         "institude": "ศูนย์บริการการแพทย์ฉุกเฉินกรุงเทพมหานคร (ศูนย์เอราวัณ)/สำนักการแพทย์ ",
         "dimension": "การบริหารจัดการเมืองมหานคร",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=07000000-3623",
-        "path": "pic_issue_7.0.png"
+        "path": "pic_issue_7.1.jpg"
     },
     {
         "id": "21",
@@ -291,7 +291,7 @@
         "institude": "กองควบคุมโรคติดต่อ/สำนักอนามัย",
         "dimension": "การบริหารจัดการเมืองมหานคร",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=08000000-6905",
-        "path": "pic_issue_7.0.png"
+        "path": "pic_issue_7.2.jpg"
     },
     {
         "id": "22",
@@ -305,7 +305,7 @@
         "institude": "กองพัฒนาระบบงานคอมพิวเตอร์/สํานักยุทธศาสตร์และประเมินผล",
         "dimension": "การบริหารจัดการเมืองมหานคร",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=21000000-6231",
-        "path": "pic_issue_7.0.png"
+        "path": "pic_issue_7.0.jpg"
     },
     {
         "id": "23",
@@ -319,7 +319,7 @@
         "institude": "กองพัฒนาระบบงานคอมพิวเตอร์/สํานักยุทธศาสตร์และประเมินผล",
         "dimension": "การบริหารจัดการเมืองมหานคร",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=21000000-6290",
-        "path": "pic_issue_7.0.png"
+        "path": "pic_issue_7.3.jpg"
     },
     {
         "id": "24",
@@ -333,7 +333,7 @@
         "institude": "กองโรงงานกำจัดมูลฝอย/สํานักสิ่งแวดล้อม",
         "dimension": "การบริหารจัดการเมืองมหานคร",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=22000000-4103",
-        "path": "pic_issue_7.0.png"
+        "path": "pic_issue_7.0.jpg"
     },
     {
         "id": "25",
@@ -347,6 +347,76 @@
         "institude": "สำนักงานสวนสาธารณะ/สํานักสิ่งแวดล้อม",
         "dimension": "การบริหารจัดการเมืองมหานคร",
         "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=22000000-4114",
-        "path": "pic_issue_7.0.png"
+        "path": "pic_issue_7.0.jpg"
+    },
+    {
+        "id": "26",
+        "name": "โครงการวางแผนและจัดทำผังเมืองรวมกรุงเทพมหานคร (ปรับปรุงครั้งที่ 4)",
+        "startdate": "2020-10-01",
+        "enddate": "2021-09-30",
+        "status": "กำลังดำเนินการ",
+        "result": "เพื่อวางและจัดทำผังเมืองรวมกรุงเทพมหานครให้สอดคล้องกับสภาพการณ์",
+        "budget": "16,680,500",
+        "used": "0",
+        "institude": "สำนักการวางผังและพัฒนาเมือง",
+        "dimension": "มหานครกระชับ",
+        "link": "http://dp2.bangkok.go.th/mobile/index13.php?selDEP=18000000&selYear=2564",
+        "path": "pic_issue_4.0.jpg"
+    },
+    {
+        "id": "27",
+        "name": "โครงการศึกษาและวางแผนพัฒนาพื้นที่ที่มีศักยภาพรอบบริเวณสถานีขนส่งมวลชน (TOD)",
+        "startdate": "2020-07-01",
+        "enddate": "2021-09-30",
+        "status": "ดำเนินการเสร็จสิ้น",
+        "result": "เพื่อศึกษาและวางแผนพัฒนาพื้นที่ที่มีศักยภาพรอบบริเวณสถานีขนส่งมวลชน (TOD)",
+        "budget": "15,275,000",
+        "used": "0",
+        "institude": "สำนักการวางผังและพัฒนาเมือง",
+        "dimension": "มหานครกระชับ",
+        "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=18000000-2521",
+        "path": "pic_issue_4.0.jpg"
+    },
+    {
+        "id": "28",
+        "name": "โครงการส่งเสริมการปฏิบัติให้เป็นไปตามแผนงานพัฒนาศูนย์ชุมชนชานเมืองมีนบุรีและพื้นที่ต่อเนื่อง",
+        "startdate": "2020-10-01",
+        "enddate": "2021-09-30",
+        "status": "กำลังดำเนินการ",
+        "result": "เพื่อส่งเสริมให้ศูนย์ชุมชนชานเมืองมีนบุรีมีการพัฒนาตามศักยภาพของพื้นที่",
+        "budget": "0",
+        "used": "0",
+        "institude": "สำนักการวางผังและพัฒนาเมือง",
+        "dimension": "มหานครกระชับ",
+        "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=18000000-2527",
+        "path": "pic_issue_4.0.jpg"
+    },
+    {
+        "id": "29",
+        "name": "โครงการจ้างที่ปรึกษาโครงการเพิ่มประสิทธิภาพการปฏิบัติงานตามผังเมืองรวมด้วยมาตรการกลไกที่เหมาะสม",
+        "startdate": "2020-10-01",
+        "enddate": "2021-09-29",
+        "status": "กำลังดำเนินการ",
+        "result": "เพื่อสามารถดำเนินการเรื่องผังเมืองรวมได้อย่างมีประสิทธิภาพ",
+        "budget": "9,678,500",
+        "used": "0",
+        "institude": "สำนักการวางผังและพัฒนาเมือง",
+        "dimension": "มหานครกระชับ",
+        "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=18000000-2515",
+        "path": "pic_issue_4.0.jpg"
+    },
+    {
+        "id": "30",
+        "name": "โครงการการพัฒนาเมืองเพื่อเพิ่มประสิทธิภาพการใช้ประโยชน์ที่ดินของกรุงเทพมหานคร",
+        "startdate": "2020-10-01",
+        "enddate": "2021-09-30",
+        "status": "กำลังดำเนินการ",
+        "result": "เพื่อศึกษาวิธีการจัดรูปที่ดินมาปรับใช้",
+        "budget": "0",
+        "used": "0",
+        "institude": "สำนักการวางผังและพัฒนาเมือง",
+        "dimension": "มหานครกระชับ",
+        "link": "http://dp2.bangkok.go.th/reportsok/plans/tutorial/kpi4.php?item=18000000-2539",
+        "path": "pic_issue_4.0.jpg"
     }
 ]

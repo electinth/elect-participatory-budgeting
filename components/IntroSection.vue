@@ -33,7 +33,7 @@
           <p class="btn-text-1 text mb-0 mr-2">Share</p>
           <img
             :src="icon_fb"
-            class="mx-1"
+            class="mx-1 pointer"
             width=""
             v-sharer
             data-sharer="facebook"
@@ -41,7 +41,7 @@
           />
           <img
             :src="icon_line"
-            class="mx-1"
+            class="mx-1 pointer"
             width=""
             v-sharer
             data-sharer="line"
@@ -49,7 +49,7 @@
           />
           <img
             :src="icon_twitter"
-            class="mx-1"
+            class="mx-1 pointer"
             width=""
             v-sharer
             data-sharer="twitter"

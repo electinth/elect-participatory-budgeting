@@ -197,7 +197,60 @@
             <p class="m-0 text-3" v-if="tabIndex == 3">มหานครกระชับ</p>
             <p class="m-0 text-3" v-else>+</p>
           </template>
-          <p class="p-3">Tab contents 4</p>
+                   <div class="p-4">
+            <VueSlickCarousel v-bind="slickOptions">
+              <div
+                v-for="(item, index) in project.filter(
+                  (x) => x.dimension == 'มหานครกระชับ'
+                )"
+                :key="index"
+                class="text-left"
+              >
+                <p class="text-4 m-0">
+                  <b>เริ่มต้นโครงการ</b> :
+                  {{ $moment(item.startdate).format("LL") }}
+                </p>
+                <p class="text-4 m-0">
+                  <b>สิ้นสุดโครงการ</b> :
+                  {{ $moment(item.enddate).format("LL") }}
+                </p>
+                <p class="text-4 my-2">
+                  <b>สถานะ</b> : <span class="status">{{ item.status }}</span>
+                </p>
+                <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
+                <img
+                  :src="
+                    require(`@/assets/images/section_project_bkk/issue_4/${item.path}`)
+                  "
+                  width="75%"
+                  alt=""
+                />
+                <p class="text-4 mb-0 mt-2 w-75">
+                  <b>ผลลัพธ์</b> : {{ item.result }}
+                </p>
+                <p class="text-4 m-0">
+                  <b>งบประมาณที่ได้รับ : </b>
+                  <span class="status">{{ item.budget }}</span> บาท
+                </p>
+                <p class="text-4 m-0">
+                  <b>งบประมาณที่ได้ใช้ไป : </b>
+                  <span :class="{ status: item.used != '-' }">{{
+                    item.used
+                  }}</span>
+                  <span v-if="item.used != '-'">บาท</span>
+                </p>
+                <p class="text-4 m-0 w-75">
+                  <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
+                </p>
+                <div class="text-4 m-0">
+                  <b>ลิงค์</b> :
+                  <a :href="item.link" class="w-75" target="_blank">{{
+                    item.link
+                  }}</a>
+                </div>
+              </div>
+            </VueSlickCarousel>
+          </div>
         </b-tab>
 
         <b-tab title-link-class="tab-5">
@@ -417,7 +470,6 @@ export default {
     return {
       tabIndex: 0,
       project: projects.default,
-      sample_pic: require("~/assets/images/section_project_bkk/issue_1/pic_issue_1.0.png"),
       section_5_pic: require("~/assets/images/section_5_pic.png"),
       slickOptions: {
         slidesToShow: 3,
