@@ -19,6 +19,7 @@
     <IntroSection />
     <ProblemSection />
     <ScoreSection />
+    <ExploreTreeMap />
     <TreeMapSection />
     <ProjectSection />
     <ChooseProjectSection />
@@ -54,22 +55,22 @@ export default {
       menu_list: [
         {
           name: "Home",
-          value: "/",
+          value: "/"
         },
         {
           name: "Explore",
-          value: "/#tree-map",
+          value: "/#tree-map"
         },
         {
           name: "Idea",
-          value: "/#idea",
+          value: "/#idea"
         },
         {
           name: "About",
-          value: "/about",
-        },
+          value: "/about"
+        }
       ],
-      drawer: false,
+      drawer: false
     };
   },
   mounted() {
@@ -87,14 +88,14 @@ export default {
         {
           hid: "og-image",
           property: "og:image",
-          content: "https://d208eq9ndr4893.cloudfront.net/og_image.png",
+          content: "https://d208eq9ndr4893.cloudfront.net/og_image.png"
         },
         {
           hid: "twitter:image",
           name: "twitter:image:src",
-          content: "https://d208eq9ndr4893.cloudfront.net/og_image.png",
-        },
-      ],
+          content: "https://d208eq9ndr4893.cloudfront.net/og_image.png"
+        }
+      ]
     };
   },
   methods: {
@@ -103,8 +104,8 @@ export default {
         this.$cookies.set("uuid", this.uuid);
         this.cookies = false;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
