@@ -47,7 +47,7 @@ export default {
   },
   watch: {
     maxRange() {
-      console.log("changed");
+      // console.log("changed");
       this.scale = d3
         .scaleLinear()
         .domain([0, this.total])
