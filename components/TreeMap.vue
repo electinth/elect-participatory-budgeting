@@ -1,44 +1,159 @@
 <template>
   <div class="treemap">
+    <div class="checkbox-legend-small text-explain">
+      <div>
+        <span class="bold-baht">฿</span> | งบที่หน่วยงานขอได้
+        <span class="regular-baht">฿</span> | งบที่กรุงเทพตั้งไว้ในแผนฯ
+      </div>
+      <div>
+        (หน่วยล้านบาท)
+      </div>
+    </div>
+    <div class="navigate-small" :id="parentId" v-on:click="navigateBack">
+      <div class="navigate-text">
+        <p>{{ selectedNode.id }}</p>
+        <div>
+          {{ selectedNode.id === "ทั้งหมด" ? "" : "[" }}
+          <strong>
+            {{
+              selectedNode.id === "ทั้งหมด"
+                ? ""
+                : `฿${
+                    selectedNode.value
+                      ? selectedNode.value.toLocaleString()
+                      : ""
+                  }`
+            }}
+          </strong>
+          {{
+            selectedNode.id === "ทั้งหมด"
+              ? ""
+              : `/ ฿${
+                  selectedNode.id
+                    ? selectedNode.id.split("/ ").length == 2
+                      ? outerSum
+                          .get(selectedNode.id.split("/ ")[1])
+                          .toLocaleString()
+                      : innerSum
+                          .get(selectedNode.id.split("/ ")[2])
+                          .toLocaleString()
+                    : ""
+                } ]`
+          }}
+        </div>
+      </div>
+      <div>
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 17 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle cx="8.49142" cy="8.49142" r="8.49142" fill="black" />
+          <path
+            d="M10.6143 5.00018L5.30713 8.71518L10.6143 12.4302"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+    </div>
     <div class="wrapper">
-      <svg
-        :height="windowHeight"
-        style="margin-left: 0px;"
-        :width="windowWidth"
-      >
-        <g style="shape-rendering: crispEdges;" transform="translate(0,20)">
-          <transition-group name="list" tag="g" class="depth">
-            <g
-              class="children"
-              v-for="children in selectedNode._children"
-              :key="'c_' + children.id"
+      <div>
+        <div class="navigate" :id="parentId" v-on:click="navigateBack">
+          <div class="navigate-text">
+            <p>{{ selectedNode.id }}</p>
+            <div>
+              {{ selectedNode.id === "ทั้งหมด" ? "" : "[" }}
+              <strong>
+                {{
+                  selectedNode.id === "ทั้งหมด"
+                    ? ""
+                    : `฿${
+                        selectedNode.value
+                          ? selectedNode.value.toLocaleString()
+                          : ""
+                      }`
+                }}
+              </strong>
+              {{
+                selectedNode.id === "ทั้งหมด"
+                  ? ""
+                  : `/ ฿${
+                      selectedNode.id
+                        ? selectedNode.id.split("/ ").length == 2
+                          ? outerSum
+                              .get(selectedNode.id.split("/ ")[1])
+                              .toLocaleString()
+                          : innerSum
+                              .get(selectedNode.id.split("/ ")[2])
+                              .toLocaleString()
+                        : ""
+                    } ]`
+              }}
+            </div>
+          </div>
+          <div>
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 17 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <rect
-                v-for="child in children._children"
-                class="child"
-                :id="child.id"
-                :key="child.id"
-                :height="y(child.y1) - y(child.y0)"
-                :width="x(child.x1) - x(child.x0)"
-                :x="x(child.x0)"
-                :y="y(child.y0)"
-              ></rect>
-
-              <rect
-                class="parent"
-                v-on:click="selectNode"
-                :id="children.id"
-                :key="children.id"
-                :x="x(children.x0)"
-                :y="y(children.y0)"
-                :width="x(children.x1 - children.x0 + children.parent.x0)"
-                :height="y(children.y1 - children.y0 + children.parent.y0)"
-                :style="{
-                  fill: colorMap[children.id.split(' > ')[1]]
-                }"
+              <circle cx="8.49142" cy="8.49142" r="8.49142" fill="black" />
+              <path
+                d="M10.6143 5.00018L5.30713 8.71518L10.6143 12.4302"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+        <svg
+          :height="windowHeight"
+          style="margin-left: 0px;"
+          class="svg-class"
+          :width="windowWidth"
+        >
+          <g style="shape-rendering: crispEdges;" transform="translate(0,20)">
+            <transition-group name="list" tag="g" class="depth">
+              <g
+                class="children"
+                v-for="children in selectedNode._children"
+                :key="'c_' + children.id"
               >
-                <!-- The title attribute -->
-                <!-- <title>
+                <rect
+                  v-for="child in children._children"
+                  class="child"
+                  :id="child.id"
+                  :key="child.id"
+                  :height="y(child.y1) - y(child.y0)"
+                  :width="x(child.x1) - x(child.x0)"
+                  :x="x(child.x0)"
+                  :y="y(child.y0)"
+                ></rect>
+
+                <rect
+                  class="parent"
+                  v-on:click="selectNode"
+                  :id="children.id"
+                  :key="children.id"
+                  :x="x(children.x0)"
+                  :y="y(children.y0)"
+                  :width="x(children.x1 - children.x0 + children.parent.x0)"
+                  :height="y(children.y1 - children.y0 + children.parent.y0)"
+                  :style="{
+                    fill: colorMap[children.id.split('/ ')[1]]
+                  }"
+                >
+                  <!-- The title attribute -->
+                  <!-- <title>
                 ด้าน{{ children.data[0] || children.data.type }} ขอได้
                 {{ children.value.toLocaleString() }}ล้านบาท จากที่ตั้งไว้
                 {{
@@ -49,197 +164,237 @@
                     : innerSum.get(children.data[0]).toLocaleString()
                 }}ล้านบาท
               </title> -->
-              </rect>
+                </rect>
 
-              <!-- Text inside treemap -->
-              <text
-                :dy="y(children.y1) - y(children.y0) - 70"
-                :key="
-                  't_' + children.id + (children.data[0] || children.data.type)
-                "
-                :x="x(children.x0) + 10"
-                :y="y(children.y0) + 6"
-                :style="{
-                  'fill-opacity':
-                    windowWidth >= breakWidth
-                      ? y(children.y1 - children.y0 + children.parent.y0) >=
-                          70 &&
-                        x(children.x1 - children.x0 + children.parent.x0) >=
-                          82 &&
-                        children.id.split(' > ').length !== 2
+                <!-- Text inside treemap -->
+                <text
+                  :dy="y(children.y1) - y(children.y0) - 70"
+                  :key="
+                    't_' +
+                      children.id +
+                      (children.data[0] || children.data.type)
+                  "
+                  :x="x(children.x0) + 10"
+                  :y="y(children.y0) + 6"
+                  :style="{
+                    'fill-opacity':
+                      windowWidth >= breakWidth
+                        ? y(children.y1 - children.y0 + children.parent.y0) >=
+                            70 &&
+                          x(children.x1 - children.x0 + children.parent.x0) >=
+                            82 &&
+                          children.id.split(' > ').length !== 2
+                          ? '1'
+                          : '0'
+                        : y(children.y1 - children.y0 + children.parent.y0) >=
+                            73 &&
+                          x(children.x1 - children.x0 + children.parent.x0) >=
+                            50 &&
+                          children.id.split(' > ').length !== 2
                         ? '1'
-                        : '0'
-                      : y(children.y1 - children.y0 + children.parent.y0) >=
-                          73 &&
-                        x(children.x1 - children.x0 + children.parent.x0) >=
-                          50 &&
-                        children.id.split(' > ').length !== 2
-                      ? '1'
-                      : '0',
-                  'font-size': windowWidth >= breakWidth ? '14px' : '12px'
-                }"
-              >
-                {{ children.data[0] || children.data.type }}
-              </text>
+                        : '0',
+                    'font-size': windowWidth >= breakWidth ? '14px' : '12px'
+                  }"
+                >
+                  {{ children.data[0] || children.data.type }}
+                </text>
 
-              <text
-                :dy="y(children.y1) - y(children.y0) - 45"
-                :key="'t_' + children.id + children.value"
-                :x="x(children.x0) + 10"
-                :y="y(children.y0) + 6"
-                :style="{
-                  'fill-opacity':
-                    windowWidth >= breakWidth
-                      ? y(children.y1 - children.y0 + children.parent.y0) >=
-                          70 &&
-                        x(children.x1 - children.x0 + children.parent.x0) >= 82
+                <text
+                  :dy="y(children.y1) - y(children.y0) - 45"
+                  :key="'t_' + children.id + children.value"
+                  :x="x(children.x0) + 10"
+                  :y="y(children.y0) + 6"
+                  :style="{
+                    'fill-opacity':
+                      windowWidth >= breakWidth
+                        ? y(children.y1 - children.y0 + children.parent.y0) >=
+                            70 &&
+                          x(children.x1 - children.x0 + children.parent.x0) >=
+                            82
+                          ? '1'
+                          : '0'
+                        : y(children.y1 - children.y0 + children.parent.y0) >=
+                            62 &&
+                          x(children.x1 - children.x0 + children.parent.x0) >=
+                            50
                         ? '1'
-                        : '0'
-                      : y(children.y1 - children.y0 + children.parent.y0) >=
-                          62 &&
-                        x(children.x1 - children.x0 + children.parent.x0) >= 50
-                      ? '1'
-                      : '0',
-                  'font-size': windowWidth >= breakWidth ? '21px' : '16px',
-                  'font-weight': 'bold'
-                }"
-              >
-                ฿{{ children.value.toLocaleString() }}
-              </text>
+                        : '0',
+                    'font-size': windowWidth >= breakWidth ? '21px' : '16px',
+                    'font-weight': 'bold'
+                  }"
+                >
+                  ฿{{ children.value.toLocaleString() }}
+                </text>
 
-              <text
-                :dy="y(children.y1) - y(children.y0) - 25"
-                :key="'t_' + children.id"
-                :x="x(children.x0) + 10"
-                :y="y(children.y0) + 6"
-                :style="{
-                  'fill-opacity':
-                    windowWidth >= breakWidth
-                      ? y(children.y1 - children.y0 + children.parent.y0) >=
-                          70 &&
-                        x(children.x1 - children.x0 + children.parent.x0) >= 82
+                <text
+                  :dy="y(children.y1) - y(children.y0) - 25"
+                  :key="'t_' + children.id"
+                  :x="x(children.x0) + 10"
+                  :y="y(children.y0) + 6"
+                  :style="{
+                    'fill-opacity':
+                      windowWidth >= breakWidth
+                        ? y(children.y1 - children.y0 + children.parent.y0) >=
+                            70 &&
+                          x(children.x1 - children.x0 + children.parent.x0) >=
+                            82
+                          ? '1'
+                          : '0'
+                        : y(children.y1 - children.y0 + children.parent.y0) >=
+                            62 &&
+                          x(children.x1 - children.x0 + children.parent.x0) >=
+                            50
                         ? '1'
-                        : '0'
-                      : y(children.y1 - children.y0 + children.parent.y0) >=
-                          62 &&
-                        x(children.x1 - children.x0 + children.parent.x0) >= 50
-                      ? '1'
-                      : '0',
-                  'font-size': windowWidth >= breakWidth ? '16px' : '12px'
-                }"
-              >
-                /฿{{
-                  outerSum.get(children.data[0])
-                    ? outerSum.get(children.data[0]).toLocaleString()
-                    : innerSum.get(children.data.type)
-                    ? innerSum.get(children.data.type).toLocaleString()
-                    : innerSum.get(children.data[0])
-                    ? innerSum.get(children.data[0]).toLocaleString()
-                    : ""
+                        : '0',
+                    'font-size': windowWidth >= breakWidth ? '16px' : '12px'
+                  }"
+                >
+                  ฿{{
+                    outerSum.get(children.data[0])
+                      ? outerSum.get(children.data[0]).toLocaleString()
+                      : innerSum.get(children.data.type)
+                      ? innerSum.get(children.data.type).toLocaleString()
+                      : innerSum.get(children.data[0])
+                      ? innerSum.get(children.data[0]).toLocaleString()
+                      : ""
+                  }}
+                </text>
+              </g>
+            </transition-group>
+
+            <!-- Navigation -->
+            <!-- <g class="grandparent">
+              <rect
+                :height="margin.top + 10"
+                :width="windowWidth"
+                :y="(margin.top + 2) * -1"
+                v-on:click="selectNode"
+                :id="parentId"
+              ></rect>
+
+              <text dy=".65em" x="6" y="-14">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#fff"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                  ></path>
+                </svg>
+                {{
+                  selectedNode.id === "ทั้งหมด"
+                    ? selectedNode.id
+                    : selectedNode.id +
+                      ` (฿${
+                        selectedNode.value
+                          ? selectedNode.value.toLocaleString()
+                          : ""
+                      }/ ฿${
+                        selectedNode.id
+                          ? selectedNode.id.split("/ ").length == 2
+                            ? outerSum
+                                .get(selectedNode.id.split("/ ")[1])
+                                .toLocaleString()
+                            : innerSum
+                                .get(selectedNode.id.split("/ ")[2])
+                                .toLocaleString()
+                          : ""
+                      })`
                 }}
               </text>
-            </g>
-          </transition-group>
-
-          <!-- Navigation -->
-          <g class="grandparent">
-            <rect
-              :height="margin.top + 5"
-              :width="windowWidth"
-              :y="(margin.top + 2) * -1"
-              v-on:click="selectNode"
-              :id="parentId"
-            ></rect>
-
-            <text dy=".65em" x="6" y="-14">
-              {{
-                selectedNode.id === "ทั้งหมด"
-                  ? selectedNode.id
-                  : selectedNode.id +
-                    ` (฿${
-                      selectedNode.value
-                        ? selectedNode.value.toLocaleString()
-                        : ""
-                    }/ ฿${
-                      selectedNode.id
-                        ? selectedNode.id.split(" > ").length == 2
-                          ? outerSum
-                              .get(selectedNode.id.split(" > ")[1])
-                              .toLocaleString()
-                          : innerSum
-                              .get(selectedNode.id.split(" > ")[2])
-                              .toLocaleString()
-                        : ""
-                    })`
-              }}
-            </text>
+            </g> -->
           </g>
-        </g>
-      </svg>
+        </svg>
+      </div>
       <client-only>
+        <!-- <div class="checkbox-legend-small text-explain">
+          <div>
+            <span class="bold-baht">฿</span> | งบที่หน่วยงานขอได้
+            <span class="regular-baht">฿</span> | งบที่กรุงเทพตั้งไว้ในแผนฯ
+          </div>
+          <div class="small-text">
+            (หน่วยล้านบาท)
+          </div>
+        </div> -->
         <div class="checkbox-legend text-explain">
-          <div class="checkbox-area">
+          <div class="symbol-explain">
             <ul>
-              <div class="legendTitle">เลือกปี</div>
               <li>
-                <Checkbox
-                  value="2561"
-                  v-model="selectedYear"
-                  color="#FFFFFF"
-                  :size="18"
-                  checked
-                >
-                  <div class="label">
-                    2561
-                    <div style="padding-left: 1.5px">
-                      <StackedBar year="2561" v-if="rawData" :data="rawData" />
+                <span class="bold-baht">฿</span> | งบที่หน่วยงานขอได้ (ล้านบาท)
+              </li>
+              <li>
+                <span class="regular-baht">฿</span> | งบที่กรุงเทพตั้งไว้ในแผนฯ
+              </li>
+            </ul>
+          </div>
+          <div class="checkbox-area">
+            <div>
+              <ul>
+                <div class="legendTitle">เลือกปี</div>
+                <li>
+                  <Checkbox
+                    value="2561"
+                    v-model="selectedYear"
+                    color="#FFFFFF"
+                    :size="18"
+                    checked
+                  >
+                    <div class="label">
+                      2561
+                      <div style="padding-left: 1.5px">
+                        <StackedBar
+                          year="2561"
+                          v-if="rawData"
+                          :data="rawData"
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Checkbox>
-              </li>
-              <li>
-                <Checkbox
-                  value="2562"
-                  v-model="selectedYear"
-                  color="#FFFFFF"
-                  :size="18"
-                  checked
-                >
-                  <div class="label">
-                    2562
-                    <StackedBar year="2562" v-if="rawData" :data="rawData" />
-                  </div>
-                </Checkbox>
-              </li>
-              <li>
-                <Checkbox
-                  value="2563"
-                  v-model="selectedYear"
-                  color="#FFFFFF"
-                  :size="18"
-                  checked
-                >
-                  <div class="label">
-                    2563
-                    <StackedBar year="2563" v-if="rawData" :data="rawData" />
-                  </div>
-                </Checkbox>
-              </li>
-              <li>
-                <Checkbox
-                  value="2564"
-                  v-model="selectedYear"
-                  color="#FFFFFF"
-                  :size="18"
-                  checked
-                >
-                  <div class="label">
-                    2564
-                    <StackedBar year="2564" v-if="rawData" :data="rawData" />
-                  </div>
-                </Checkbox>
-              </li>
-              <li>
+                  </Checkbox>
+                </li>
+                <li>
+                  <Checkbox
+                    value="2562"
+                    v-model="selectedYear"
+                    color="#FFFFFF"
+                    :size="18"
+                    checked
+                  >
+                    <div class="label">
+                      2562
+                      <StackedBar year="2562" v-if="rawData" :data="rawData" />
+                    </div>
+                  </Checkbox>
+                </li>
+                <li>
+                  <Checkbox
+                    value="2563"
+                    v-model="selectedYear"
+                    color="#FFFFFF"
+                    :size="18"
+                    checked
+                  >
+                    <div class="label">
+                      2563
+                      <StackedBar year="2563" v-if="rawData" :data="rawData" />
+                    </div>
+                  </Checkbox>
+                </li>
+                <li>
+                  <Checkbox
+                    value="2564"
+                    v-model="selectedYear"
+                    color="#FFFFFF"
+                    :size="18"
+                    checked
+                  >
+                    <div class="label">
+                      2564
+                      <StackedBar year="2564" v-if="rawData" :data="rawData" />
+                    </div>
+                  </Checkbox>
+                </li>
+                <!-- <li>
                 <Checkbox
                   value="2565"
                   v-model="selectedYear"
@@ -251,8 +406,14 @@
                     2565
                   </div>
                 </Checkbox>
-              </li>
-            </ul>
+              </li> -->
+              </ul>
+              <!-- <div class="symbol-explain-small">
+                <p><span class="bold-baht">฿</span> | งบที่หน่วยงานขอได้</p>
+                <p><span class="normal-baht">฿</span> | งบที่หน่วยงานขอได้</p>
+                <p><span style="opacity:0">฿ |</span> (ล้านบาท)</p>
+              </div> -->
+            </div>
             <ul>
               <div class="legendTitle">เลือกด้าน</div>
               <li>
@@ -334,7 +495,7 @@
               </li>
             </ul>
           </div>
-          <div class="symbol-explain">
+          <!-- <div class="symbol-explain">
             <ul>
               <li>
                 <span class="bold-baht">฿</span> | งบที่หน่วยงานขอได้ (ล้านบาท)
@@ -343,7 +504,7 @@
                 <span class="regular-baht">฿</span> | งบที่กรุงเทพตั้งไว้ในแผนฯ
               </li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </client-only>
     </div>
@@ -409,7 +570,7 @@ export default {
     selectedYearCompute() {
       // console.log("year changed", this.selectedYear);
       if (this.selectedYear.length === 0) {
-        this.selectedYear = ["2561", "2562", "2563", "2564", "2565"];
+        this.selectedYear = ["2561", "2562", "2563", "2564"];
       }
       this.updateData();
       // this.initialize();
@@ -450,12 +611,11 @@ export default {
         strategy: data["strategy"],
         type: data["type"],
         year: data["year"],
-        received: Math.round(
+        received: parseFloat(
           data["งบประมาณข้อบัญญัติ(ล้านบาท)"].replace(",", "")
         ),
-        expected: Math.round(data["งบประมาณตามแผน(ล้านบาท)"].replace(",", ""))
+        expected: parseFloat(data["งบประมาณตามแผน(ล้านบาท)"].replace(",", ""))
       }));
-
     this.rawData = budget;
 
     that.updateData();
@@ -467,8 +627,10 @@ export default {
         this.selectedNode.parent === undefined ||
         this.selectedNode.parent === null
       ) {
+        // console.log("1", this.selectedNode.parent.id);
         return this.selectedNode.id;
       } else {
+        // console.log("2", this.selectedNode.parent.id);
         return this.selectedNode.parent.id;
       }
     },
@@ -496,7 +658,7 @@ export default {
 
       if (this.selected) {
         let nd = this.getNodeById(this.rootNode, this.selected, this);
-
+        // console.log(nd);
         if (nd._children) {
           node = nd;
         } else {
@@ -610,7 +772,7 @@ export default {
           .hierarchy(that.nestedData)
           .eachBefore(function(d) {
             d.id =
-              (d.parent ? d.parent.id + " > " : "") +
+              (d.parent ? d.parent.id + "/ " : "") +
               (d.data[0] || d.data.type || "ทั้งหมด");
           })
           .sum(d => d.received)
@@ -650,7 +812,14 @@ export default {
       }
     },
     selectNode(event) {
+      // console.log("select", event);
       this.selected = event.target.id;
+    },
+    navigateBack() {
+      // console.log("selectback", selectedNode);
+      this.selected = this.selectedNode.parent
+        ? this.selectedNode.parent.id
+        : this.selected;
     },
     getWindowWidth(event) {
       let currentWidth = document.documentElement.clientWidth;
@@ -662,7 +831,8 @@ export default {
       ) {
         this.windowWidth = currentWidth - this.labelWidth;
       } else {
-        this.windowWidth = currentWidth - 40;
+        // this.windowWidth = currentWidth;
+        this.windowWidth = currentWidth - 38;
       }
     },
 
@@ -672,7 +842,6 @@ export default {
       if (currentHeight <= 780 && currentWidth >= this.breakWidth) {
         this.windowHeight = 550;
       } else if (currentWidth < this.breakWidth) {
-        // decide
         this.windowHeight = currentHeight - currentHeight * 0.3;
       } else {
         this.windowHeight = currentHeight - currentHeight * 0.3;
@@ -689,6 +858,15 @@ export default {
 <style lang="scss" scoped>
 $breakWidth: 799px;
 
+.svg-class {
+  position: relative;
+  z-index: 1;
+  margin-top: -18px;
+  @media (max-width: $breakWidth) {
+    // padding-left: 20px;
+    // padding-right: 20px;
+  }
+}
 .wrapper {
   display: flex;
   justify-content: center;
@@ -707,15 +885,40 @@ text {
   pointer-events: none;
 }
 
+// .small-text {
+//   font-size: 12px;
+//   @media #{$mq-mini-mobile} {
+//     font-size: 10px;
+//   }
+// }
+
+.checkbox-legend-small {
+  display: none;
+  @media (max-width: $breakWidth) {
+    // small
+    display: flex;
+    flex-direction: column;
+    max-width: $breakWidth;
+    margin: 0.5em 1.6em 1.5em 1.6em;
+    // background: #eeeeee;
+    background: white;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    // width: 800px;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 5px 10px 5px 10px;
+  }
+}
 .checkbox-legend {
   display: flex;
   align-self: flex-start;
-  margin: 1.4em;
+  margin: 0 1.4em 1.4em 1.4em;
   padding: 20px;
   background: #eeeeee;
   font-family: "KondolarThai", serif;
   font-size: 14px;
-  border-radius: 10px;
   max-width: 270px;
   flex-flow: column;
   align-items: top;
@@ -725,7 +928,8 @@ text {
     width: 800px;
     flex-wrap: nowrap;
     align-items: center;
-    padding: 20px 10px 20px 10px;
+    margin: 1.4em 1.6em 1.4em 1.6em;
+    padding: 10px 10px 10px 10px;
   }
 }
 
@@ -741,13 +945,49 @@ text {
     justify-content: center;
   }
 }
+// .symbol-explain-small {
+//   display: none;
+//   line-height: 0.5;
+//   @media (max-width: $breakWidth) {
+//     // small
+//     display: flex;
+//     flex-flow: row wrap;
+//     // background-color: white;
+//     max-width: 220px;
+//     // padding: 15px 0 0 10px;
+//   }
+//   @media #{$mq-mini-mobile} {
+//     display: flex;
+//     flex-flow: row wrap;
+//     // background-color: white;
+//     max-width: 145px;
+//     // padding: 15px 0 0 10px;
+//   }
+//   @media (max-width: 400px) {
+//     // small
+//     display: flex;
+//     flex-flow: row wrap;
+//     // background-color: white;
+//     max-width: 125px;
+//     padding-left: 5px;
+//     padding-top: 5px;
+//     // padding: 15px 0 0 10px;
+//   }
+// }
+// .symbol-explain-small > p {
+//   // margin-top: 14px;
+// }
 
 .symbol-explain {
   background-color: white;
   max-width: max-content;
   padding: 0 5px 0 10px;
-  border-radius: 10px;
+  // border-radius: 10px;
   text-align: left;
+  @media (max-width: $breakWidth) {
+    // small
+    display: none;
+  }
 }
 
 .bold-baht {
@@ -776,6 +1016,61 @@ text {
     font-size: 12px;
   }
 }
+.navigate {
+  display: flex;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+  // margin: 1.4em 0 1.4em 0;
+  // margin: 1.4em 1.4em 1.4em 1.4em;
+  padding: 10px;
+  cursor: pointer;
+  background: #eeeeee;
+  justify-content: space-between;
+  @media (max-width: $breakWidth) {
+    display: none;
+  }
+}
+.navigate-small {
+  display: none;
+  @media (max-width: $breakWidth) {
+    // small
+    display: flex;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+    padding: 10px;
+    cursor: pointer;
+    background: #eeeeee;
+    justify-content: space-between;
+    border-left: 20px solid white;
+    border-right: 20px solid white;
+  }
+  // @media (max-width: 490px) {
+  //   margin: 1.4em 1.4em 1.4em 1.4em;
+  // }
+}
+.navigate:hover {
+  background-color: #e2e2e2;
+}
+.navigate-text,
+.navigate-text p {
+  display: flex;
+  flex-direction: column;
+  // flex-wrap: wrap;
+  font-family: "KondolarThai", serif;
+  font-size: 14px;
+  text-align: left;
+  padding-right: 3px;
+  margin: 0;
+  // flex-shrink: 10;
+  // margin: 1.4em 1.4em 1.4em 1.4em;
+  // padding: 20px;
+  // background: #eeeeee;
+  @media #{$mq-mini-mobile} {
+    font-size: 12px;
+  }
+}
 .legendTitle {
   font-weight: bold;
   text-align: left;
@@ -796,6 +1091,9 @@ ul {
 .m-chckbox--container {
   line-height: 0;
   margin: 3px;
+  @media #{$mq-mini-mobile} {
+    margin: 1px;
+  }
 }
 
 ::v-deep .m-chckbox--label {
