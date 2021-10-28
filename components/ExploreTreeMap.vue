@@ -3,7 +3,7 @@
     <div class="bg-main text-center">
       <p class="header-3 padding-main">
         การใช้งบประมาณของกรุงเทพมหานครทั้ง 7 ด้าน <br />
-        ในปี 2561-2565
+        ในปี 2561-2564
       </p>
       <p class="text-3 sub">(สามารถเลือกดูรายด้านได้)</p>
       <TreeMap />
