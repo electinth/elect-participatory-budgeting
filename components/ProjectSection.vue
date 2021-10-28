@@ -9,8 +9,10 @@
       <b-tabs v-model="tabIndex" style="width: 1000px" class="mx-auto">
         <b-tab active title-link-class="tab-1">
           <template #title>
-            <p class="m-0 text-3" v-if="tabIndex == 0">มหานครปลอดภัย</p>
-            <p class="m-0 text-3" v-else>+</p>
+            <img :src="logo_project_1" width="24" alt="" />
+            <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 0">
+              มหานครปลอดภัย
+            </p>
           </template>
           <div class="p-4">
             <VueSlickCarousel v-bind="slickOptions">
@@ -29,9 +31,20 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-                <p class="text-4 my-2">
-                  <b>สถานะ</b> : <span class="status">{{ item.status }}</span>
-                </p>
+
+                <div class="d-flex text-4 my-1">
+                  <b class="mr-1">สถานะ : </b> {{ item.status }}
+                  <img
+                    width="20"
+                    :src="
+                      item.status == 'ดำเนินการเสร็จสิ้น'
+                        ? icon_finish
+                        : icon_in_process
+                    "
+                    alt=""
+                  />
+                </div>
+
                 <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
                 <img
                   :src="
@@ -70,10 +83,10 @@
 
         <b-tab title-link-class="tab-2">
           <template #title>
-            <p class="m-0 text-3" v-if="tabIndex == 1">
+            <img :src="logo_project_2" width="24" alt="" />
+            <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 1">
               มหานครสีเขียวสะดวกสบาย
             </p>
-            <p class="m-0 text-3" v-else>+</p>
           </template>
           <div class="p-4">
             <VueSlickCarousel v-bind="slickOptions">
@@ -92,9 +105,18 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-                <p class="text-4 my-2">
-                  <b>สถานะ</b> : <span class="status">{{ item.status }}</span>
-                </p>
+             <div class="d-flex text-4 my-1">
+                  <b class="mr-1">สถานะ : </b> {{ item.status }}
+                  <img
+                    width="20"
+                    :src="
+                      item.status == 'ดำเนินการเสร็จสิ้น'
+                        ? icon_finish
+                        : icon_in_process
+                    "
+                    alt=""
+                  />
+                </div>
                 <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
                 <img
                   :src="
@@ -133,8 +155,10 @@
 
         <b-tab title-link-class="tab-3">
           <template #title>
-            <p class="m-0 text-3" v-if="tabIndex == 2">มหานครสำหรับทุกคน</p>
-            <p class="m-0 text-3" v-else>+</p>
+            <img :src="logo_project_3" width="24" alt="" />
+            <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 2">
+              มหานครสำหรับทุกคน
+            </p>
           </template>
           <div class="p-4">
             <VueSlickCarousel v-bind="slickOptions">
@@ -153,9 +177,18 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-                <p class="text-4 my-2">
-                  <b>สถานะ</b> : <span class="status">{{ item.status }}</span>
-                </p>
+          <div class="d-flex text-4 my-1">
+                  <b class="mr-1">สถานะ : </b> {{ item.status }}
+                  <img
+                    width="20"
+                    :src="
+                      item.status == 'ดำเนินการเสร็จสิ้น'
+                        ? icon_finish
+                        : icon_in_process
+                    "
+                    alt=""
+                  />
+                </div>
                 <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
                 <img
                   :src="
@@ -194,10 +227,12 @@
 
         <b-tab title-link-class="tab-4">
           <template #title>
-            <p class="m-0 text-3" v-if="tabIndex == 3">มหานครกระชับ</p>
-            <p class="m-0 text-3" v-else>+</p>
+            <img :src="logo_project_4" width="24" alt="" />
+            <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 3">
+              มหานครกระชับ
+            </p>
           </template>
-                   <div class="p-4">
+          <div class="p-4">
             <VueSlickCarousel v-bind="slickOptions">
               <div
                 v-for="(item, index) in project.filter(
@@ -214,9 +249,18 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-                <p class="text-4 my-2">
-                  <b>สถานะ</b> : <span class="status">{{ item.status }}</span>
-                </p>
+                       <div class="d-flex text-4 my-1">
+                  <b class="mr-1">สถานะ : </b> {{ item.status }}
+                  <img
+                    width="20"
+                    :src="
+                      item.status == 'ดำเนินการเสร็จสิ้น'
+                        ? icon_finish
+                        : icon_in_process
+                    "
+                    alt=""
+                  />
+                </div>
                 <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
                 <img
                   :src="
@@ -255,8 +299,10 @@
 
         <b-tab title-link-class="tab-5">
           <template #title>
-            <p class="m-0 text-3" v-if="tabIndex == 4">มหานครประชาธิปไตย</p>
-            <p class="m-0 text-3" v-else>+</p>
+            <img :src="logo_project_5" width="24" alt="" />
+            <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 4">
+              มหานครประชาธิปไตย
+            </p>
           </template>
           <div class="p-4">
             <VueSlickCarousel v-bind="slickOptions">
@@ -275,9 +321,18 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-                <p class="text-4 my-2">
-                  <b>สถานะ</b> : <span class="status">{{ item.status }}</span>
-                </p>
+                      <div class="d-flex text-4 my-1">
+                  <b class="mr-1">สถานะ : </b> {{ item.status }}
+                  <img
+                    width="20"
+                    :src="
+                      item.status == 'ดำเนินการเสร็จสิ้น'
+                        ? icon_finish
+                        : icon_in_process
+                    "
+                    alt=""
+                  />
+                </div>
                 <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
                 <img
                   :src="
@@ -316,12 +371,10 @@
 
         <b-tab title-link-class="tab-6">
           <template #title>
-            <p class="m-0 text-3" v-if="tabIndex == 5">
-              มหานครแห่งเศรษฐกิจและเรียนรู้
-            </p>
-            <p class="m-0 text-3" v-else>+</p>
+            <img :src="logo_project_6" width="24" alt="" />
+            <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 5"></p>
           </template>
-           <div class="p-4">
+          <div class="p-4">
             <VueSlickCarousel v-bind="slickOptions">
               <div
                 v-for="(item, index) in project.filter(
@@ -338,9 +391,18 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-                <p class="text-4 my-2">
-                  <b>สถานะ</b> : <span class="status">{{ item.status }}</span>
-                </p>
+                       <div class="d-flex text-4 my-1">
+                  <b class="mr-1">สถานะ : </b> {{ item.status }}
+                  <img
+                    width="20"
+                    :src="
+                      item.status == 'ดำเนินการเสร็จสิ้น'
+                        ? icon_finish
+                        : icon_in_process
+                    "
+                    alt=""
+                  />
+                </div>
                 <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
                 <img
                   :src="
@@ -379,12 +441,12 @@
 
         <b-tab title-link-class="tab-7">
           <template #title>
-            <p class="m-0 text-3" v-if="tabIndex == 6">
+            <img :src="logo_project_7" width="24" alt="" />
+            <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 6">
               การบริหารจัดการเมืองมหานคร
             </p>
-            <p class="m-0 text-3" v-else>+</p>
           </template>
-           <div class="p-4">
+          <div class="p-4">
             <VueSlickCarousel v-bind="slickOptions">
               <div
                 v-for="(item, index) in project.filter(
@@ -401,9 +463,18 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-                <p class="text-4 my-2">
-                  <b>สถานะ</b> : <span class="status">{{ item.status }}</span>
-                </p>
+                      <div class="d-flex text-4 my-1">
+                  <b class="mr-1">สถานะ : </b> {{ item.status }}
+                  <img
+                    width="20"
+                    :src="
+                      item.status == 'ดำเนินการเสร็จสิ้น'
+                        ? icon_finish
+                        : icon_in_process
+                    "
+                    alt=""
+                  />
+                </div>
                 <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
                 <img
                   :src="
@@ -471,6 +542,15 @@ export default {
       tabIndex: 0,
       project: projects.default,
       section_5_pic: require("~/assets/images/section_5_pic.png"),
+      logo_project_1: require("~/assets/images/section_project_bkk/icon_bar_01.svg"),
+      logo_project_2: require("~/assets/images/section_project_bkk/icon_bar_02.svg"),
+      logo_project_3: require("~/assets/images/section_project_bkk/icon_bar_03.svg"),
+      logo_project_4: require("~/assets/images/section_project_bkk/icon_bar_04.svg"),
+      logo_project_5: require("~/assets/images/section_project_bkk/icon_bar_05.svg"),
+      logo_project_6: require("~/assets/images/section_project_bkk/icon_bar_06.svg"),
+      logo_project_7: require("~/assets/images/section_project_bkk/icon_bar_07.svg"),
+      icon_finish: require("~/assets/images/section_project_bkk/icon_finish.svg"),
+      icon_in_process: require("~/assets/images/section_project_bkk/icon_in_process.svg"),
       slickOptions: {
         slidesToShow: 3,
         slidesToScroll: 3,

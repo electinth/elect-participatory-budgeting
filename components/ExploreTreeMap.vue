@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-main text-center">
+    <div class="bg-main text-center pb-5">
       <p class="header-3 padding-main">
         การใช้งบประมาณของกรุงเทพมหานครทั้ง 7 ด้าน <br />
         ในปี 2561-2565

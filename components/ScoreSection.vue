@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="h-100vh bg-main">
-      <p class="header-3 w-75 m-auto">
+      <p class="header-3 w-50 m-auto">
         ความจริงแล้วหลาย ๆ ประเด็นปัญหาคาใจอยู่ อยู่ในแผนพัฒนา 20 ปี
         เพื่อให้กรุงเทพมหานครเป็น “มหานครแห่งเอเชีย” โดยแบ่งเป้าหมายย่อยออกเป็น
         7 ด้าน
@@ -12,28 +12,67 @@
       </p>
       <p class="text-3">(คลิกเพื่อเลือกให้คะแนน)</p>
 
+      <div class="star-box">
+        <div class="d-flex flex-column mt-2">
+          <div class="d-flex mx-2">
+            <img :src="star_all" alt="" width="15" class="mr-1" />
+            <p class="m-0 text-4">ค่าเฉลี่ยทุกคน</p>
+          </div>
+          <div class="d-flex mx-2">
+            <img :src="star_selected" alt="" width="15" class="mr-1" />
+            <p class="m-0 text-4">คะแนนของคุณ</p>
+          </div>
+        </div>
+      </div>
+
       <div class="d-flex justify-content-center">
-        <img
-          v-for="(item, i) in problems.filter((x) => x.id < 5)"
-          :key="i"
-          :src="item.book_img"
-          alt=""
-          class="pointer mx-3"
-          width="150"
-          @click="showResult(item)"
-        />
+        <div v-for="(item, i) in problems.filter((x) => x.id < 5)" :key="i">
+          <img
+            :src="item.book_img"
+            alt=""
+            class="pointer mx-3"
+            width="150"
+            @click="showResult(item)"
+          />
+          <div class="d-flex justify-content-center mt-2">
+            <div class="d-flex mx-2">
+              <img :src="star_all" alt="" width="15" class="mr-1" />
+              <p class="m-0 text-4">
+                {{ stars[i].count != "" ? stars[i].count : 0 }}
+              </p>
+            </div>
+            <div class="d-flex mx-2">
+              <img :src="star_selected" alt="" width="15" class="mr-1" />
+              <p class="m-0 text-4">{{ overall[i].plan / overall[i].count }}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="d-flex justify-content-center mt-3">
-        <img
-          :src="item.book_img"
-          alt=""
-          class="pointer mx-3"
-          width="150"
-          v-for="(item, i) in problems.filter((x) => x.id > 4)"
-          :key="i"
-          @click="showResult(item)"
-        />
+        <div v-for="(item, i) in problems.filter((x) => x.id > 4)" :key="i">
+          <img
+            :src="item.book_img"
+            alt=""
+            class="pointer mx-3"
+            width="150"
+            @click="showResult(item)"
+          />
+          <div class="d-flex justify-content-center mt-2">
+            <div class="d-flex mx-2">
+              <img :src="star_all" alt="" width="15" class="mr-1" />
+              <p class="m-0 text-4">
+                {{ stars[i + 4].count != "" ? stars[i + 4].count : 0 }}
+              </p>
+            </div>
+            <div class="d-flex mx-2">
+              <img :src="star_selected" alt="" width="15" class="mr-1" />
+              <p class="m-0 text-4">
+                {{ overall[i + 4].plan / overall[i + 4].count }}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <b-modal
@@ -71,11 +110,12 @@
                   <div class="d-flex my-3 justify-content-center">
                     <img
                       :src="star_not_selected"
-                      v-for="item in 5"
+                      v-for="(item, index) in 5"
+                      :key="index"
                       alt=""
                       width="35"
-                      class="mx-2"
-                      @click="onCheckVoteCondition()"
+                      class="mx-2 pointer"
+                      @click="onCheckHasAnswer(index + 1, results[0].id)"
                     />
                   </div>
                   <div class="bg-white logo-icon">
@@ -134,19 +174,39 @@
             คำตอบของคุณจะใช้เพื่อการประมวลผลข้อมูลบนแพลตฟอร์มนี้และรวบรวมเพื่อ
             ยื่นต่อผู้ว่าราชการจังหวัดกรุงเทพมหานครและหน่วยงานที่เกี่ยวข้องต่อไป
           </p>
-          <p class="text-4">
+          <p class="text-4 mb-1">
             คุณใช้ชีวิตอยู่ในกรุงเทพมหานครหรือไม่? (เรียน/ทำงาน/พักอาศัย)
           </p>
           <div class="text-center">
-            <button>ใช่</button>
-            <button>ไม่ใช่</button>
+            <button class="isinbkk-btn btn-text-1" @click="onClickBkk(true)">
+              ใช่
+            </button>
+            <button class="isinbkk-btn btn-text-1" @click="onClickBkk(false)">
+              ไม่ใช่
+            </button>
           </div>
-          <p class="text-4">คุณอยู่เขตไหน?</p>
-          <DistrictDropdown />
-          <p class="text-4">มีทะเบียนบ้านไหม?</p>
-          <div class="text-center">
-            <button>มี</button>
-            <button>ไม่มี</button>
+          <p class="text-4 mb-0 mt-2" v-if="isShowDistrict">คุณอยู่เขตไหน?</p>
+          <DistrictDropdown @change="onChangeDistrict" v-if="isShowDistrict" />
+          <p class="text-4 mb-0 mt-2" v-if="isShowProvince">
+            คุณอยู่จังหวัดไหน?
+          </p>
+          <ProvinceDropdown @change="onChangeProvince" v-if="isShowProvince" />
+          <p class="text-4 mb-0 mt-2" v-if="isShowDistrict">
+            มีทะเบียนบ้านไหม?
+          </p>
+          <div class="text-center" v-if="isShowDistrict">
+            <button
+              class="has-house-reg-btn btn-text-1"
+              @click="onClickHouseReg(true)"
+            >
+              มี
+            </button>
+            <button
+              class="has-house-reg-btn btn-text-1"
+              @click="onClickHouseReg(false)"
+            >
+              ไม่มี
+            </button>
           </div>
         </div>
       </b-modal>
@@ -175,10 +235,13 @@ export default {
       pic_section_02: require("~/assets/images/pic_section_02.svg"),
       star_not_selected: require("~/assets/images/icon_star_all.svg"),
       star_selected: require("~/assets/images/icon_star_person.svg"),
+      star_all: require("~/assets/images/icon_star_all.svg"),
       isShow: false,
+      isShowDistrict: false,
+      isShowProvince: false,
       problems: [
         {
-          id: "1",
+          id: 1,
           side: "มหานครปลอดภัย",
           color: "#538DFF",
           icon: require("~/assets/images/book/icon_card.1.svg"),
@@ -212,7 +275,7 @@ export default {
           ],
         },
         {
-          id: "2",
+          id: 2,
           side: "\nมหานครสีเขียวสะดวกสบาย",
           color: "#6ADC7B",
           icon: require("~/assets/images/book/icon_card.2.svg"),
@@ -238,7 +301,7 @@ export default {
           ],
         },
         {
-          id: "3",
+          id: 3,
           side: "\nมหานครสำหรับทุกคน",
           color: "#FF583E",
           icon: require("~/assets/images/book/icon_card.3.svg"),
@@ -264,7 +327,7 @@ export default {
           ],
         },
         {
-          id: "4",
+          id: 4,
           side: "\nมหานครกระชับ",
           color: "#FF9FDF",
           icon: require("~/assets/images/book/icon_card.4.svg"),
@@ -282,7 +345,7 @@ export default {
           ],
         },
         {
-          id: "5",
+          id: 5,
           side: "\nมหานครประชาธิปไตย",
           color: "#FF8310",
           icon: require("~/assets/images/book/icon_card.5.svg"),
@@ -312,7 +375,7 @@ export default {
           ],
         },
         {
-          id: "6",
+          id: 6,
           side: "\nมหานครแห่งเศรษฐกิจและเรียนรู้",
           color: "#C3DA14",
           icon: require("~/assets/images/book/icon_card.6.svg"),
@@ -338,7 +401,7 @@ export default {
           ],
         },
         {
-          id: "7",
+          id: 7,
           side: "\nการบริหารจัดการเมืองมหานคร",
           color: "#D170FF",
           icon: require("~/assets/images/book/icon_card.7.svg"),
@@ -370,6 +433,7 @@ export default {
       ],
       results: [
         {
+          id: 0,
           side: "",
           color: "",
           icon: null,
@@ -378,9 +442,30 @@ export default {
           dimension: [],
         },
       ],
+      stars: [
+        { id: 1, count: 0 },
+        { id: 2, count: 0 },
+        { id: 3, count: 0 },
+        { id: 4, count: 0 },
+        { id: 5, count: 0 },
+        { id: 6, count: 0 },
+        { id: 7, count: 0 },
+      ],
+      overall: [
+        { plan: 0, count: 0 },
+        { plan: 0, count: 0 },
+        { plan: 0, count: 0 },
+        { plan: 0, count: 0 },
+        { plan: 0, count: 0 },
+        { plan: 0, count: 0 },
+        { plan: 0, count: 0 },
+      ],
     };
   },
-  created() {},
+  created() {
+    //this.setData();
+    this.setDataOverall();
+  },
   methods: {
     showResult(data) {
       this.results[0].color = data.color;
@@ -389,105 +474,183 @@ export default {
       this.results[0].dimension = data.dimension;
       this.results[0].book_img = data.book_img;
       this.results[0].desc = data.desc;
+      this.results[0].id = data.id;
       this.$refs["result-modal"].show();
     },
-    async onCheckVoteCondition() {
-      //this.$refs['asking-modal'].show()
-      //this.getScoreResult();
-      // const messageRef = this.$fire.database.ref(this.$cookies.get("uuid"));
-      // try {
-      //   await messageRef.set({
-      //     isInBkk: true,
-      //     district: "เขตพระนคร",
-      //     province: "",
-      //     hasHouseRegistratiob: true,
-      //     vote: [
-      //       {
-      //         id: 1,
-      //         point: 3,
-      //       },
-      //       {
-      //         id: 2,
-      //         point: 2,
-      //       },
-      //       {
-      //         id: 3,
-      //         point: 1,
-      //       },
-      //       {
-      //         id: 4,
-      //         point: 4,
-      //       },
-      //       {
-      //         id: 5,
-      //         point: 5,
-      //       },
-      //       {
-      //         id: 6,
-      //         point: 0,
-      //       },
-      //       {
-      //         id: 7,
-      //         point: 3,
-      //       },
-      //     ],
-      //     choice: [
-      //       {
-      //         id: 1,
-      //         value: true,
-      //       },
-      //       {
-      //         id: 2,
-      //         value: true,
-      //       },
-      //       {
-      //         id: 3,
-      //         value: true,
-      //       },
-      //       {
-      //         id: 4,
-      //         value: false,
-      //       },
-      //       {
-      //         id: 5,
-      //         value: false,
-      //       },
-      //       {
-      //         id: 6,
-      //         value: false,
-      //       },
-      //       {
-      //         id: 7,
-      //         value: false,
-      //       },
-      //       {
-      //         id: 8,
-      //         value: false,
-      //       },
-      //       {
-      //         id: 9,
-      //         value: false,
-      //       },
-      //       {
-      //         id: 10,
-      //         value: false,
-      //       },
-      //     ],
-      //   });
+    async updateVote(star, problemid) {
+      const ref = this.$fire.database
+        .ref("plan")
+        .orderByChild("userid")
+        .equalTo(this.$cookies.get("uuid"));
 
-      //   this.getScoreResult();
-      // } catch (e) {
-      //   alert(e);
-      //   return;
-      // }
-      // alert("Success.");
+      try {
+        const snapshot = await ref.once("value");
+
+        for (const [key, value] of Object.entries(snapshot.val())) {
+          if (snapshot.val()[key].planid == problemid) {
+            const databaseRef = this.$fire.database.ref(
+              "plan/" + key + "/star"
+            );
+            databaseRef.set(star);
+          }
+        }
+      } catch (e) {
+        alert(e);
+      }
+    },
+    async setDataOverall() {
+      const refOverall = this.$fire.database.ref("plan");
+
+      try {
+        const snapshot = await refOverall.once("value");
+
+        for (const [key, value] of Object.entries(snapshot.val())) {
+          if (snapshot.val()[key].planid == 1) {
+            this.overall[0].plan += snapshot.val()[key].star;
+            this.overall[0].count++;
+          } else if (snapshot.val()[key].planid == 2) {
+            this.overall[1].plan += snapshot.val()[key].star;
+            this.overall[1].count++;
+          } else if (snapshot.val()[key].planid == 3) {
+            this.overall[2].plan += snapshot.val()[key].star;
+            this.overall[2].count++;
+          } else if (snapshot.val()[key].planid == 4) {
+            this.overall[3].plan += snapshot.val()[key].star;
+            this.overall[3].count++;
+          } else if (snapshot.val()[key].planid == 5) {
+            this.overall[4].plan += snapshot.val()[key].star;
+            this.overall[4].count++;
+          } else if (snapshot.val()[key].planid == 6) {
+            this.overall[5].plan += snapshot.val()[key].star;
+            this.overall[5].count++;
+          } else {
+            this.overall[6].plan += snapshot.val()[key].star;
+            this.overall[6].count++;
+          }
+        }
+      } catch (e) {
+        alert(e);
+      }
+
+      const ref = this.$fire.database
+        .ref("plan")
+        .orderByChild("userid")
+        .equalTo(this.$cookies.get("uuid"));
+
+      try {
+        const snapshots = await ref.once("value");
+
+        for (const [key, value] of Object.entries(snapshots.val())) {
+          if (snapshots.val()[key].planid == 1) {
+            this.stars[0].count = snapshots.val()[key].star;
+          } else if (snapshots.val()[key].planid == 2) {
+            this.stars[1].count = snapshots.val()[key].star;
+          } else if (snapshots.val()[key].planid == 3) {
+            this.stars[2].count = snapshots.val()[key].star;
+          } else if (snapshots.val()[key].planid == 4) {
+            this.stars[3].count = snapshots.val()[key].star;
+          } else if (snapshots.val()[key].planid == 5) {
+            this.stars[4].count = snapshots.val()[key].star;
+          } else if (snapshots.val()[key].planid == 6) {
+            this.stars[5].count = snapshots.val()[key].star;
+          } else {
+            this.stars[6].count = snapshots.val()[key].star;
+          }
+        }
+      } catch (e) {
+        alert(e);
+      }
+    },
+    async onCheckHasAnswer(star, problemid) {
+      const ref = this.$fire.database
+        .ref("data")
+        .child(this.$cookies.get("uuid"));
+
+      try {
+        const snapshot = await ref.once("value");
+        if (snapshot.val().hasAnswer) {
+          this.updateVote(star, problemid);
+        } else this.$refs["asking-modal"].show();
+      } catch (e) {
+        alert(e);
+      }
     },
     async getScoreResult() {
-      const ref = this.$fire.database.ref(this.$cookies.get("uuid"));
+      const ref = this.$fire.database
+        .ref("data")
+        .child(this.$cookies.get("uuid"));
 
       try {
         const snapshot = await ref.once("value");
         console.log(snapshot.val());
+      } catch (e) {
+        alert(e);
+      }
+    },
+    async onChangeDistrict(val) {
+      const ref = this.$fire.database.ref("data/" + this.$cookies.get("uuid"));
+
+      try {
+        ref.child("district").set(val);
+      } catch (e) {
+        alert(e);
+      }
+    },
+    async onChangeProvince(val) {
+      const ref = this.$fire.database.ref("data/" + this.$cookies.get("uuid"));
+
+      try {
+        ref.child("province").set(val);
+      } catch (e) {
+        alert(e);
+      }
+    },
+    async onClickBkk(val) {
+      const ref = this.$fire.database.ref("data/" + this.$cookies.get("uuid"));
+
+      try {
+        ref.child("isInBkk").set(val);
+      } catch (e) {
+        alert(e);
+      }
+
+      if (val) {
+        this.isShowDistrict = true;
+        this.isShowProvince = false;
+      } else {
+        this.isShowDistrict = false;
+        this.isShowProvince = true;
+      }
+    },
+    async onClickHouseReg(val) {
+      const ref = this.$fire.database.ref("data/" + this.$cookies.get("uuid"));
+
+      try {
+        ref.child("hasHouseReg").set(val);
+      } catch (e) {
+        alert(e);
+      }
+
+      this.onCheckHasCompleteAnswer();
+    },
+    async onCheckHasCompleteAnswer(val) {
+      const ref = this.$fire.database.ref("data/" + this.$cookies.get("uuid"));
+
+      try {
+        const snapshot = await ref.once("value");
+        if (snapshot.val().isInBkk) {
+          if (
+            snapshot.val().district != "" &&
+            snapshot.val().hasHouseReg != null
+          )
+            ref.child("hasAnswer").set(true);
+          this.$refs["asking-modal"].hide();
+        } else {
+          if (snapshot.val().province != "") {
+            ref.child("hasAnswer").set(true);
+            this.$refs["asking-modal"].hide();
+          }
+        }
       } catch (e) {
         alert(e);
       }
@@ -552,6 +715,7 @@ export default {
   background: rgba($color: #000000, $alpha: 0.86);
   border-radius: 10px;
   color: #fff;
+  min-height: 340px;
 }
 
 .logo-icon {
@@ -566,5 +730,18 @@ export default {
   width: max-content;
   padding: 10px;
   margin: 5px auto;
+}
+
+.has-house-reg-btn,
+.isinbkk-btn {
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 5px;
+  width: 50px;
+}
+
+.star-box {
+  position: absolute;
+  right: 200px;
 }
 </style>

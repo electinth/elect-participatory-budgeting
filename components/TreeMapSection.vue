@@ -1,21 +1,18 @@
 <template>
   <div>
-    <div class="h-100vh p-5 d-none">
-      <!-- For Tree Map -->
-    </div>
     <div class="h-100vh p-5">
       <div class="black-box">
         <div class="text-center">
           <img :src="icon_info" alt="" width="50" />
           <p
-            class="header-3 text-white font-weight-bold w-50 mx-auto mt-3 mb-5"
+            class="header-3 text-white font-weight-bold mx-auto mt-3 mb-5"
           >
             ขอย้ำว่า! งบประมาณที่ลองเล่นก่อนหน้านี้ยังไม่ใช่
             “งบประมาณเบิกจ่ายใช้จริงๆ”
           </p>
 
           <b-row>
-            <b-col>1</b-col>
+            <b-col><img :src="budget_bkk" alt=""></b-col>
             <b-col
               ><div class="white-box">
                 <p class="text-1 m-0">
@@ -59,6 +56,7 @@ export default {
   data() {
     return {
       icon_info: require("~/assets/images/icon_info.svg"),
+      budget_bkk: require("~/assets/images/budget_bkk.gif"),
     };
   },
   methods: {},
@@ -71,7 +69,7 @@ export default {
   border: 1px solid #000000;
   border-radius: 10px;
   height: 100%;
-  padding: 30px;
+  padding: 30px 115px;
 }
 
 .white-box {

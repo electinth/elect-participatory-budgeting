@@ -70,7 +70,7 @@ export default {
       {
         rel: "icon",
         type: "image/x-icon",
-        href: "https://elect.in.th/wp-content/uploads/2018/10/favicon.ico"
+        href: "https://punchup.world/wp-content/uploads/2019/07/symbol-mint.png"
       },
       { rel: "stylesheet", href: "https://assets.elect.in.th/typography.css" }
     ]
@@ -150,7 +150,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
-    "cookie-universal-nuxt"
+    "cookie-universal-nuxt",
+    '@nuxtjs/axios'
   ],
   styleResources: {
     scss: ["~/assets/styles/variables.scss"]

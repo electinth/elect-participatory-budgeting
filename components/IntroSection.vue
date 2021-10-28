@@ -39,20 +39,21 @@
             data-sharer="facebook"
             :data-url="`https://electinth.github.io/participatory-budgeting/`"
           />
-          <img
-            :src="icon_line"
-            class="mx-1 pointer"
-            width=""
-            v-sharer
-            data-sharer="line"
-            :data-url="`https://electinth.github.io/participatory-budgeting/`"
-          />
+
           <img
             :src="icon_twitter"
             class="mx-1 pointer"
             width=""
             v-sharer
             data-sharer="twitter"
+            :data-url="`https://electinth.github.io/participatory-budgeting/`"
+          />
+          <img
+            :src="icon_line"
+            class="mx-1 pointer"
+            width=""
+            v-sharer
+            data-sharer="line"
             :data-url="`https://electinth.github.io/participatory-budgeting/`"
           />
         </div>
@@ -63,18 +64,25 @@
 
 <script>
 import VueSharer from "vue-sharer";
+import Lottie from "vue-lottie/src/lottie.vue";
+import * as liftAnimationData from "~/assets/lottie/intro.json";
 
 export default {
   name: "App",
-  components: {},
+  components: { Lottie },
   directives: {
     sharer: VueSharer,
   },
   data() {
     return {
+      defaultOptions: {
+        animationData: liftAnimationData.default,
+        loop: true,
+        autoplay: true,
+      },
       currStep: null,
       isShow: true,
-      intro_pic: require("~/assets/images/intro_pic.png"),
+      intro_pic: require("~/assets/images/desktop_open_text.gif"),
       icon_fb: require("~/assets/images/facebook.png"),
       icon_line: require("~/assets/images/line.png"),
       icon_twitter: require("~/assets/images/twitter.png"),

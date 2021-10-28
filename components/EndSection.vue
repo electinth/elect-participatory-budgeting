@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="h-100vh bg-main">
+    <div class=" bg-main">
       <p class="w-75 text-center m-auto text-1">
         นี่เป็นเพียงจุดเริ่มต้นของการผลักดันเป็นสู่สังคมที่ดี (Good Society)
         <br /><br />

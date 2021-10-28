@@ -1,7 +1,10 @@
 <template>
   <div>
-    <elect-navbar title="articipatory-budgeting 101" dark="true">
-      <div class="menu-wrap">
+    <div class="menu-wrap">
+      <a href="https://punchup.world/project/" target="_blank" class="m-0">
+        <img :src="logo" width="130" alt=""
+      /></a>
+      <div>
         <nuxt-link
           v-for="(menu, index) in menu_list"
           :key="index"
@@ -11,8 +14,8 @@
         >
           {{ menu.name }}
         </nuxt-link>
-      </div></elect-navbar
-    >
+      </div>
+    </div>
     <div class="p-5">
       <h1 class="header-1 mb-5 text-center font-weight-bold">
         เกี่ยวกับโครงการ
@@ -24,7 +27,7 @@
 
 ในหลายประเทศเริ่มเปิดโอกาสให้ประชาชนมีส่วนร่วมกับงบประมาณได้ในรูปแบบที่เรียกว่า “งบประมาณแบบมีส่วนร่วม” (Participatory Budgeting) ซึ่งเป็นเครื่องมือในการมีส่วนร่วมที่ให้ประชาชนในชุมชนสามารถตัดสินเกี่ยวกับการใช้งบประมาณ
 
-ทีม Punch Up และภาคีเครือข่าย จึงตั้งใจพัฒนาแพลตฟอร์มนี้ในรูปแบบเทคโนโลยีภาคประชาชน (Civic Tech) เพื่อเปิดเผยข้อมูลให้ทุกคนในฐานะผู้เสียภาษี ได้เข้าถึง เข้าใจ และเป็นส่วนหนึ่งของการออกแบบงบประมาณของกรุงเทพมหานคร  โดยเริ่มจากคำถามที่อาจจะคาใจหลายๆ คนว่า ตอนนี้กรุงเทพมหานครวางแผนในการแก้ปัญหาที่เกิดขึ้นอย่างไร? ใช้งบประมาณเท่าไหร่? และในฐานะประชาชน เราจะมีส่วนร่วมแสดงความคิดเห็นได้อย่างไรบ้าง? โดยเราตั้งใจว่าจะนำการร่วมโหวตและความคิดเห็นนี้รวบรวมยื่นต่อผู้ว่าราชการจังหวัดกรุงเทพมหานครและหน่วยงานที่เกี่ยวข้องต่อไป 
+ทีม Punch Up , องค์กรต่อต้านคอร์รัปชัน (ประเทศ) , Glow Story , Hand Social Enterprise , Good Society Thailand และ Social Integrity Architecture and Mechanism Design Lab  จึงตั้งใจพัฒนาแพลตฟอร์มนี้ในรูปแบบเทคโนโลยีภาคประชาชน (Civic Tech) เพื่อเปิดเผยข้อมูลให้ทุกคนในฐานะผู้เสียภาษี ได้เข้าถึง เข้าใจ และเป็นส่วนหนึ่งของการออกแบบงบประมาณของกรุงเทพมหานคร  โดยเริ่มจากคำถามที่อาจจะคาใจหลายๆ คนว่า ตอนนี้กรุงเทพมหานครวางแผนในการแก้ปัญหาที่เกิดขึ้นอย่างไร? ใช้งบประมาณเท่าไหร่? และในฐานะประชาชน เราจะมีส่วนร่วมแสดงความคิดเห็นได้อย่างไรบ้าง? โดยเราตั้งใจว่าจะนำการร่วมโหวตและความคิดเห็นนี้รวบรวมยื่นต่อผู้ว่าราชการจังหวัดกรุงเทพมหานครและหน่วยงานที่เกี่ยวข้องต่อไป 
 
 โปรเจกต์นี้นับเป็นโปรเจกต์ทดลองสร้างแพลตฟอร์ม “งบประมาณแบบมีส่วนร่วม” ให้กับจังหวัด/เมืองต่างๆ ในประเทศไทย โดยเริ่มจากเมืองหลวงอย่างกรุงเทพมหานครเป็นต้นแบบ แล้วพัฒนาไปสู่เมืองอื่นๆ พร้อมอยากชวนทุกคนมามีส่วนร่วมในการพัฒนาสังคมให้ดีขึ้น เริ่มต้นจากการเป็นส่วนหนึ่งในการออกแบบงบประมาณ ผ่านการตรวจสอบและมีส่วนร่วมในการแสดงความคิดเห็นเสนอโครงการกับงบประมาณในการพัฒนาเมือง 
 
@@ -32,7 +35,9 @@
 </pre
         >
 
-        <h1 class="header-2 mt-5 font-weight-bold">ที่มาของข้อมูล</h1>
+        <h1 class="header-2 mt-5 font-weight-bold">
+          ที่มาของข้อมูล & ข้อจำกัด
+        </h1>
         <p class="body-text">
           ทางทีมผู้พัฒนา
           ได้ใช้ข้อมูลจากเว็บไซต์ทางการของกรุงเทพมหานครตามลิงก์ต่างๆ ด้านล่าง
@@ -47,7 +52,7 @@
           หากทางกรุงเทพมหานครมีการเปิดเผยข้อมูลจะนำมาอัพเดทให้ได้
         </p>
 
-        <h1 class="header-2 mt-5 font-weight-bold">อ้างอิงข้อมูลจาก :</h1>
+        <h1 class="header-2 mt-5 font-weight-bold">อ้างอิงข้อมูลจาก</h1>
         <div class="body-text">
           <a
             target="_blank"
@@ -158,6 +163,9 @@
             พัฒนาเว็บไซต์ ประสานงาน บริหารจัดการ ตลอดจนการจัด Meetup
             เพื่อดำเนินโครงการ
           </p>
+
+          <p class="font-weight-bold mt-3">ขอขอบคุณผู้ให้ข้อมูล</p>
+          <p>ผศ.ดร.ทวิดา กมลเวชช ที่ปรึกษาการพัฒนาการจัดทำแผนกรุงเทพมหานคร</p>
         </div>
 
         <h1 class="header-2 mt-5 font-weight-bold">Partners</h1>
@@ -173,9 +181,20 @@
           <li>Hand social enterprise</li>
           <li>siamlab</li>
         </ul>
+        <div class="d-flex">
+          <img :src="logo_good_society" width="120" alt="" />
+          <img :src="logo_glow" width="120" alt="" />
+          <img :src="logo_act" width="" alt="" />
+          <img :src="logo_hand" width="120" alt="" />
+          <img :src="logo_siam_lab" width="120" alt="" />
+        </div>
+
+        <br /><br /><br />
+        <br /><br /><br />
 
         <div class="mt-5 text-center">
-          <a target="_blank"
+          <a
+            target="_blank"
             href="https://docs.google.com/spreadsheets/d/125ybYpPOFaluJEvZtbCqqA-qSVilklT9BftNodBLkPI/edit#gid=1296185986"
             class="header-2 download-btn font-weight-bold"
             >ดาวน์โหลดข้อมูล</a
@@ -218,7 +237,7 @@
 import VueSharer from "vue-sharer";
 
 export default {
-    directives: {
+  directives: {
     sharer: VueSharer,
   },
   data() {
@@ -230,7 +249,7 @@ export default {
         },
         {
           name: "Explore",
-          value: "/#tree-map",
+          value: "/#explore",
         },
         {
           name: "Idea",
@@ -242,9 +261,15 @@ export default {
         },
       ],
       drawer: false,
-        icon_fb: require("~/assets/images/facebook.png"),
+      icon_fb: require("~/assets/images/facebook.png"),
       icon_line: require("~/assets/images/line.png"),
       icon_twitter: require("~/assets/images/twitter.png"),
+      logo: require("~/assets/images/logo-white.png"),
+      logo_siam_lab: require("~/assets/images/logo_siam_lab.png"),
+      logo_good_society: require("~/assets/images/logo_good_society.png"),
+      logo_glow: require("~/assets/images/logo_glow.png"),
+      logo_act: require("~/assets/images/logo_act.png"),
+      logo_hand: require("~/assets/images/logo_hand.png"),
     };
   },
   mounted() {
@@ -255,16 +280,17 @@ export default {
   },
   head() {
     return {
+      cookies: true,
       meta: [
         {
           hid: "og-image",
           property: "og:image",
-          content: "./og_image.png",
+          content: "https://d208eq9ndr4893.cloudfront.net/og_image.png",
         },
         {
           hid: "twitter:image",
           name: "twitter:image:src",
-          content: "./og_image.png",
+          content: "https://d208eq9ndr4893.cloudfront.net/og_image.png",
         },
       ],
     };
@@ -286,6 +312,9 @@ export default {
 .menu-wrap {
   display: flex;
   align-items: center;
+  background: #000;
+  padding: 10px 20px;
+  justify-content: space-between;
   a {
     color: #fff;
     text-decoration: none;

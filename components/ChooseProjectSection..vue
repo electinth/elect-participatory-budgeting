@@ -7,9 +7,13 @@
           ><img :src="illus_section_05" alt="" class="h-100vh"
         /></b-col>
         <b-col cols="6">
-          <div class="choice mb-3 mx-auto" v-for="(item,index) in project" :key="index">
-            <p class="header-3 m-0">{{item.name}}</p>
-            <p class="text-4 m-0">{{item.desc}}</p>
+          <div
+            class="choice mb-3 mx-auto"
+            v-for="(item, index) in project"
+            :key="index"
+          >
+            <p class="header-3 m-0">{{ item.name }}</p>
+            <p class="text-4 m-0">{{ item.desc }}</p>
           </div>
 
           <button class="sent-comment text-3">ส่งความคิดเห็น</button>
@@ -19,10 +23,20 @@
         /></b-col>
       </b-row>
     </div>
+    <div class="h-100vh p-5 d-none">
+      <p class="header-3">ไอเดียโดนใจชาวกรุงเทพฯ ผู้ใช้แพลตฟอร์มนี้</p>
+      <p class="text-2">(เลือกดูผลโหวตโครงการจากผู้เล่นทั้งหมด)</p>
+    </div>
   </div>
 </template>
 
 <script>
+const googleSheetUrlProject =
+  "https://cheesy.punchup.world/api/project/617af236e90567588618dcde/sheet/project";
+const googleSheetUrlComment =
+  "https://cheesy.punchup.world/api/project/617af236e90567588618dcde/sheet/comment";
+import Axios from "axios";
+
 export default {
   data() {
     return {
@@ -33,46 +47,69 @@ export default {
           name: "ปรับปรุงระบบจัดการขยะ",
           desc: "(มหานครปลอดภัย)",
         },
-          {
+        {
           name: "พัฒนาทางเท้า ทางข้าม",
           desc: "(มหานครสีเขียวสะดวกสบาย)",
         },
-          {
+        {
           name: "ปรับปรุงการระบายน้ำและจัดการน้ำท่วม",
           desc: "(มหานครปลอดภัย)",
         },
-          {
+        {
           name: "จัดการการจราจรติดขัด",
           desc: "(มหานครสีเขียวสะดวกสบาย)",
         },
-          {
+        {
           name: "ติดตั้งแสงสว่างและกล้องวงจรอย่างทั่วถึง",
           desc: "(มหานครปลอดภัย)",
         },
-          {
+        {
           name: "เพิ่มพื้นที่สีเขียว",
           desc: "(มหานครสีเขียวสะดวกสบาย)",
         },
-          {
+        {
           name: "พัฒนาระบบการศึกษา",
           desc: "(มหานครสำหรับทุกคน)",
         },
-          {
+        {
           name: "สร้างแพลตฟอร์มการมีส่วนร่วมและแสดงความคิดเห็นในการใช้งบฯ",
           desc: "(มหานครประชาธิปไตย)",
         },
-          {
+        {
           name: "จัดระเบียบผังเมืองให้เหมาะสม",
           desc: "(มหานครกระชับ)",
         },
-          {
+        {
           name: "ฟื้นฟูสถานที่ท่องเที่ยวสำคัญ",
           desc: "(มหานครแห่งเศรษฐกิจและเรียนรู้)",
         },
       ],
     };
   },
-  methods: {},
+  mounted() {
+    this.test();
+  },
+  methods: {
+    test() {
+      this.$axios
+        .$post(googleSheetUrlProject, {
+          project: {
+            userid: this.$cookies.get("uuid"),
+            projectid: 1,
+            isselected: true,
+            name: "Poppap",
+            dimension: "Poppap",
+            district: "Poppap",
+            province: "Poppap",
+            hashousereg: true,
+            isinbkk: true,
+          },
+        })
+        .then((response) => {
+          console.log("send");
+        });
+    },
+  },
 };
 </script>
 
@@ -88,6 +125,6 @@ export default {
   background: none;
   padding: 10px;
   border: 0.75px solid #000000;
-border-radius: 5px;
+  border-radius: 5px;
 }
 </style>
