@@ -464,7 +464,7 @@ export default {
   },
   created() {
     //this.setData();
-    this.setDataOverall();
+    //this.setDataOverall();
   },
   methods: {
     showResult(data) {

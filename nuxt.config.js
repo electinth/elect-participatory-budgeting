@@ -97,7 +97,8 @@ export default {
     { src: "./plugins/vue-dragscroll.js", mode: "client" },
     { src: "~/plugins/vue-awesome-swiper", mode: "client" },
     { src: "~/plugins/elect", mode: "client" },
-    { src: "~/plugins/vue-material-checkbox.js", mode: "client" }
+    { src: "~/plugins/vue-material-checkbox.js", mode: "client" },
+    { src: '~/plugins/jszip', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -5,7 +5,9 @@
     </div> -->
 
     <div class="menu-wrap">
-     <a href="https://punchup.world/project/" target="_blank" class="m-0"> <img :src="logo" width="130" alt="" /></a>
+      <a href="https://punchup.world/project/" target="_blank" class="m-0">
+        <img :src="logo" width="130" alt=""
+      /></a>
       <div>
         <nuxt-link
           v-for="(menu, index) in menu_list"
@@ -24,7 +26,7 @@
     <ExploreTreeMap id="explore"/>
     <TreeMapSection />
     <ProjectSection />
-    <ChooseProjectSection id="idea"/>
+    <ChooseProjectSection id="idea" />
     <EndSection />
     <VideoSection />
     <Conclusion />
@@ -183,7 +185,7 @@ export default {
   width: 100%;
   padding: 19px;
   color: #fff;
-
+  z-index: 999;
   .box {
     width: 599px;
     margin: auto;
