@@ -60,7 +60,6 @@
           <b-form-select
             v-model="selected"
             :options="options"
-            @change="onChange"
             class="select-dropdown"
           ></b-form-select>
         </div>
@@ -301,7 +300,7 @@ export default {
         alert(e);
       }
 
-      console.log(JSON.stringify(this.project_count));
+      //console.log(JSON.stringify(this.project_count));
     },
     async sendData() {
       await this.$axios
