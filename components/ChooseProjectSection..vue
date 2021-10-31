@@ -248,6 +248,7 @@ export default {
   },
   mounted() {
     this.getData();
+    //this.test();
     // await this.sendData();
     // await this.sendComment();
   },
@@ -259,6 +260,28 @@ export default {
     },
   },
   methods: {
+    async test(){
+       const messageRef3 = this.$fire.database.ref("project");
+        const w = this.$fire.database.ref("sequence").child("project_sequence");
+
+        try {
+          var b = await w.once("value");
+          var d = b.val();
+
+          for (var i = 0; i < 10; i++) {
+            await messageRef3.child(++d).set({
+              userid: this.$cookies.get("uuid"),
+              projectid: i + 1,
+            });
+          }
+
+          w.set(d);
+        } catch (e) {
+          alert(e);
+          return;
+        }
+        alert("Success.");
+    },
     setSelected(id, val) {
       this.onCheckIsDuplicate(id);
 

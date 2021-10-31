@@ -1,5 +1,62 @@
 <template>
   <div>
+    <div class="bg-main text-center">
+      <p class="header-3 w-75 mx-auto">
+        สุดท้ายเราหวังว่า จะเห็นมหานครของเรา
+        เป็นไปดั่งที่เราเองวาดฝันและเรามีส่วนร่วมในการกำหนดทิศทางการใช้งบฯได้เอง
+      </p>
+      <div class="d-flex justify-content-center my-5">
+        <DistrictDropdown @change="onChangeDistrict" />
+        <div class="d-flex mx-1">
+          <b-form-select
+            v-model="selected"
+            :options="options"
+            class="select-dropdown"
+            @change="onChangeProblem"
+          ></b-form-select>
+        </div>
+      </div>
+
+      <div class="ogimage">
+        <img
+          :src="`https://d208eq9ndr4893.cloudfront.net/og-image/${district}-${problem}.png`"
+          alt=""
+        />
+      </div>
+
+      <p class="text-1 mt-5">
+        ร่วมส่งต่อความฝันของประชาชน
+        ที่อยากมีส่วนร่วมในการพัฒนามหานครของพวกเราเอง
+      </p>
+
+        <div class="d-flex justify-content-center mt-5 align-items-center">
+          <p class="btn-text-1 text mb-0 mr-2">Share</p>
+        <img
+          :src="icon_fb"
+          class="sharer social-icon pointer mx-1"
+          alt=""
+          v-sharer
+          data-sharer="facebook"
+          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/${district}-${problem}`"
+        />
+        <img
+          :src="icon_twitter"
+          class="sharer social-icon pointer mx-1"
+          alt=""
+          v-sharer
+          data-sharer="twitter"
+          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/${district}-${problem}`"
+        />
+        <img
+          :src="icon_line"
+          class="sharer social-icon pointer mx-1"
+          alt=""
+          v-sharer
+          data-sharer="line"
+          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/${district}-${problem}`"
+        />
+      </div>
+    </div>
     <div class="h-100vh bg-main text-center">
       <p class="text-1 w-50 mx-auto">
         โปรเจกต์นี้ทดลองสร้าง “งบประมาณแบบมีส่วนร่วม” ให้กับจังหวัด/เมืองต่าง ๆ
@@ -81,26 +138,90 @@
 
 <script>
 import VueSharer from "vue-sharer";
+import DistrictDropdown from "./DistrictDropdown.vue";
 
 export default {
+  components: { DistrictDropdown },
   directives: {
     sharer: VueSharer,
   },
   data() {
     return {
-      count_fiction: 0,
-      count_nonfiction: 0,
-      is_max_count_fiction: false,
-      is_max_count_nonfiction: false,
+      district: "คลองสาน",
+      selected: null,
+         icon_fb: require("~/assets/images/facebook.png"),
+      icon_line: require("~/assets/images/line.png"),
+      icon_twitter: require("~/assets/images/twitter.png"),
+      problem: "ในการจัดการขยะมากขึ้น",
+      options: [
+        {
+          value: null,
+          text: "เลือกเรื่องที่อยากแชร์",
+        },
+        {
+          value: "ในการจัดการขยะมากขึ้น",
+          text: "ในการจัดการขยะมากขึ้น",
+        },
+        {
+          value: "พัฒนาทางเท้าทางข้ามมากขึ้น",
+          text: "พัฒนาทางเท้า ทางข้ามมากขึ้น",
+        },
+        {
+          value: "ปรับปรุงการระบายน้ำและจัดการน้ำท่วม",
+          text: "ปรับปรุงการระบายน้ำและจัดการน้ำท่วม ",
+        },
+        {
+          value: "จัดการการจราจรติดขัด",
+          text: "จัดการการจราจรติดขัด",
+        },
+        {
+          value: "ติดตั้งแสงสว่างและกล้องวงจรอย่างทั่วถึง",
+          text: "ติดตั้งแสงสว่างและกล้องวงจรอย่างทั่วถึง",
+        },
+        {
+          value: "เพิ่มพื้นที่สีเขียวให้มากขึ้น",
+          text: "เพิ่มพื้นที่สีเขียวให้มากขึ้น ",
+        },
+        {
+          value: "พัฒนาระบบการศึกษามากขึ้น",
+          text: "พัฒนาระบบการศึกษามากขึ้น",
+        },
+        {
+          value: "สร้างแพลตฟอร์มการมีส่วนร่วมและแสดงความคิดเห็นในการใช้งบฯ",
+          text: "สร้างแพลตฟอร์มการมีส่วนร่วมและแสดงความคิดเห็นในการใช้งบฯ",
+        },
+        {
+          value: "จัดระเบียบผังเมืองให้เหมาะสม",
+          text: "จัดระเบียบผังเมืองให้เหมาะสม ",
+        },
+        {
+          value: "ฟื้นฟูสถานที่ท่องเที่ยวสำคัญ",
+          text: "ฟื้นฟูสถานที่ท่องเที่ยวสำคัญ ",
+        },
+      ],
     };
   },
-  methods: {},
+  methods: {
+    onChangeDistrict(val) {
+      if (val != null) this.district = val.replace("เขต", "");
+      else this.district = "คลองสาน"
+    },
+    onChangeProblem(val) {
+      if (val != null) this.problem = val;
+      else this.district = "ในการจัดการขยะมากขึ้น"
+      this.selected = val;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .bg-main {
   padding: 100px;
+}
+
+.share {
+  background: #e8e4d8;
 }
 
 .accordion {
@@ -119,8 +240,26 @@ export default {
   }
 }
 
-  pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.ogimage {
+  border-radius: 10px;
+    max-width: 1200px;
+  margin: auto;
+
+  img {
+    border-radius: 10px;
+    border: 1px solid #000000;
+width: 100%;
   }
+}
+
+.select-dropdown {
+  width: 200px;
+  font-family: "Anuphan", serif;
+  font-size: 14px;
+}
 </style>

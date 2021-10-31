@@ -98,7 +98,8 @@ export default {
     { src: "~/plugins/vue-awesome-swiper", mode: "client" },
     { src: "~/plugins/elect", mode: "client" },
     { src: "~/plugins/vue-material-checkbox.js", mode: "client" },
-    { src: '~/plugins/jszip', mode: 'client' }
+    { src: '~/plugins/jszip', mode: 'client' },
+    { src: '~/plugins/html2canvas', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

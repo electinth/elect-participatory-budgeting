@@ -43,7 +43,7 @@
             </div>
             <div class="d-flex mx-2">
               <img :src="star_selected" alt="" width="15" class="mr-1" />
-              <p class="m-0 text-4">{{ overall[i].plan / overall[i].count }}</p>
+              <p class="m-0 text-4">{{ isNaN(overall[i].plan / overall[i].count) ? 0 : overall[i].plan / overall[i].count}}</p>
             </div>
           </div>
         </div>

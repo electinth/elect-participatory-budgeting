@@ -21,9 +21,9 @@
       </div>
     </div>
     <IntroSection />
-    <ProblemSection /> 
+    <ProblemSection />
     <ScoreSection />
-    <ExploreTreeMap id="explore"/>
+    <ExploreTreeMap id="explore" />
     <TreeMapSection />
     <ProjectSection />
     <ChooseProjectSection id="idea" />
@@ -109,15 +109,22 @@ export default {
         this.$cookies.set("uuid", this.uuid);
         this.cookies = false;
 
-        const messageRef = this.$fire.database.ref("data");
+        const messageRef = this.$fire.database.ref("user");
+        const aa = this.$fire.database.ref("sequence").child("user_sequence");
+
         try {
-          await messageRef.child(this.$cookies.get("uuid")).set({
+          var a = await aa.once("value");
+          var r = a.val();
+
+          await messageRef.child(++r).set({
             isInBkk: "",
             hasHouseReg: "",
-            hasAnswer: false,
             district: "",
             province: "",
+            userid: this.$cookies.get("uuid"),
           });
+
+          aa.set(r);
         } catch (e) {
           alert(e);
           return;
@@ -146,27 +153,7 @@ export default {
         }
         alert("Success.");
 
-        const messageRef3 = this.$fire.database.ref("project");
-        const w = this.$fire.database.ref("sequence").child("project_sequence");
-
-        try {
-          var b = await w.once("value");
-          var d = b.val();
-
-          for (var i = 0; i < 10; i++) {
-            await messageRef3.child(++d).set({
-              userid: this.$cookies.get("uuid"),
-              projectid: i + 1,
-              isSelected: "",
-            });
-          }
-
-          w.set(d);
-        } catch (e) {
-          alert(e);
-          return;
-        }
-        alert("Success.");
+       
       }
     },
   },
