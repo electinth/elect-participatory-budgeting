@@ -532,7 +532,7 @@ export default {
   data() {
     return {
       url:
-        "https://raw.githubusercontent.com/palminister/misu-database/main/budget.csv?token=AMJWZC4SYHMORPSPPWK37VTBP5N4O",
+        "https://raw.githubusercontent.com/electinth/participatory-budgeting/main/assets/data/budget.csv",
       rawData: null,
       nestedData: null,
       outerSum: null,
