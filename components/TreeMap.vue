@@ -423,6 +423,7 @@
                   color="#538DFF"
                   :size="18"
                   checked
+                  :disabled="selectedInner === 'มหานครปลอดภัย' ? true : false"
                 >
                   <div class="label">มหานครปลอดภัย</div>
                 </Checkbox>
@@ -434,6 +435,9 @@
                   color="#6ADC7B"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'มหานครสีเขียวสะดวกสบาย' ? true : false
+                  "
                 >
                   <div class="label">มหานครสีเขียวสะดวกสบาย</div>
                 </Checkbox>
@@ -445,8 +449,13 @@
                   color="#FF583E"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'มหานครสำหรับทุกคน' ? true : false
+                  "
                 >
-                  <div class="label">มหานครสำหรับทุกคน</div>
+                  <div class="label">
+                    มหานครสำหรับทุกคน
+                  </div>
                 </Checkbox>
               </li>
               <li>
@@ -456,6 +465,7 @@
                   color="#FF9FDF"
                   :size="18"
                   checked
+                  :disabled="selectedInner === 'มหานครกระชับ' ? true : false"
                 >
                   <div class="label">มหานครกระชับ</div>
                 </Checkbox>
@@ -467,6 +477,9 @@
                   color="#FF8310"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'มหานครประชาธิปไตย' ? true : false
+                  "
                 >
                   <div class="label">มหานครประชาธิปไตย</div>
                 </Checkbox>
@@ -478,6 +491,11 @@
                   color="#C3DA14"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'มหานครแห่งเศรษฐกิจและเรียนรู้'
+                      ? true
+                      : false
+                  "
                 >
                   <div class="label">มหานครแห่งเศรษฐกิจและเรียนรู้</div>
                 </Checkbox>
@@ -489,6 +507,11 @@
                   color="#D170FF"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'การบริหารจัดการเมืองมหานคร'
+                      ? true
+                      : false
+                  "
                 >
                   <div class="label">การบริหารจัดการเมืองมหานคร</div>
                 </Checkbox>
@@ -550,6 +573,7 @@ export default {
         left: 0
       },
       selected: null,
+      selectedInner: null,
       selectedYear: [],
       selectedStrategy: [],
       colorMap: {
@@ -814,12 +838,15 @@ export default {
     selectNode(event) {
       // console.log("select", event);
       this.selected = event.target.id;
+      this.selectedInner = event.target.id.split("/ ")[1];
     },
     navigateBack() {
       // console.log("selectback", selectedNode);
       this.selected = this.selectedNode.parent
         ? this.selectedNode.parent.id
         : this.selected;
+
+      this.selected === "ทั้งหมด" ? (this.selectedInner = null) : null;
     },
     getWindowWidth(event) {
       let currentWidth = document.documentElement.clientWidth;
