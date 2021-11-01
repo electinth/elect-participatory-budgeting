@@ -32,18 +32,24 @@
             alt=""
             class="pointer mx-3"
             width="150"
-            @click="showResult(item)"
+            @click="showResult(item, stars[i].count)"
           />
           <div class="d-flex justify-content-center mt-2">
             <div class="d-flex mx-2">
               <img :src="star_all" alt="" width="15" class="mr-1" />
               <p class="m-0 text-4">
-                {{ stars[i].count != "" ? stars[i].count : 0 }}
+                {{
+                  isNaN(overall[i].plan / overall[i].count)
+                    ? 0
+                    : (overall[i].plan / overall[i].count).toFixed(1)
+                }}
               </p>
             </div>
             <div class="d-flex mx-2">
               <img :src="star_selected" alt="" width="15" class="mr-1" />
-              <p class="m-0 text-4">{{ isNaN(overall[i].plan / overall[i].count) ? 0 : overall[i].plan / overall[i].count}}</p>
+              <p class="m-0 text-4">
+                {{ stars[i].count != "" ? stars[i].count : 0 }}
+              </p>
             </div>
           </div>
         </div>
@@ -56,19 +62,23 @@
             alt=""
             class="pointer mx-3"
             width="150"
-            @click="showResult(item)"
+            @click="showResult(item, stars[i + 4].count)"
           />
           <div class="d-flex justify-content-center mt-2">
             <div class="d-flex mx-2">
               <img :src="star_all" alt="" width="15" class="mr-1" />
               <p class="m-0 text-4">
-                {{ stars[i + 4].count != "" ? stars[i + 4].count : 0 }}
+                {{
+                  isNaN(overall[i + 4].plan / overall[i + 4].count)
+                    ? 0
+                    : (overall[i+4].plan / overall[i].count).toFixed(1)
+                }}
               </p>
             </div>
             <div class="d-flex mx-2">
               <img :src="star_selected" alt="" width="15" class="mr-1" />
               <p class="m-0 text-4">
-                {{ overall[i + 4].plan / overall[i + 4].count }}
+                {{ stars[i + 4].count != "" ? stars[i + 4].count : 0 }}
               </p>
             </div>
           </div>
@@ -107,11 +117,34 @@
                   </div>
                   <p class="text-2 font-weight-bold">แค่ไหนสำหรับคุณ</p>
                   <p class="text-4 m-0">(กดดาวเพื่อให้คะแนน)</p>
-                  <div class="d-flex my-3 justify-content-center">
+                  <div
+                    class="d-flex my-3 justify-content-center"
+                    v-if="results[0].star != 0"
+                  >
+                    <img
+                      :src="star_selected"
+                      v-for="(item, index) in results[0].star"
+                      :key="'selected-' + index"
+                      alt=""
+                      width="35"
+                      class="mx-2 pointer"
+                      @click="onCheckHasAnswer(index + 1, results[0].id)"
+                    />
+                    <img
+                      :src="star_not_selected"
+                      v-for="(item, index) in 5 - results[0].star"
+                      :key="'not-selected-' + index"
+                      :alt="index + results[0].star + 1"
+                      width="35"
+                      class="mx-2 pointer"
+                      @click="onCheckHasAnswer(index + results[0].star + 1, results[0].id)"
+                    />
+                  </div>
+                  <div class="d-flex my-3 justify-content-center" v-else>
                     <img
                       :src="star_not_selected"
                       v-for="(item, index) in 5"
-                      :key="index"
+                      :key="'star-' + index"
                       alt=""
                       width="35"
                       class="mx-2 pointer"
@@ -225,7 +258,6 @@
 
 <script>
 import DistrictDropdown from "./DistrictDropdown.vue";
-import firebase from "firebase";
 
 export default {
   name: "App",
@@ -440,6 +472,7 @@ export default {
           book_img: null,
           desc: "",
           dimension: [],
+          star: 0,
         },
       ],
       stars: [
@@ -463,11 +496,10 @@ export default {
     };
   },
   created() {
-    //this.setData();
-    //this.setDataOverall();
+    if (this.$cookies.get("uuid") !== undefined) this.setDataOverall();
   },
   methods: {
-    showResult(data) {
+    showResult(data, star) {
       this.results[0].color = data.color;
       this.results[0].side = data.side;
       this.results[0].icon = data.icon;
@@ -475,30 +507,35 @@ export default {
       this.results[0].book_img = data.book_img;
       this.results[0].desc = data.desc;
       this.results[0].id = data.id;
+      this.results[0].star = star;
       this.$refs["result-modal"].show();
     },
     async updateVote(star, problemid) {
-      const ref = this.$fire.database
-        .ref("plan")
-        .orderByChild("userid")
-        .equalTo(this.$cookies.get("uuid"));
+      const ref = this.$fire.database.ref("plan");
 
       try {
-        const snapshot = await ref.once("value");
-
-        for (const [key, value] of Object.entries(snapshot.val())) {
-          if (snapshot.val()[key].planid == problemid) {
-            const databaseRef = this.$fire.database.ref(
-              "plan/" + key + "/star"
-            );
-            databaseRef.set(star);
+        const snapshots = await ref.once("value");
+        for (const [key, value] of Object.entries(snapshots.val())) {
+          if (value.userid == this.$cookies.get("uuid")) {
+            if (value.planid == problemid) {
+              const refPlan = this.$fire.database.ref("plan/" + key);
+              refPlan.child("star").set(star);
+              this.results[0].star = star;
+            }
           }
         }
+
+        this.setDataOverall();
       } catch (e) {
         alert(e);
       }
     },
     async setDataOverall() {
+      this.overall.forEach((element, i) => {
+        element.plan = 0;
+        element.count = 0;
+      });
+
       const refOverall = this.$fire.database.ref("plan");
 
       try {
@@ -506,55 +543,56 @@ export default {
 
         for (const [key, value] of Object.entries(snapshot.val())) {
           if (snapshot.val()[key].planid == 1) {
-            this.overall[0].plan += snapshot.val()[key].star;
+            this.overall[0].plan += value.star;
             this.overall[0].count++;
           } else if (snapshot.val()[key].planid == 2) {
-            this.overall[1].plan += snapshot.val()[key].star;
+            this.overall[1].plan += value.star;
             this.overall[1].count++;
           } else if (snapshot.val()[key].planid == 3) {
-            this.overall[2].plan += snapshot.val()[key].star;
+            this.overall[2].plan += value.star;
             this.overall[2].count++;
           } else if (snapshot.val()[key].planid == 4) {
-            this.overall[3].plan += snapshot.val()[key].star;
+            this.overall[3].plan += value.star;
             this.overall[3].count++;
           } else if (snapshot.val()[key].planid == 5) {
-            this.overall[4].plan += snapshot.val()[key].star;
+            this.overall[4].plan += value.star;
             this.overall[4].count++;
           } else if (snapshot.val()[key].planid == 6) {
-            this.overall[5].plan += snapshot.val()[key].star;
+            this.overall[5].plan += value.star;
             this.overall[5].count++;
           } else {
-            this.overall[6].plan += snapshot.val()[key].star;
+            this.overall[6].plan += value.star;
             this.overall[6].count++;
           }
         }
+
+        console.log(JSON.stringify(this.overall));
       } catch (e) {
         alert(e);
       }
 
-      const ref = this.$fire.database
-        .ref("plan")
-        .orderByChild("userid")
-        .equalTo(this.$cookies.get("uuid"));
+      const ref = this.$fire.database.ref("plan");
 
       try {
         const snapshots = await ref.once("value");
 
         for (const [key, value] of Object.entries(snapshots.val())) {
-          if (snapshots.val()[key].planid == 1) {
-            this.stars[0].count = snapshots.val()[key].star;
-          } else if (snapshots.val()[key].planid == 2) {
-            this.stars[1].count = snapshots.val()[key].star;
-          } else if (snapshots.val()[key].planid == 3) {
-            this.stars[2].count = snapshots.val()[key].star;
-          } else if (snapshots.val()[key].planid == 4) {
-            this.stars[3].count = snapshots.val()[key].star;
-          } else if (snapshots.val()[key].planid == 5) {
-            this.stars[4].count = snapshots.val()[key].star;
-          } else if (snapshots.val()[key].planid == 6) {
-            this.stars[5].count = snapshots.val()[key].star;
-          } else {
-            this.stars[6].count = snapshots.val()[key].star;
+          if (value.userid == this.$cookies.get("uuid")) {
+            if (value.planid == 1) {
+              this.stars[0].count = value.star;
+            } else if (value.planid == 2) {
+              this.stars[1].count = value.star;
+            } else if (value.planid == 3) {
+              this.stars[2].count = value.star;
+            } else if (value.planid == 4) {
+              this.stars[3].count = value.star;
+            } else if (value.planid == 5) {
+              this.stars[4].count = value.star;
+            } else if (value.planid == 6) {
+              this.stars[5].count = value.star;
+            } else {
+              this.stars[6].count = value.star;
+            }
           }
         }
       } catch (e) {
@@ -562,22 +600,13 @@ export default {
       }
     },
     async onCheckHasAnswer(star, problemid) {
-      const ref = this.$fire.database
-        .ref("data")
-        .child(this.$cookies.get("uuid"));
-
-      try {
-        const snapshot = await ref.once("value");
-        if (snapshot.val().hasAnswer) {
-          this.updateVote(star, problemid);
-        } else this.$refs["asking-modal"].show();
-      } catch (e) {
-        alert(e);
-      }
+      if (this.$cookies.get("hasAnswer") !== undefined) {
+        this.updateVote(star, problemid);
+      } else this.$refs["asking-modal"].show();
     },
     async getScoreResult() {
       const ref = this.$fire.database
-        .ref("data")
+        .ref("user")
         .child(this.$cookies.get("uuid"));
 
       try {
@@ -588,28 +617,48 @@ export default {
       }
     },
     async onChangeDistrict(val) {
-      const ref = this.$fire.database.ref("data/" + this.$cookies.get("uuid"));
+      const ref = this.$fire.database.ref("user");
 
       try {
-        ref.child("district").set(val);
+        const snapshots = await ref.once("value");
+        for (const [key, value] of Object.entries(snapshots.val())) {
+          if (value.userid == this.$cookies.get("uuid")) {
+            const refUser = this.$fire.database.ref("user/" + key);
+            refUser.child("district").set(val);
+          }
+        }
       } catch (e) {
         alert(e);
       }
     },
     async onChangeProvince(val) {
-      const ref = this.$fire.database.ref("data/" + this.$cookies.get("uuid"));
+      const ref = this.$fire.database.ref("user");
 
       try {
-        ref.child("province").set(val);
+        const snapshots = await ref.once("value");
+        for (const [key, value] of Object.entries(snapshots.val())) {
+          if (value.userid == this.$cookies.get("uuid")) {
+            const refUser = this.$fire.database.ref("user/" + key);
+            refUser.child("province").set(val);
+          }
+        }
+
+        this.onCheckHasCompleteAnswer();
       } catch (e) {
         alert(e);
       }
     },
     async onClickBkk(val) {
-      const ref = this.$fire.database.ref("data/" + this.$cookies.get("uuid"));
+      const ref = this.$fire.database.ref("user");
 
       try {
-        ref.child("isInBkk").set(val);
+        const snapshots = await ref.once("value");
+        for (const [key, value] of Object.entries(snapshots.val())) {
+          if (value.userid == this.$cookies.get("uuid")) {
+            const refUser = this.$fire.database.ref("user/" + key);
+            refUser.child("isInBkk").set(val);
+          }
+        }
       } catch (e) {
         alert(e);
       }
@@ -623,10 +672,16 @@ export default {
       }
     },
     async onClickHouseReg(val) {
-      const ref = this.$fire.database.ref("data/" + this.$cookies.get("uuid"));
+      const ref = this.$fire.database.ref("user");
 
       try {
-        ref.child("hasHouseReg").set(val);
+        const snapshots = await ref.once("value");
+        for (const [key, value] of Object.entries(snapshots.val())) {
+          if (value.userid == this.$cookies.get("uuid")) {
+            const refUser = this.$fire.database.ref("user/" + key);
+            refUser.child("hasHouseReg").set(val);
+          }
+        }
       } catch (e) {
         alert(e);
       }
@@ -634,20 +689,28 @@ export default {
       this.onCheckHasCompleteAnswer();
     },
     async onCheckHasCompleteAnswer(val) {
-      const ref = this.$fire.database.ref("data/" + this.$cookies.get("uuid"));
+      const ref = this.$fire.database.ref("user");
 
       try {
-        const snapshot = await ref.once("value");
-        if (snapshot.val().isInBkk) {
-          if (
-            snapshot.val().district != "" &&
-            snapshot.val().hasHouseReg != null
-          )
-            ref.child("hasAnswer").set(true);
-          this.$refs["asking-modal"].hide();
-        } else {
-          if (snapshot.val().province != "") {
-            ref.child("hasAnswer").set(true);
+        const snapshots = await ref.once("value");
+        for (const [key, value] of Object.entries(snapshots.val())) {
+          if (value.userid == this.$cookies.get("uuid")) {
+            const refUser = this.$fire.database.ref("user/" + key);
+            const snapshotsUser = await refUser.once("value");
+            if (
+              snapshotsUser.val().isInBkk &&
+              snapshotsUser.val().district != "" &&
+              snapshotsUser.val().hasHouseReg != ""
+            ) {
+              this.$cookies.set("hasAnswer", true);
+            } else {
+              if (
+                !snapshotsUser.val().isInBkk &&
+                snapshotsUser.val().province != ""
+              ) {
+                this.$cookies.set("hasAnswer", true);
+              }
+            }
             this.$refs["asking-modal"].hide();
           }
         }

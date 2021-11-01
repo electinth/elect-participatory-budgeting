@@ -21,7 +21,7 @@
       </div>
     </div>
     <IntroSection />
-    <ProblemSection />
+    <ProblemSection /> 
     <ScoreSection />
     <ExploreTreeMap id="explore" />
     <TreeMapSection />
@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       uuid: uuid.v1(),
-      cookies: true,
+      cookies: false,
       logo: require("~/assets/images/logo-black.png"),
       menu_list: [
         {
@@ -142,7 +142,7 @@ export default {
             await messageRef2.child(++c).set({
               userid: this.$cookies.get("uuid"),
               planid: i + 1,
-              star: "",
+              star: 0,
             });
           }
 

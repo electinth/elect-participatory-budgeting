@@ -37,7 +37,7 @@
           alt=""
           v-sharer
           data-sharer="facebook"
-          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/${district}-${problem}`"
+          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/khlongtoey-6`"
         />
         <img
           :src="icon_twitter"
@@ -45,7 +45,7 @@
           alt=""
           v-sharer
           data-sharer="twitter"
-          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/${district}-${problem}`"
+          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/khlongtoey-6`"
         />
         <img
           :src="icon_line"
@@ -53,7 +53,7 @@
           alt=""
           v-sharer
           data-sharer="line"
-          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/${district}-${problem}`"
+          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/khlongtoey-6`"
         />
       </div>
     </div>
