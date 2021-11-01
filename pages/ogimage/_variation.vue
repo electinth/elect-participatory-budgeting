@@ -41,7 +41,7 @@ export default {
           hid: "og-image",
           property: "og:image",
           content:
-            "https://d365h3igfpfyap.cloudfront.net/" +
+            "https://d208eq9ndr4893.cloudfront.net/" +
             this.$route.params.variation +
             ".png",
         },
@@ -49,7 +49,7 @@ export default {
           hid: "twitter:image",
           name: "twitter:image:src",
           content:
-            "https://d365h3igfpfyap.cloudfront.net/" +
+            "https://d208eq9ndr4893.cloudfront.net/" +
             this.$route.params.variation +
             ".png",
         },
