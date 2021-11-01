@@ -339,6 +339,12 @@
                     color="#FFFFFF"
                     :size="18"
                     checked
+                    :disabled="
+                      this.selectedYear.length === 1 &&
+                      this.selectedYear[0] === '2561'
+                        ? true
+                        : false
+                    "
                   >
                     <div class="label">
                       2561
@@ -359,6 +365,12 @@
                     color="#FFFFFF"
                     :size="18"
                     checked
+                    :disabled="
+                      this.selectedYear.length === 1 &&
+                      this.selectedYear[0] === '2562'
+                        ? true
+                        : false
+                    "
                   >
                     <div class="label">
                       2562
@@ -373,6 +385,12 @@
                     color="#FFFFFF"
                     :size="18"
                     checked
+                    :disabled="
+                      this.selectedYear.length === 1 &&
+                      this.selectedYear[0] === '2563'
+                        ? true
+                        : false
+                    "
                   >
                     <div class="label">
                       2563
@@ -387,6 +405,12 @@
                     color="#FFFFFF"
                     :size="18"
                     checked
+                    :disabled="
+                      this.selectedYear.length === 1 &&
+                      this.selectedYear[0] === '2564'
+                        ? true
+                        : false
+                    "
                   >
                     <div class="label">
                       2564
@@ -423,7 +447,13 @@
                   color="#538DFF"
                   :size="18"
                   checked
-                  :disabled="selectedInner === 'มหานครปลอดภัย' ? true : false"
+                  :disabled="
+                    selectedInner === 'มหานครปลอดภัย' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'มหานครปลอดภัย')
+                      ? true
+                      : false
+                  "
                 >
                   <div class="label">มหานครปลอดภัย</div>
                 </Checkbox>
@@ -436,7 +466,11 @@
                   :size="18"
                   checked
                   :disabled="
-                    selectedInner === 'มหานครสีเขียวสะดวกสบาย' ? true : false
+                    selectedInner === 'มหานครสีเขียวสะดวกสบาย' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'มหานครสีเขียวสะดวกสบาย')
+                      ? true
+                      : false
                   "
                 >
                   <div class="label">มหานครสีเขียวสะดวกสบาย</div>
@@ -450,7 +484,11 @@
                   :size="18"
                   checked
                   :disabled="
-                    selectedInner === 'มหานครสำหรับทุกคน' ? true : false
+                    selectedInner === 'มหานครสำหรับทุกคน' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'มหานครสำหรับทุกคน')
+                      ? true
+                      : false
                   "
                 >
                   <div class="label">
@@ -465,7 +503,13 @@
                   color="#FF9FDF"
                   :size="18"
                   checked
-                  :disabled="selectedInner === 'มหานครกระชับ' ? true : false"
+                  :disabled="
+                    selectedInner === 'มหานครกระชับ' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'มหานครกระชับ')
+                      ? true
+                      : false
+                  "
                 >
                   <div class="label">มหานครกระชับ</div>
                 </Checkbox>
@@ -478,7 +522,11 @@
                   :size="18"
                   checked
                   :disabled="
-                    selectedInner === 'มหานครประชาธิปไตย' ? true : false
+                    selectedInner === 'มหานครประชาธิปไตย' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'มหานครประชาธิปไตย')
+                      ? true
+                      : false
                   "
                 >
                   <div class="label">มหานครประชาธิปไตย</div>
@@ -492,7 +540,10 @@
                   :size="18"
                   checked
                   :disabled="
-                    selectedInner === 'มหานครแห่งเศรษฐกิจและเรียนรู้'
+                    selectedInner === 'มหานครแห่งเศรษฐกิจและเรียนรู้' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] ===
+                        'มหานครแห่งเศรษฐกิจและเรียนรู้')
                       ? true
                       : false
                   "
@@ -508,7 +559,9 @@
                   :size="18"
                   checked
                   :disabled="
-                    selectedInner === 'การบริหารจัดการเมืองมหานคร'
+                    selectedInner === 'การบริหารจัดการเมืองมหานคร' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'การบริหารจัดการเมืองมหานคร')
                       ? true
                       : false
                   "
