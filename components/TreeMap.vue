@@ -339,6 +339,12 @@
                     color="#FFFFFF"
                     :size="18"
                     checked
+                    :disabled="
+                      this.selectedYear.length === 1 &&
+                      this.selectedYear[0] === '2561'
+                        ? true
+                        : false
+                    "
                   >
                     <div class="label">
                       2561
@@ -359,6 +365,12 @@
                     color="#FFFFFF"
                     :size="18"
                     checked
+                    :disabled="
+                      this.selectedYear.length === 1 &&
+                      this.selectedYear[0] === '2562'
+                        ? true
+                        : false
+                    "
                   >
                     <div class="label">
                       2562
@@ -373,6 +385,12 @@
                     color="#FFFFFF"
                     :size="18"
                     checked
+                    :disabled="
+                      this.selectedYear.length === 1 &&
+                      this.selectedYear[0] === '2563'
+                        ? true
+                        : false
+                    "
                   >
                     <div class="label">
                       2563
@@ -387,6 +405,12 @@
                     color="#FFFFFF"
                     :size="18"
                     checked
+                    :disabled="
+                      this.selectedYear.length === 1 &&
+                      this.selectedYear[0] === '2564'
+                        ? true
+                        : false
+                    "
                   >
                     <div class="label">
                       2564
@@ -423,6 +447,13 @@
                   color="#538DFF"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'มหานครปลอดภัย' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'มหานครปลอดภัย')
+                      ? true
+                      : false
+                  "
                 >
                   <div class="label">มหานครปลอดภัย</div>
                 </Checkbox>
@@ -434,6 +465,13 @@
                   color="#6ADC7B"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'มหานครสีเขียวสะดวกสบาย' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'มหานครสีเขียวสะดวกสบาย')
+                      ? true
+                      : false
+                  "
                 >
                   <div class="label">มหานครสีเขียวสะดวกสบาย</div>
                 </Checkbox>
@@ -445,8 +483,17 @@
                   color="#FF583E"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'มหานครสำหรับทุกคน' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'มหานครสำหรับทุกคน')
+                      ? true
+                      : false
+                  "
                 >
-                  <div class="label">มหานครสำหรับทุกคน</div>
+                  <div class="label">
+                    มหานครสำหรับทุกคน
+                  </div>
                 </Checkbox>
               </li>
               <li>
@@ -456,6 +503,13 @@
                   color="#FF9FDF"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'มหานครกระชับ' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'มหานครกระชับ')
+                      ? true
+                      : false
+                  "
                 >
                   <div class="label">มหานครกระชับ</div>
                 </Checkbox>
@@ -467,6 +521,13 @@
                   color="#FF8310"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'มหานครประชาธิปไตย' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'มหานครประชาธิปไตย')
+                      ? true
+                      : false
+                  "
                 >
                   <div class="label">มหานครประชาธิปไตย</div>
                 </Checkbox>
@@ -478,6 +539,14 @@
                   color="#C3DA14"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'มหานครแห่งเศรษฐกิจและเรียนรู้' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] ===
+                        'มหานครแห่งเศรษฐกิจและเรียนรู้')
+                      ? true
+                      : false
+                  "
                 >
                   <div class="label">มหานครแห่งเศรษฐกิจและเรียนรู้</div>
                 </Checkbox>
@@ -489,6 +558,13 @@
                   color="#D170FF"
                   :size="18"
                   checked
+                  :disabled="
+                    selectedInner === 'การบริหารจัดการเมืองมหานคร' ||
+                    (this.selectedStrategy.length === 1 &&
+                      this.selectedStrategy[0] === 'การบริหารจัดการเมืองมหานคร')
+                      ? true
+                      : false
+                  "
                 >
                   <div class="label">การบริหารจัดการเมืองมหานคร</div>
                 </Checkbox>
@@ -550,6 +626,7 @@ export default {
         left: 0
       },
       selected: null,
+      selectedInner: null,
       selectedYear: [],
       selectedStrategy: [],
       colorMap: {
@@ -814,12 +891,15 @@ export default {
     selectNode(event) {
       // console.log("select", event);
       this.selected = event.target.id;
+      this.selectedInner = event.target.id.split("/ ")[1];
     },
     navigateBack() {
       // console.log("selectback", selectedNode);
       this.selected = this.selectedNode.parent
         ? this.selectedNode.parent.id
         : this.selected;
+
+      this.selected === "ทั้งหมด" ? (this.selectedInner = null) : null;
     },
     getWindowWidth(event) {
       let currentWidth = document.documentElement.clientWidth;
