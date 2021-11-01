@@ -217,6 +217,6 @@ export default {
   build: {},
 
   generate: {
-    routes: array
+    routes: ['/ogimage/khlongtoey-6']
   }
 };
