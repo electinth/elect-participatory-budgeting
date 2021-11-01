@@ -95,6 +95,10 @@ export default {
 <style lang="scss" scoped>
 .bg-main {
   background: #e8e4d8;
+
+  @media #{$mq-mini-mobile} {
+    height: auto;
+  }
 }
 
 .black-box {
@@ -104,5 +108,10 @@ export default {
   width: 650px;
   border-radius: 10px;
   margin: 0 auto;
+
+  @media #{$mq-mini-mobile} {
+    width: 75%;
+    padding: 24px 43px;
+  }
 }
 </style>

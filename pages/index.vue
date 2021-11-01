@@ -6,7 +6,7 @@
 
     <div class="menu-wrap">
       <a href="https://punchup.world/project/" target="_blank" class="m-0">
-        <img :src="logo" width="130" alt=""
+        <img :src="logo" width="130" alt="" class="pu-logo"
       /></a>
       <div>
         <nuxt-link
@@ -21,7 +21,7 @@
       </div>
     </div>
     <IntroSection />
-    <ProblemSection /> 
+    <ProblemSection />
     <ScoreSection />
     <ExploreTreeMap id="explore" />
     <TreeMapSection />
@@ -152,8 +152,6 @@ export default {
           return;
         }
         alert("Success.");
-
-       
       }
     },
   },
@@ -192,10 +190,19 @@ export default {
   background: #e8e4d8;
   padding: 20px 20px 0;
   justify-content: space-between;
+
+  @media #{$mq-mini-mobile} {
+    padding: 10px 10px 0;
+  }
+
   a {
     color: #000;
     text-decoration: none;
     margin-left: 32px;
+
+    @media #{$mq-mini-mobile} {
+      margin-left: 10px;
+    }
   }
   a.active {
     font-weight: bold;
@@ -205,5 +212,9 @@ export default {
 .menus {
   font-size: 12px;
   font-weight: bold;
+}
+
+.pu-logo {
+  width: 100px;
 }
 </style>

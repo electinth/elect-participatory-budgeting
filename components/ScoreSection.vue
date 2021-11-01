@@ -71,7 +71,7 @@
                 {{
                   isNaN(overall[i + 4].plan / overall[i + 4].count)
                     ? 0
-                    : (overall[i+4].plan / overall[i].count).toFixed(1)
+                    : (overall[i + 4].plan / overall[i].count).toFixed(1)
                 }}
               </p>
             </div>
@@ -137,7 +137,12 @@
                       :alt="index + results[0].star + 1"
                       width="35"
                       class="mx-2 pointer"
-                      @click="onCheckHasAnswer(index + results[0].star + 1, results[0].id)"
+                      @click="
+                        onCheckHasAnswer(
+                          index + results[0].star + 1,
+                          results[0].id
+                        )
+                      "
                     />
                   </div>
                   <div class="d-flex my-3 justify-content-center" v-else>
@@ -565,8 +570,6 @@ export default {
             this.overall[6].count++;
           }
         }
-
-        console.log(JSON.stringify(this.overall));
       } catch (e) {
         alert(e);
       }
@@ -611,7 +614,6 @@ export default {
 
       try {
         const snapshot = await ref.once("value");
-        console.log(snapshot.val());
       } catch (e) {
         alert(e);
       }

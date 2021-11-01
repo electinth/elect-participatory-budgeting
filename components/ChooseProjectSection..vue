@@ -21,12 +21,13 @@
             @click="setSelected(item.id, item.isSelected)"
           >
             <p class="header-3 m-0">{{ item.name }}</p>
-            <p class="text-4 m-0">{{ item.desc }}</p>
+            <p class="text-4 m-0">({{ item.desc }})</p>
           </div>
 
           <button
             class="sent-comment text-3"
             :disabled="selected_project.length == 0"
+            @click="sendData"
           >
             ส่งความคิดเห็น
           </button>
@@ -37,7 +38,11 @@
       </b-row>
     </div>
 
-    <div class="h-100vh bg-main p-5 loading-div" v-if="isShowLoading">
+    <div
+      class="h-100vh bg-main p-5 loading-div"
+      :class="{ 'd-none': !isShowLoading }"
+      :test="isShowLoading"
+    >
       <div class="d-flex justify-content-center h-100 position-relative">
         <div class="w-50"><lottie :options="defaultOptions"></lottie></div>
       </div>
@@ -61,10 +66,12 @@
             v-model="selected"
             :options="options"
             class="select-dropdown"
+            @change="onChangePeopleType"
           ></b-form-select>
         </div>
         <div class="d-flex mx-1">
-          <span class="text-3 mr-2 my-auto">พื้นที่</span><DistrictDropdown />
+          <span class="text-3 mr-2 my-auto">พื้นที่</span
+          ><DistrictDropdown @change="onChangeDistrictFilter" />
         </div>
       </div>
 
@@ -74,7 +81,7 @@
           <p class="text-1 m-0">
             ({{
               project_count[index].count != 0
-                ? 100 / project_count[index].count + "%"
+                ? parseInt(100 / project_count[index].count) + "%"
                 : "0%"
             }})
           </p>
@@ -83,7 +90,7 @@
           :style="{
             width:
               project_count[index].count != 0
-                ? 100 / project_count[index].count + '%'
+                ? parseInt(100 / project_count[index].count) + '%'
                 : '0%',
             backgroundColor: item.colorHover,
           }"
@@ -180,12 +187,13 @@ export default {
       },
       tabIndex: 0,
       selected: 1,
+      district: null,
       illus_section_05: require("~/assets/images/illus_section_05.svg"),
       project: [
         {
           id: 1,
           name: "ปรับปรุงระบบจัดการขยะ",
-          desc: "(มหานครปลอดภัย)",
+          desc: "มหานครปลอดภัย",
           colorHover: "#538DFF",
           colorOriginal: "#e5e5e5",
           isSelected: false,
@@ -193,7 +201,7 @@ export default {
         {
           id: 2,
           name: "พัฒนาทางเท้า ทางข้าม",
-          desc: "(มหานครสีเขียวสะดวกสบาย)",
+          desc: "มหานครสีเขียวสะดวกสบาย",
           colorHover: "#6ADC7B",
           colorOriginal: "#e5e5e5",
           isSelected: false,
@@ -201,7 +209,7 @@ export default {
         {
           id: 3,
           name: "ปรับปรุงการระบายน้ำและจัดการน้ำท่วม",
-          desc: "(มหานครปลอดภัย)",
+          desc: "มหานครปลอดภัย",
           colorHover: "#538DFF",
           colorOriginal: "#e5e5e5",
           isSelected: false,
@@ -209,7 +217,7 @@ export default {
         {
           id: 4,
           name: "จัดการการจราจรติดขัด",
-          desc: "(มหานครสีเขียวสะดวกสบาย)",
+          desc: "มหานครสีเขียวสะดวกสบาย",
           colorHover: "#6ADC7B",
           colorOriginal: "#e5e5e5",
           isSelected: false,
@@ -217,7 +225,7 @@ export default {
         {
           id: 5,
           name: "ติดตั้งแสงสว่างและกล้องวงจรอย่างทั่วถึง",
-          desc: "(มหานครปลอดภัย)",
+          desc: "มหานครปลอดภัย",
           colorHover: "#538DFF",
           colorOriginal: "#e5e5e5",
           isSelected: false,
@@ -225,7 +233,7 @@ export default {
         {
           id: 6,
           name: "เพิ่มพื้นที่สีเขียว",
-          desc: "(มหานครสีเขียวสะดวกสบาย)",
+          desc: "มหานครสีเขียวสะดวกสบาย",
           colorHover: "#6ADC7B",
           colorOriginal: "#e5e5e5",
           isSelected: false,
@@ -233,7 +241,7 @@ export default {
         {
           id: 7,
           name: "พัฒนาระบบการศึกษา",
-          desc: "(มหานครสำหรับทุกคน)",
+          desc: "มหานครสำหรับทุกคน",
           colorHover: "#C3DA14",
           colorOriginal: "#e5e5e5",
           isSelected: false,
@@ -241,7 +249,7 @@ export default {
         {
           id: 8,
           name: "สร้างแพลตฟอร์มการมีส่วนร่วมและแสดงความคิดเห็นในการใช้งบฯ",
-          desc: "(มหานครประชาธิปไตย)",
+          desc: "มหานครประชาธิปไตย",
           colorHover: "#D170FF",
           colorOriginal: "#e5e5e5",
           isSelected: false,
@@ -249,7 +257,7 @@ export default {
         {
           id: 9,
           name: "จัดระเบียบผังเมืองให้เหมาะสม",
-          desc: "(มหานครกระชับ)",
+          desc: "มหานครกระชับ",
           colorHover: "#FF583E",
           colorOriginal: "#e5e5e5",
           isSelected: false,
@@ -257,7 +265,7 @@ export default {
         {
           id: 10,
           name: "ฟื้นฟูสถานที่ท่องเที่ยวสำคัญ",
-          desc: "(มหานครแห่งเศรษฐกิจและเรียนรู้)",
+          desc: "มหานครแห่งเศรษฐกิจและเรียนรู้",
           colorHover: "#C3DA14",
           colorOriginal: "#e5e5e5",
           isSelected: false,
@@ -299,9 +307,12 @@ export default {
   },
   mounted() {
     this.getData();
-    //this.test();
-    // await this.sendData();
-    // await this.sendComment();
+
+    if (this.$cookies.get("isVoted") === undefined) {
+      this.isShowChooseProject = true;
+    } else {
+      this.isShowChooseProject = false;
+    }
   },
   computed: {
     setWidth(count) {
@@ -311,28 +322,6 @@ export default {
     },
   },
   methods: {
-    async test() {
-      const messageRef3 = this.$fire.database.ref("project");
-      const w = this.$fire.database.ref("sequence").child("project_sequence");
-
-      try {
-        var b = await w.once("value");
-        var d = b.val();
-
-        for (var i = 0; i < 10; i++) {
-          await messageRef3.child(++d).set({
-            userid: this.$cookies.get("uuid"),
-            projectid: i + 1,
-          });
-        }
-
-        w.set(d);
-      } catch (e) {
-        alert(e);
-        return;
-      }
-      alert("Success.");
-    },
     setSelected(id, val) {
       if (
         this.$cookies.get("hasAnswer") !== undefined &&
@@ -361,46 +350,177 @@ export default {
       }
     },
     async getData() {
-      const ref = this.$fire.database.ref("project");
+      this.isShowLoading = false;
+
+      this.project_count.forEach((element, i) => {
+        element.count = 0;
+      });
+
+      const ref = this.$fire.database.ref("user");
+      var array = [];
 
       try {
         const snapshots = await ref.once("value");
 
         for (const [key, value] of Object.entries(snapshots.val())) {
-          if (value.isSelected) {
-            var filter = this.project_count.filter(
-              (x) => x.id == value.projectid
-            );
-            filter[0].count += 1;
+          if (this.selected == 1) {
+            if (
+              value.isInBkk &&
+              value.hasHouseReg &&
+              value.district == this.district
+            ) {
+              array.push(value.userid);
+            } else if (
+              value.isInBkk &&
+              value.hasHouseReg &&
+              this.district == null
+            ) {
+              array.push(value.userid);
+            }
+          } else if (this.selected == 2) {
+            if (
+              value.isInBkk &&
+              !value.hasHouseReg &&
+              value.district == this.district
+            ) {
+              array.push(value.userid);
+            }
+          } else {
+            if(!value.isInBkk) array.push(value.userid);
           }
         }
       } catch (e) {
         alert(e);
       }
 
-      //console.log(JSON.stringify(this.project_count));
+      const refProject = this.$fire.database.ref("project");
+
+      try {
+        const snapshots = await refProject.once("value");
+
+        for (const [key, value] of Object.entries(snapshots.val())) {
+          for (const arr of array) {
+            if (arr == value.userid) {
+              if (value.projectid == 1) {
+                this.project_count[0].count += 1;
+              } else if (value.projectid == 2) {
+                this.project_count[1].count += 1;
+              } else if (value.projectid == 3) {
+                this.project_count[2].count += 1;
+              } else if (value.projectid == 4) {
+                this.project_count[3].count += 1;
+              } else if (value.projectid == 5) {
+                this.project_count[4].count += 1;
+              } else if (value.projectid == 6) {
+                this.project_count[5].count += 1;
+              } else if (value.projectid == 7) {
+                this.project_count[6].count += 1;
+              } else if (value.projectid == 8) {
+                this.project_count[7].count += 1;
+              } else if (value.projectid == 9) {
+                this.project_count[8].count += 1;
+              } else {
+                this.project_count[9].count += 1;
+              }
+            }
+          }
+        }
+      } catch (e) {
+        alert(e);
+      }
     },
     async sendData() {
+      this.isShowLoading = true;
+      this.isShowChooseProject = true;
+
+      var array = [];
+      var arrayForExcel = [];
+      var arrayFb = [];
+
+      const messageRef = this.$fire.database.ref("user");
+
+      for (var i = 0; i < this.selected_project.length; i++) {
+        var result = this.project.filter(
+          (x) => x.id == this.selected_project[i]
+        );
+
+        array.push({
+          projectid: this.selected_project[i],
+          userid: this.$cookies.get("uuid"),
+        });
+
+        arrayForExcel.push({
+          userid: this.$cookies.get("uuid"),
+          projectid: this.selected_project[i],
+          name: this.project.filter((x) => x.id == this.selected_project[i])[0]
+            .name,
+          dimension: this.project.filter(
+            (x) => x.id == this.selected_project[i]
+          )[0].desc,
+          district: "",
+          province: "",
+          hashousereg: "",
+          isinbkk: "",
+        });
+      }
+
+      try {
+        var data = await messageRef.once("value");
+        var r = data.val();
+
+        for (const [key, value] of Object.entries(r)) {
+          if (value.userid == this.$cookies.get("uuid")) {
+            arrayFb.push(value);
+            break;
+          }
+        }
+      } catch (e) {
+        alert(e);
+        return;
+      }
+
+      for (var i = 0; i < arrayForExcel.length; i++) {
+        arrayForExcel[i].district =
+          arrayFb[0].district == "" ? "-" : arrayFb[0].district;
+        arrayForExcel[i].province =
+          arrayFb[0].province == "" ? "-" : arrayFb[0].province;
+        arrayForExcel[i].hashousereg = arrayFb[0].hasHouseReg ? "มี" : "ไม่มี";
+        arrayForExcel[i].isinbkk = arrayFb[0].isInBkk ? "อยู่" : "ไม่อยู่";
+      }
+
+      const sequence = this.$fire.database
+        .ref("sequence")
+        .child("project_sequence");
+      const messageRefProject = this.$fire.database.ref("project");
+
+      try {
+        var a = await sequence.once("value");
+        var count = a.val();
+
+        for (var i = 0; i < array.length; i++) {
+          await messageRefProject.child(++count).set(array[i]);
+        }
+
+        sequence.set(count);
+      } catch (e) {
+        alert(e);
+        return;
+      }
+
       await this.$axios
-        .$post(googleSheetUrlProject, [
-          {
-            userid: "Poppap",
-            projectid: "Poppap",
-            isselected: "Poppap",
-            name: "Poppap",
-            dimension: "Poppap",
-            district: "Poppap",
-            province: "Poppap",
-            hashousereg: "Poppap",
-            isinbkk: "Poppap",
-          },
-        ])
+        .$post(googleSheetUrlProject, arrayForExcel)
         .then((response) => {
           console.log("send");
         })
         .catch((error) => {
           console.log(error);
         });
+
+      this.$cookies.set("isVoted", true);
+
+      setTimeout(() => {
+        this.getData();
+      }, 3000);
     },
     async sendComment() {
       await this.$axios
@@ -438,6 +558,15 @@ export default {
       } catch (e) {
         alert(e);
       }
+    },
+    onChangeDistrictFilter(val) {
+      this.district = null;
+      if (val != null) this.district = val;
+      this.getData();
+    },
+    onChangePeopleType(val) {
+      this.selected = val;
+      this.getData();
     },
     async onChangeProvince(val) {
       const ref = this.$fire.database.ref("user");
