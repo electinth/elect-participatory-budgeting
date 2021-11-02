@@ -74,6 +74,7 @@
           ><DistrictDropdown
             @change="onChangeDistrictFilter"
             :disabled="selected == 3"
+            type="2"
           />
         </div>
       </div>
@@ -126,8 +127,8 @@
       <button
         class="sent-comment text-3 mt-5"
         @click="$bvModal.show('modal-comment')"
-      >
-        เสนอไอเดียเพิ่มเติม
+      > <div class="d-flex"><img :src="icon_idea" width="20" class="mr-2" alt="">
+        เสนอไอเดียเพิ่มเติม</div>
       </button>
     </div>
 
@@ -159,7 +160,11 @@
           </button>
         </div>
         <p class="text-4 mb-0 mt-2" v-if="isShowDistrict">คุณอยู่เขตไหน?</p>
-        <DistrictDropdown @change="onChangeDistrict" v-if="isShowDistrict" />
+        <DistrictDropdown
+          @change="onChangeDistrict"
+          v-if="isShowDistrict"
+          type="1"
+        />
         <p class="text-4 mb-0 mt-2" v-if="isShowProvince">คุณอยู่จังหวัดไหน?</p>
         <ProvinceDropdown @change="onChangeProvince" v-if="isShowProvince" />
         <p class="text-4 mb-0 mt-2" v-if="isShowDistrict">มีทะเบียนบ้านไหม?</p>
@@ -210,6 +215,24 @@
         </button>
       </div>
     </b-modal>
+
+    <b-modal
+      id="modal-cookie"
+      ref="cookie-modal"
+      title="Second Modal"
+      centered
+      hide-footer
+      hide-header
+      hide-backdrop
+      no-close-on-backdrop
+    >
+      <div class="asking-box p-4 text-center" style="min-height: auto">
+        <img :src="icon_info" alt="" width="100" />
+        <p class="text-1 text-center mt-3">
+          กรุณากดยอมรับคุกกี้ก่อนโหวตโครงการ
+        </p>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -236,6 +259,8 @@ export default {
       district: null,
       comment: "",
       illus_section_05: require("~/assets/images/illus_section_05.svg"),
+      icon_info: require("~/assets/images/icon_info.svg"),
+      icon_idea: require("~/assets/images/icon_idea.svg"),
       project: [
         {
           id: 1,
@@ -336,6 +361,7 @@ export default {
       isShowLoading: false,
       isShowDistrict: false,
       isShowProvince: false,
+      isAcceptCookie: false,
       options: [
         {
           value: 1,
@@ -370,21 +396,28 @@ export default {
   },
   methods: {
     setSelected(id, val) {
-      if (
-        this.$cookies.get("hasAnswer") !== undefined &&
-        this.$cookies.get("hasAnswer")
-      ) {
-        this.onCheckIsDuplicate(id);
-        if (this.selected_project.length <= 3) {
-          var filter = this.project.filter((x) => x.id == id);
-          if (!val) filter[0].isSelected = true;
-          else filter[0].isSelected = false;
-        } else {
-        }
+      if (this.$cookies.get("uuid") === undefined) {
+        this.$refs["cookie-modal"].show();
+        setTimeout(() => {
+          this.$refs["cookie-modal"].hide();
+        }, 2000);
+      } else {
+        if (
+          this.$cookies.get("hasAnswer") !== undefined &&
+          this.$cookies.get("hasAnswer")
+        ) {
+          this.onCheckIsDuplicate(id);
+          if (this.selected_project.length <= 3) {
+            var filter = this.project.filter((x) => x.id == id);
+            if (!val) filter[0].isSelected = true;
+            else filter[0].isSelected = false;
+          } else {
+          }
 
-        if (this.selected_project.length >= 3) this.isLimit = true;
-        else this.isLimit = false;
-      } else this.$refs["asking-modal"].show();
+          if (this.selected_project.length >= 3) this.isLimit = true;
+          else this.isLimit = false;
+        } else this.$refs["asking-modal"].show();
+      }
     },
     onCheckIsDuplicate(id) {
       if (this.selected_project.length > 0) {
@@ -425,10 +458,7 @@ export default {
               array.push(value.userid);
             }
           } else if (this.selected == 2) {
-            if (
-              value.isInBkk &&
-              !value.hasHouseReg
-            ) {
+            if (value.isInBkk && !value.hasHouseReg) {
               array.push(value.userid);
             }
           } else {
@@ -616,7 +646,7 @@ export default {
         for (const [key, value] of Object.entries(snapshots.val())) {
           if (value.userid == this.$cookies.get("uuid")) {
             const refUser = this.$fire.database.ref("user/" + key);
-            refUser.child("district").set(val);
+            refUser.child("district").set("เขต" + val[0].th_name);
           }
         }
       } catch (e) {
@@ -625,7 +655,7 @@ export default {
     },
     onChangeDistrictFilter(val) {
       this.district = null;
-      if (val != null) this.district = val;
+      if (val != null) this.district = "เขต" + val[0].th_name;
       this.getData();
     },
     onChangePeopleType(val) {

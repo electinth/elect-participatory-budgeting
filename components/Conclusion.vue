@@ -14,20 +14,25 @@
           align-items-center
         "
       >
-        <DistrictDropdown @change="onChangeDistrict" class="mb-3 mb-sm-0" />
+        <DistrictDropdown @change="onChangeDistrict" class="mb-3 mb-sm-0" type=3 />
         <div class="d-flex mx-1">
           <b-form-select
             v-model="selected"
             :options="options"
             class="select-dropdown"
             @change="onChangeProblem"
+            :disabled="district == 'upcountry'"
           ></b-form-select>
         </div>
       </div>
 
       <div class="ogimage">
         <img
-          :src="`https://d208eq9ndr4893.cloudfront.net/og-image/${district}-${problem}.png`"
+          :src="
+            district == 'upcountry'
+              ? `https://d208eq9ndr4893.cloudfront.net/og-image/upcountry.png`
+              : `https://d208eq9ndr4893.cloudfront.net/og-image/${district}-${problem}.png`
+          "
           alt=""
         />
       </div>
@@ -45,7 +50,11 @@
           alt=""
           v-sharer
           data-sharer="facebook"
-          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/khlongtoey-6-${district}-${problem}`"
+          :data-url="
+            district == 'upcountry'
+              ? `https://electinth.github.io/participatory-budgeting/ogimage/upcountry`
+              : `https://electinth.github.io/participatory-budgeting/ogimage/${district}-${problem}`
+          "
         />
         <img
           :src="icon_twitter"
@@ -53,7 +62,11 @@
           alt=""
           v-sharer
           data-sharer="twitter"
-          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/khlongtoey-6`"
+          :data-url="
+            district == 'upcountry'
+              ? `https://electinth.github.io/participatory-budgeting/ogimage/upcountry`
+              : `https://electinth.github.io/participatory-budgeting/ogimage/${district}-${problem}`
+          "
         />
         <img
           :src="icon_line"
@@ -61,7 +74,11 @@
           alt=""
           v-sharer
           data-sharer="line"
-          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/khlongtoey-6`"
+          :data-url="
+            district == 'upcountry'
+              ? `https://electinth.github.io/participatory-budgeting/ogimage/upcountry`
+              : `https://electinth.github.io/participatory-budgeting/ogimage/${district}-${problem}`
+          "
         />
       </div>
     </div>
@@ -155,55 +172,55 @@ export default {
   },
   data() {
     return {
-      district: "คลองสาน",
+      district: "bangbon",
       selected: null,
       icon_fb: require("~/assets/images/facebook.png"),
       icon_line: require("~/assets/images/line.png"),
       icon_twitter: require("~/assets/images/twitter.png"),
-      problem: "ในการจัดการขยะมากขึ้น",
+      problem: 1,
       options: [
         {
           value: null,
           text: "เลือกเรื่องที่อยากแชร์",
         },
         {
-          value: "ในการจัดการขยะมากขึ้น",
+          value: 1,
           text: "ในการจัดการขยะมากขึ้น",
         },
         {
-          value: "พัฒนาทางเท้าทางข้ามมากขึ้น",
+          value: 2,
           text: "พัฒนาทางเท้า ทางข้ามมากขึ้น",
         },
         {
-          value: "ปรับปรุงการระบายน้ำและจัดการน้ำท่วม",
+          value: 3,
           text: "ปรับปรุงการระบายน้ำและจัดการน้ำท่วม ",
         },
         {
-          value: "จัดการการจราจรติดขัด",
+          value: 4,
           text: "จัดการการจราจรติดขัด",
         },
         {
-          value: "ติดตั้งแสงสว่างและกล้องวงจรอย่างทั่วถึง",
+          value: 5,
           text: "ติดตั้งแสงสว่างและกล้องวงจรอย่างทั่วถึง",
         },
         {
-          value: "เพิ่มพื้นที่สีเขียวให้มากขึ้น",
+          value: 6,
           text: "เพิ่มพื้นที่สีเขียวให้มากขึ้น ",
         },
         {
-          value: "พัฒนาระบบการศึกษามากขึ้น",
+          value: 7,
           text: "พัฒนาระบบการศึกษามากขึ้น",
         },
         {
-          value: "สร้างแพลตฟอร์มการมีส่วนร่วมและแสดงความคิดเห็นในการใช้งบฯ",
+          value: 8,
           text: "สร้างแพลตฟอร์มการมีส่วนร่วมและแสดงความคิดเห็นในการใช้งบฯ",
         },
         {
-          value: "จัดระเบียบผังเมืองให้เหมาะสม",
+          value: 9,
           text: "จัดระเบียบผังเมืองให้เหมาะสม ",
         },
         {
-          value: "ฟื้นฟูสถานที่ท่องเที่ยวสำคัญ",
+          value: 10,
           text: "ฟื้นฟูสถานที่ท่องเที่ยวสำคัญ ",
         },
       ],
@@ -211,13 +228,33 @@ export default {
   },
   methods: {
     onChangeDistrict(val) {
-      if (val != null) this.district = val.replace("เขต", "");
-      else this.district = "คลองสาน";
+      if (val != null) {
+        this.district = val[0].en_name;
+
+        if (val == "upcountry") {
+          this.selected = null;
+          this.$store.commit("onChangeUpCountry", true);
+        } else this.$store.commit("onChangeUpCountry", false);
+
+        this.$store.commit("onChangeDistrict", val);
+      } else {
+        this.district = "bangbon";
+        this.$store.commit("onChangeDistrict", "bangbon");
+      }
+
+      console.log(this.$store.state.district);
     },
     onChangeProblem(val) {
-      if (val != null) this.problem = val;
-      else this.district = "ในการจัดการขยะมากขึ้น";
-      this.selected = val;
+      if (val != null) {
+        this.problem = val;
+        var result = this.options.filter((x) => x.value == val);
+        this.$store.commit("onChangeProblem", result[0].text);
+      } else {
+        this.problem = 1;
+        this.$store.commit("onChangeProblem", "ในการจัดการขยะมากขึ้น");
+      }
+
+      console.log(this.$store.state.problem);
     },
   },
 };

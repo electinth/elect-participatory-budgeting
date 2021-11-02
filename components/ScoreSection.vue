@@ -119,7 +119,7 @@
                   <p class="text-4 m-0">(กดดาวเพื่อให้คะแนน)</p>
 
                   <p class="text-danger text-4 mt-2" v-if="isAcceptCookie">
-                    กรุณากดยอมรับคุกกี้ตามเงื่อนไขที่แจ้งไว้
+                    กรุณากดยอมรับคุกกี้ก่อนโหวต
                   </p>
 
                   <div
@@ -229,7 +229,7 @@
             </button>
           </div>
           <p class="text-4 mb-0 mt-2" v-if="isShowDistrict">คุณอยู่เขตไหน?</p>
-          <DistrictDropdown @change="onChangeDistrict" v-if="isShowDistrict" />
+          <DistrictDropdown @change="onChangeDistrict" v-if="isShowDistrict" type=1 />
           <p class="text-4 mb-0 mt-2" v-if="isShowProvince">
             คุณอยู่จังหวัดไหน?
           </p>
@@ -639,7 +639,7 @@ export default {
         for (const [key, value] of Object.entries(snapshots.val())) {
           if (value.userid == this.$cookies.get("uuid")) {
             const refUser = this.$fire.database.ref("user/" + key);
-            refUser.child("district").set(val);
+            refUser.child("district").set("เขต" + val[0].th_name);
           }
         }
       } catch (e) {

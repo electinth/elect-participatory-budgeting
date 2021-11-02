@@ -21,7 +21,7 @@
                   (x) => x.dimension == 'มหานครปลอดภัย'
                 )"
                 :key="index"
-                class="text-left"
+                class="text-left px-2"
               >
                 <p class="text-4 m-0">
                   <b>เริ่มต้นโครงการ</b> :
@@ -45,37 +45,37 @@
                   />
                 </div>
 
-                <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
+                <p class="text-1 font-weight-bold">{{ item.name }}</p>
                 <img
                   class="project-img"
                   :src="
                     require(`@/assets/images/section_project_bkk/issue_1/${item.path}`)
                   "
-                  width="75%"
+                  width="100%"
                   alt=""
                 />
                 <p class="text-4 mb-0 mt-2 w-75">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้รับ : </b>
-                  <span class="status">{{ item.budget }}</span> บาท
-                </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้ใช้ไป : </b>
-                  <span :class="{ status: item.used != '-' }">{{
-                    item.used
-                  }}</span>
-                  <span v-if="item.used != '-'">บาท</span>
-                </p>
-                <p class="text-4 m-0 w-75">
-                  <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
-                </p>
-                <div class="text-4 m-0">
-                  <b>ลิงค์</b> :
-                  <a :href="item.link" class="w-75" target="_blank">{{
-                    item.link
-                  }}</a>
+
+                <div class="p-2 border-dark border mt-2">
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้รับ : </b>
+                    <span class="status">{{ item.budget }}</span> บาท
+                  </p>
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้ใช้ไป : </b>
+                    <span :class="{ status: item.used != '-' }">{{
+                      item.used
+                    }}</span>
+                    <span v-if="item.used != '-'">บาท</span>
+                  </p>
+                  <p class="text-4 m-0 w-75">
+                    <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
+                  </p>
+                  <div class="text-4 m-0">
+                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                  </div>
                 </div>
               </div>
             </VueSlickCarousel>
@@ -96,7 +96,7 @@
                   (x) => x.dimension == 'มหานครสีเขียวสะดวกสบาย'
                 )"
                 :key="index"
-                class="text-left"
+                class="text-left px-2"
               >
                 <p class="text-4 m-0">
                   <b>เริ่มต้นโครงการ</b> :
@@ -106,6 +106,7 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
+
                 <div class="d-flex text-4 my-1">
                   <b class="mr-1">สถานะ : </b> {{ item.status }}
                   <img
@@ -118,36 +119,38 @@
                     alt=""
                   />
                 </div>
-                <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
+
+                <p class="text-1 font-weight-bold">{{ item.name }}</p>
                 <img
+                  class="project-img"
                   :src="
                     require(`@/assets/images/section_project_bkk/issue_2/${item.path}`)
                   "
-                  width="75%"
+                  width="100%"
                   alt=""
                 />
                 <p class="text-4 mb-0 mt-2 w-75">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้รับ : </b>
-                  <span class="status">{{ item.budget }}</span> บาท
-                </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้ใช้ไป : </b>
-                  <span :class="{ status: item.used != '-' }">{{
-                    item.used
-                  }}</span>
-                  <span v-if="item.used != '-'">บาท</span>
-                </p>
-                <p class="text-4 m-0 w-75">
-                  <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
-                </p>
-                <div class="text-4 m-0">
-                  <b>ลิงค์</b> :
-                  <a :href="item.link" class="w-75" target="_blank">{{
-                    item.link
-                  }}</a>
+
+                <div class="p-2 border-dark border mt-2">
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้รับ : </b>
+                    <span class="status">{{ item.budget }}</span> บาท
+                  </p>
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้ใช้ไป : </b>
+                    <span :class="{ status: item.used != '-' }">{{
+                      item.used
+                    }}</span>
+                    <span v-if="item.used != '-'">บาท</span>
+                  </p>
+                  <p class="text-4 m-0 w-75">
+                    <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
+                  </p>
+                  <div class="text-4 m-0">
+                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                  </div>
                 </div>
               </div>
             </VueSlickCarousel>
@@ -168,7 +171,7 @@
                   (x) => x.dimension == 'มหานครสำหรับทุกคน'
                 )"
                 :key="index"
-                class="text-left"
+                class="text-left px-2"
               >
                 <p class="text-4 m-0">
                   <b>เริ่มต้นโครงการ</b> :
@@ -178,6 +181,7 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
+
                 <div class="d-flex text-4 my-1">
                   <b class="mr-1">สถานะ : </b> {{ item.status }}
                   <img
@@ -190,36 +194,38 @@
                     alt=""
                   />
                 </div>
-                <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
+
+                <p class="text-1 font-weight-bold">{{ item.name }}</p>
                 <img
+                  class="project-img"
                   :src="
                     require(`@/assets/images/section_project_bkk/issue_3/${item.path}`)
                   "
-                  width="75%"
+                  width="100%"
                   alt=""
                 />
                 <p class="text-4 mb-0 mt-2 w-75">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้รับ : </b>
-                  <span class="status">{{ item.budget }}</span> บาท
-                </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้ใช้ไป : </b>
-                  <span :class="{ status: item.used != '-' }">{{
-                    item.used
-                  }}</span>
-                  <span v-if="item.used != '-'">บาท</span>
-                </p>
-                <p class="text-4 m-0 w-75">
-                  <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
-                </p>
-                <div class="text-4 m-0">
-                  <b>ลิงค์</b> :
-                  <a :href="item.link" class="w-75" target="_blank">{{
-                    item.link
-                  }}</a>
+
+                <div class="p-2 border-dark border mt-2">
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้รับ : </b>
+                    <span class="status">{{ item.budget }}</span> บาท
+                  </p>
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้ใช้ไป : </b>
+                    <span :class="{ status: item.used != '-' }">{{
+                      item.used
+                    }}</span>
+                    <span v-if="item.used != '-'">บาท</span>
+                  </p>
+                  <p class="text-4 m-0 w-75">
+                    <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
+                  </p>
+                  <div class="text-4 m-0">
+                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                  </div>
                 </div>
               </div>
             </VueSlickCarousel>
@@ -240,7 +246,7 @@
                   (x) => x.dimension == 'มหานครกระชับ'
                 )"
                 :key="index"
-                class="text-left"
+                class="text-left px-2"
               >
                 <p class="text-4 m-0">
                   <b>เริ่มต้นโครงการ</b> :
@@ -250,6 +256,7 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
+
                 <div class="d-flex text-4 my-1">
                   <b class="mr-1">สถานะ : </b> {{ item.status }}
                   <img
@@ -262,36 +269,38 @@
                     alt=""
                   />
                 </div>
-                <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
+
+                <p class="text-1 font-weight-bold">{{ item.name }}</p>
                 <img
+                  class="project-img"
                   :src="
                     require(`@/assets/images/section_project_bkk/issue_4/${item.path}`)
                   "
-                  width="75%"
+                  width="100%"
                   alt=""
                 />
                 <p class="text-4 mb-0 mt-2 w-75">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้รับ : </b>
-                  <span class="status">{{ item.budget }}</span> บาท
-                </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้ใช้ไป : </b>
-                  <span :class="{ status: item.used != '-' }">{{
-                    item.used
-                  }}</span>
-                  <span v-if="item.used != '-'">บาท</span>
-                </p>
-                <p class="text-4 m-0 w-75">
-                  <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
-                </p>
-                <div class="text-4 m-0">
-                  <b>ลิงค์</b> :
-                  <a :href="item.link" class="w-75" target="_blank">{{
-                    item.link
-                  }}</a>
+
+                <div class="p-2 border-dark border mt-2">
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้รับ : </b>
+                    <span class="status">{{ item.budget }}</span> บาท
+                  </p>
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้ใช้ไป : </b>
+                    <span :class="{ status: item.used != '-' }">{{
+                      item.used
+                    }}</span>
+                    <span v-if="item.used != '-'">บาท</span>
+                  </p>
+                  <p class="text-4 m-0 w-75">
+                    <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
+                  </p>
+                  <div class="text-4 m-0">
+                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                  </div>
                 </div>
               </div>
             </VueSlickCarousel>
@@ -312,7 +321,7 @@
                   (x) => x.dimension == 'มหานครประชาธิปไตย'
                 )"
                 :key="index"
-                class="text-left"
+                class="text-left px-2"
               >
                 <p class="text-4 m-0">
                   <b>เริ่มต้นโครงการ</b> :
@@ -322,6 +331,7 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
+
                 <div class="d-flex text-4 my-1">
                   <b class="mr-1">สถานะ : </b> {{ item.status }}
                   <img
@@ -334,36 +344,38 @@
                     alt=""
                   />
                 </div>
-                <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
+
+                <p class="text-1 font-weight-bold">{{ item.name }}</p>
                 <img
+                  class="project-img"
                   :src="
                     require(`@/assets/images/section_project_bkk/issue_5/${item.path}`)
                   "
-                  width="75%"
+                  width="100%"
                   alt=""
                 />
                 <p class="text-4 mb-0 mt-2 w-75">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้รับ : </b>
-                  <span class="status">{{ item.budget }}</span> บาท
-                </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้ใช้ไป : </b>
-                  <span :class="{ status: item.used != '-' }">{{
-                    item.used
-                  }}</span>
-                  <span v-if="item.used != '-'">บาท</span>
-                </p>
-                <p class="text-4 m-0 w-75">
-                  <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
-                </p>
-                <div class="text-4 m-0">
-                  <b>ลิงค์</b> :
-                  <a :href="item.link" class="w-75" target="_blank">{{
-                    item.link
-                  }}</a>
+
+                <div class="p-2 border-dark border mt-2">
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้รับ : </b>
+                    <span class="status">{{ item.budget }}</span> บาท
+                  </p>
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้ใช้ไป : </b>
+                    <span :class="{ status: item.used != '-' }">{{
+                      item.used
+                    }}</span>
+                    <span v-if="item.used != '-'">บาท</span>
+                  </p>
+                  <p class="text-4 m-0 w-75">
+                    <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
+                  </p>
+                  <div class="text-4 m-0">
+                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                  </div>
                 </div>
               </div>
             </VueSlickCarousel>
@@ -373,16 +385,18 @@
         <b-tab title-link-class="tab-6">
           <template #title>
             <img :src="logo_project_6" width="24" alt="" />
-            <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 5"></p>
+            <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 5">
+              มหานครแห่งเศรษฐกิจและการเรียนรู้
+            </p>
           </template>
           <div class="p-4">
             <VueSlickCarousel v-bind="slickOptions">
               <div
                 v-for="(item, index) in project.filter(
-                  (x) => x.dimension == 'มหานครแห่งเศรษฐกิจและการเรียนรู้'
+                  (x) => x.dimension == 'การบริหารจัดการเมืองมหานคร'
                 )"
                 :key="index"
-                class="text-left"
+                class="text-left px-2"
               >
                 <p class="text-4 m-0">
                   <b>เริ่มต้นโครงการ</b> :
@@ -392,6 +406,7 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
+
                 <div class="d-flex text-4 my-1">
                   <b class="mr-1">สถานะ : </b> {{ item.status }}
                   <img
@@ -404,36 +419,38 @@
                     alt=""
                   />
                 </div>
-                <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
+
+                <p class="text-1 font-weight-bold">{{ item.name }}</p>
                 <img
+                  class="project-img"
                   :src="
-                    require(`@/assets/images/section_project_bkk/issue_6/${item.path}`)
+                    require(`@/assets/images/section_project_bkk/issue_7/${item.path}`)
                   "
-                  width="75%"
+                  width="100%"
                   alt=""
                 />
                 <p class="text-4 mb-0 mt-2 w-75">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้รับ : </b>
-                  <span class="status">{{ item.budget }}</span> บาท
-                </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้ใช้ไป : </b>
-                  <span :class="{ status: item.used != '-' }">{{
-                    item.used
-                  }}</span>
-                  <span v-if="item.used != '-'">บาท</span>
-                </p>
-                <p class="text-4 m-0 w-75">
-                  <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
-                </p>
-                <div class="text-4 m-0">
-                  <b>ลิงค์</b> :
-                  <a :href="item.link" class="w-75" target="_blank">{{
-                    item.link
-                  }}</a>
+
+                <div class="p-2 border-dark border mt-2">
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้รับ : </b>
+                    <span class="status">{{ item.budget }}</span> บาท
+                  </p>
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้ใช้ไป : </b>
+                    <span :class="{ status: item.used != '-' }">{{
+                      item.used
+                    }}</span>
+                    <span v-if="item.used != '-'">บาท</span>
+                  </p>
+                  <p class="text-4 m-0 w-75">
+                    <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
+                  </p>
+                  <div class="text-4 m-0">
+                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                  </div>
                 </div>
               </div>
             </VueSlickCarousel>
@@ -699,7 +716,8 @@ export default {
 
 a {
   word-break: break-all;
-  color: #000;
+  color: #538dff;
+  font-weight: bold;
 }
 
 .tab-project {

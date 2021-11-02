@@ -4,11 +4,11 @@
       <div
         class="ogimage text-center"
         :id="'test-' + i"
-        v-for="(item, i) in data"
+        v-for="(item, i) in districts"
         key="i"
       >
         <h1 class="header-2" style="padding-top: 81px">
-          พวกเราชาว “{{ item }}”
+          พวกเราชาว “{{ item.th_name }}”
         </h1>
         <h1 class="header-1 font-weight-bold">
           ต้องการให้ใช้งบเพื่อฟื้นฟู<br />สถานที่ท่องเที่ยวสำคัญ
@@ -23,8 +23,8 @@
         </div>
       </div>
     </div>
-    <!--<hr />
-     <button @click="test2">Download</button>
+    <!-- <hr />
+    <button @click="test2">Download</button>
     <div id="result"></div> -->
   </div>
 </template>
@@ -40,28 +40,30 @@ export default {
         {
           hid: "og-image",
           property: "og:image",
-          content:
-            "https://d208eq9ndr4893.cloudfront.net/" +
-            this.$route.params.variation +
-            ".png",
+          content: this.$store.state.isUpCountry
+            ? "https://d208eq9ndr4893.cloudfront.net/og-image/upcountry.png"
+            : "https://d208eq9ndr4893.cloudfront.net/og-image/" +
+              this.$route.params.variation +
+              ".png",
         },
         {
           hid: "twitter:image",
           name: "twitter:image:src",
-          content:
-            "https://d208eq9ndr4893.cloudfront.net/" +
-            this.$route.params.variation +
-            ".png",
+          content: this.$store.state.isUpCountry
+            ? "https://d208eq9ndr4893.cloudfront.net/og-image/upcountry.png"
+            : "https://d208eq9ndr4893.cloudfront.net/og-image/" +
+              this.$route.params.variation +
+              ".png",
         },
         {
           hid: "og:title",
           property: "og:title",
-          content:
-            "พวกเราชาว" +
-            this.$route.params.variation.split("-")[2] +
-            "ต้องการให้ใช้งบเพื่อ" +
-            this.$route.params.variation.split("-")[3] +
-            "",
+          content: this.$store.state.isUpCountry
+            ? "พวกเราอยากมีส่วนร่วมกับการออกแบบใช้งบเพื่อพัฒนาเมืองและมีแพลตฟอร์มของเราเช่นกัน"
+            : "พวกเราชาว" +
+              this.$store.state.district +
+              "ต้องการให้ใช้งบเพื่อ" +
+              this.$store.state.problem,
         },
         {
           hid: "og:description",
@@ -72,12 +74,12 @@ export default {
         {
           hid: "twitter:title",
           name: "twitter:title",
-          content:
-            "พวกเราชาว " +
-            this.$route.params.variation.split("-")[2] +
-            " ต้องการให้ใช้งบเพื่อ" +
-            this.$route.params.variation.split("-")[3] +
-            "",
+          content: this.$store.state.isUpCountry
+            ? "พวกเราอยากมีส่วนร่วมกับการออกแบบใช้งบเพื่อพัฒนาเมืองและมีแพลตฟอร์มของเราเช่นกัน"
+            : "พวกเราชาว" +
+              this.$store.state.district +
+              "ต้องการให้ใช้งบเพื่อ" +
+              this.$store.state.problem,
         },
         {
           hid: "twitter:description",
@@ -88,7 +90,6 @@ export default {
       ],
     };
   },
-
   data() {
     return {
       data: [
@@ -143,25 +144,327 @@ export default {
         "ทุ่งครุ",
         "บางบอน",
       ],
+      districts: [
+        {
+          id: "1",
+          en_name: "bangbon",
+          th_name: "บางบอน",
+          zipcode: "10150",
+        },
+        {
+          id: "2",
+          en_name: "bangkapi",
+          th_name: "บางกะปิ",
+          zipcode: "10240",
+        },
+        {
+          id: "3",
+          en_name: "bangkhae",
+          th_name: "บางแค",
+          zipcode: "10160",
+        },
+        {
+          id: "4",
+          en_name: "bangkhen",
+          th_name: "บางเขน",
+          zipcode: "10220",
+        },
+        {
+          id: "5",
+          en_name: "bangkholaem",
+          th_name: "บางคอแหลม",
+          zipcode: "10120",
+        },
+        {
+          id: "6",
+          en_name: "bangkhunthian",
+          th_name: "บางขุนเทียน",
+          zipcode: "10150",
+        },
+        {
+          id: "7",
+          en_name: "bangna",
+          th_name: "บางนา",
+          zipcode: "10260",
+        },
+        {
+          id: "8",
+          en_name: "bangphlat",
+          th_name: "บางพลัด",
+          zipcode: "10700",
+        },
+        {
+          id: "9",
+          en_name: "bangrak",
+          th_name: "บางรัก",
+          zipcode: "10500",
+        },
+        {
+          id: "10",
+          en_name: "bangsue",
+          th_name: "บางซื่อ",
+          zipcode: "10800",
+        },
+        {
+          id: "11",
+          en_name: "bangkoknoi",
+          th_name: "บางกอกน้อย",
+          zipcode: "10700",
+        },
+        {
+          id: "12",
+          en_name: "bangkokyai",
+          th_name: "บางกอกใหญ่",
+          zipcode: "10600",
+        },
+        {
+          id: "13",
+          en_name: "buengkum",
+          th_name: "บึงกุ่ม",
+          zipcode: "10240",
+        },
+        {
+          id: "14",
+          en_name: "chatuchak",
+          th_name: "จตุจักร",
+          zipcode: "10900",
+        },
+        {
+          id: "15",
+          en_name: "chomthong",
+          th_name: "จอมทอง",
+          zipcode: "10150",
+        },
+        {
+          id: "16",
+          en_name: "dindaeng",
+          th_name: "ดินแดง",
+          zipcode: "10400",
+        },
+        {
+          id: "17",
+          en_name: "donmueang",
+          th_name: "ดอนเมือง",
+          zipcode: "10210",
+        },
+        {
+          id: "18",
+          en_name: "dusit",
+          th_name: "ดุสิต",
+          zipcode: "10300",
+        },
+        {
+          id: "19",
+          en_name: "huaikhwang",
+          th_name: "ห้วยขวาง",
+          zipcode: "10310",
+        },
+        {
+          id: "20",
+          en_name: "khannayao",
+          th_name: "คันนายาว",
+          zipcode: "10230",
+        },
+        {
+          id: "21",
+          en_name: "khlongsamwa",
+          th_name: "คลองสามวา",
+          zipcode: "10510",
+        },
+        {
+          id: "22",
+          en_name: "khlongsan",
+          th_name: "คลองสาน",
+          zipcode: "10600",
+        },
+        {
+          id: "23",
+          en_name: "khlongtoei",
+          th_name: "คลองเตย",
+          zipcode: "10110",
+        },
+        {
+          id: "24",
+          en_name: "laksi",
+          th_name: "หลักสี่",
+          zipcode: "10210",
+        },
+        {
+          id: "25",
+          en_name: "latkrabang",
+          th_name: "ลาดกระบัง",
+          zipcode: "10520",
+        },
+        {
+          id: "26",
+          en_name: "latphrao",
+          th_name: "ลาดพร้าว",
+          zipcode: "10230",
+        },
+        {
+          id: "27",
+          en_name: "minburi",
+          th_name: "มีนบุรี",
+          zipcode: "10510",
+        },
+        {
+          id: "28",
+          en_name: "nongchok",
+          th_name: "หนองจอก",
+          zipcode: "10530",
+        },
+        {
+          id: "29",
+          en_name: "nongkhaem",
+          th_name: "หนองแขม",
+          zipcode: "10160",
+        },
+        {
+          id: "30",
+          en_name: "pathumwan",
+          th_name: "ปทุมวัน",
+          zipcode: "10330",
+        },
+        {
+          id: "31",
+          en_name: "phasicharoen",
+          th_name: "ภาษีเจริญ",
+          zipcode: "10160",
+        },
+        {
+          id: "32",
+          en_name: "phayathai",
+          th_name: "พญาไท",
+          zipcode: "10400",
+        },
+        {
+          id: "33",
+          en_name: "phrakhanong",
+          th_name: "พระโขนง",
+          zipcode: "10260",
+        },
+        {
+          id: "34",
+          en_name: "phranakhon",
+          th_name: "พระนคร",
+          zipcode: "10200",
+        },
+        {
+          id: "35",
+          en_name: "pomprapsattruphai",
+          th_name: "ป้อมปราบศัตรูพ่าย",
+          zipcode: "10100",
+        },
+        {
+          id: "36",
+          en_name: "prawet",
+          th_name: "ประเวศ",
+          zipcode: "10250",
+        },
+        {
+          id: "37",
+          en_name: "ratburana",
+          th_name: "ราษฏร์บูรณะ",
+          zipcode: "10140",
+        },
+        {
+          id: "38",
+          en_name: "ratchathewi",
+          th_name: "ราชเทวี",
+          zipcode: "10400",
+        },
+        {
+          id: "39",
+          en_name: "saimai",
+          th_name: "สายไหม",
+          zipcode: "10220",
+        },
+        {
+          id: "40",
+          en_name: "samphanthawong",
+          th_name: "สัมพันธวงศ์",
+          zipcode: "10100",
+        },
+        {
+          id: "41",
+          en_name: "saphansung",
+          th_name: "สะพานสูง",
+          zipcode: "10240",
+        },
+        {
+          id: "42",
+          en_name: "sathon",
+          th_name: "สาทร",
+          zipcode: "10120",
+        },
+        {
+          id: "43",
+          en_name: "suanluang",
+          th_name: "สวนหลวง",
+          zipcode: "10250",
+        },
+        {
+          id: "44",
+          en_name: "talingchan",
+          th_name: "ตลิ่งชัน",
+          zipcode: "10170",
+        },
+        {
+          id: "45",
+          en_name: "thawiwatthana",
+          th_name: "ทวีวัฒนา",
+          zipcode: "10170",
+        },
+        {
+          id: "46",
+          en_name: "thonburi",
+          th_name: "ธนบุรี",
+          zipcode: "10600",
+        },
+        {
+          id: "47",
+          en_name: "thungkhru",
+          th_name: "ทุ่งครุ",
+          zipcode: "10140",
+        },
+        {
+          id: "48",
+          en_name: "wangthonglang",
+          th_name: "วังทองหลาง",
+          zipcode: "10310",
+        },
+        {
+          id: "49",
+          en_name: "watthana",
+          th_name: "วัฒนา",
+          zipcode: "10110",
+        },
+        {
+          id: "50",
+          en_name: "yannawa",
+          th_name: "ยานนาวา",
+          zipcode: "10120",
+        },
+      ],
       text: "",
       img: [],
     };
   },
   mounted() {
-    console.log(this.$route.params.variation.split("-"));
+    //this.test();
     // window.location.href =
     //   "https://electinth.github.io/participatory-budgeting/";
   },
   methods: {
     test() {
-      this.data.forEach((element, i) => {
+      this.districts.forEach((element, i) => {
         html2canvas(document.querySelector("#test-" + i)).then((canvas) => {
           var dataURL = canvas.toDataURL("image/png");
           dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 
           var img = document.createElement("img");
           img.src = dataURL;
-          img.id = "result-" + element;
+          img.id = "result-" + element.en_name;
           document.getElementById("result").appendChild(img);
         });
       });
@@ -175,8 +478,7 @@ export default {
       document.querySelectorAll("img").forEach((element, i) => {
         var img = zip.folder("images");
         img.file(
-          element.id.replace("result-", "") +
-            "-ฟื้นฟูสถานที่ท่องเที่ยวสำคัญ.png",
+          element.id.replace("result-", "") + "-10.png",
           element.src.replace(/^data:image\/(png|jpg);base64,/, ""),
           {
             base64: true,
@@ -185,8 +487,7 @@ export default {
       });
 
       zip.generateAsync({ type: "blob" }).then(function (content) {
-        //console.log(content);
-        saveAs(content, "edm8.zip");
+        saveAs(content, "og10.zip");
       });
     },
   },
