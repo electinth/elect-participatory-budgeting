@@ -4,6 +4,7 @@
       v-model="selected"
       :options="options"
       @change="onChange"
+      :disabled="disabled"
       class="select-dropdown"
     ></b-form-select>
   </div>
@@ -69,9 +70,10 @@ export default {
       ],
     };
   },
-  mounted() {
- 
+  props: {
+    disabled: Boolean,
   },
+  mounted() {},
   methods: {
     onChange(event) {
       this.$emit("change", event);

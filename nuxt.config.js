@@ -67,7 +67,7 @@ export default {
   target: "static",
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "อยู่เมืองนี้ ต้องรู้เยอะ",
+    title: "Bangkok Budgeting อยู่เมืองนี้ ต้องรู้เยอะ",
     htmlAttrs: {
       lang: "en"
     },
@@ -85,29 +85,9 @@ export default {
       },
       { name: "format-detection", content: "telephone=no" },
       {
-        hid: "og:title",
-        property: "og:title",
-        content: "อยู่เมืองนี้ ต้องรู้เยอะ"
-      },
-      {
-        hid: "og:description",
-        property: "og:description",
-        content: "ร่วมสร้างสรรค์ ชวนจับตาให้งบกรุงเทพฯ ถูกใช้อย่างตรงจุด"
-      },
-      {
         hid: "og:type",
         property: "og:type",
         content: "website"
-      },
-      {
-        hid: "twitter:title",
-        name: "twitter:title",
-        content: "อยู้เมืองนี้ ต้องรู้เยอะ"
-      },
-      {
-        hid: "twitter:description",
-        name: "twitter:description",
-        content: "ร่วมสร้างสรรค์ ชวนจับตาให้งบกรุงเทพฯ ถูกใช้อย่างตรงจุด"
       },
       {
         hid: "twitter:card",

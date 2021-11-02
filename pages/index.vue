@@ -20,19 +20,36 @@
         </nuxt-link>
       </div>
     </div>
-    <IntroSection />
+    <!-- <IntroSection />
     <ProblemSection />
     <ScoreSection />
     <ExploreTreeMap id="explore" />
     <TreeMapSection />
-    <ProjectSection />
+    <ProjectSection /> -->
     <ChooseProjectSection id="idea" />
     <EndSection />
     <VideoSection />
     <Conclusion />
+    <div
+      class="
+        footer
+        text-white
+        d-flex
+        justify-content-center
+        align-items-sm-center
+      "
+    >
+      <div class="text-sm-right px-2">
+        <img :src="logo_white" alt="" />
+      </div>
+      <div class="text-3 mb-0 ml-sm-3 mt-3 mt-sm-0 w-sm-50 d-inline-block">
+        หากมีข้อสงสัยหรือคำแนะนำเพิ่มเติมใด ๆ เกี่ยวกับงานนี้
+        ทักมาหาพวกเราได้ที่ m.me/punchupworld
+      </div>
+    </div>
     <div class="cookie-tab" v-if="cookies">
       <div class="d-flex justify-content-center box">
-        <button class="text-1 font-weight-bold mr-3" @click="saveCookies()">
+        <button class="text-1 font-weight-bold mr-sm-3" @click="saveCookies()">
           ยอมรับ
         </button>
         <p class="btn-text-2 m-0">
@@ -57,6 +74,7 @@ export default {
       uuid: uuid.v1(),
       cookies: false,
       logo: require("~/assets/images/logo-black.png"),
+      logo_white: require("~/assets/images/logo-white.png"),
       menu_list: [
         {
           name: "Home",
@@ -100,6 +118,26 @@ export default {
           name: "twitter:image:src",
           content: "https://d208eq9ndr4893.cloudfront.net/og_image.png",
         },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: "Bangkok Budgeting อยู่เมืองนี้ ต้องรู้เยอะ",
+        },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: "ร่วมสร้างสรรค์ ชวนจับตาให้งบกรุงเทพฯ ถูกใช้อย่างตรงจุด",
+        },
+        {
+          hid: "twitter:title",
+          name: "twitter:title",
+          content: "Bangkok Budgeting อยู่เมืองนี้ ต้องรู้เยอะ",
+        },
+        {
+          hid: "twitter:description",
+          name: "twitter:description",
+          content: "ร่วมสร้างสรรค์ ชวนจับตาให้งบกรุงเทพฯ ถูกใช้อย่างตรงจุด",
+        },
       ],
     };
   },
@@ -107,6 +145,7 @@ export default {
     async saveCookies() {
       if (!this.$cookies.get("uuid")) {
         this.$cookies.set("uuid", this.uuid);
+        this.$cookies.set("isVoted", false);
         this.cookies = false;
 
         const messageRef = this.$fire.database.ref("user");
@@ -129,7 +168,7 @@ export default {
           alert(e);
           return;
         }
-        alert("Success.");
+        console.log("create user success");
 
         const messageRef2 = this.$fire.database.ref("plan");
         const q = this.$fire.database.ref("sequence").child("plan_sequence");
@@ -151,7 +190,7 @@ export default {
           alert(e);
           return;
         }
-        alert("Success.");
+        console.log("create plan success");
       }
     },
   },
@@ -175,11 +214,22 @@ export default {
     width: 599px;
     margin: auto;
 
+    @media #{$mq-mini-mobile} {
+      width: auto;
+      flex-direction: column;
+      text-align: center;
+    }
+
     button {
       border: 1px solid #ffffff;
       background: transparent;
       color: #fff;
       padding: 0 20px;
+
+      @media #{$mq-mini-mobile} {
+        width: 100px;
+        margin: 0 auto 10px;
+      }
     }
   }
 }
@@ -216,5 +266,14 @@ export default {
 
 .pu-logo {
   width: 100px;
+}
+
+.footer {
+  background: #000000;
+  padding: 80px;
+
+  @media #{$mq-mini-mobile} {
+    flex-direction: column;
+  }
 }
 </style>

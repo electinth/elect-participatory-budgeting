@@ -4,9 +4,10 @@
       <div class="position-absolute w-100 logo-box p-2 p-sm-4">
         <a href="https://punchup.world/project/" target="_blank"> </a>
       </div>
-      <div class="h-100vh bg-main">
-        <div class="h-100vh d-flex justify-content-center">
-          <img :src="intro_pic" class="pu-logo" width="" />
+      <div class="h-100vh bg-main pt-0">
+        <div class="h-100vh d-flex justify-content-center overflow-hidden">
+          <img :src="intro_pic_mobile" class="pu-logo d-block d-md-none w-100" width="" />
+          <img :src="intro_pic" class="pu-logo d-none d-md-block" width="" />
         </div>
       </div>
       <div class="h-100vh bg-main d-flex justify-content-center flex-column">
@@ -83,6 +84,7 @@ export default {
       currStep: null,
       isShow: true,
       intro_pic: require("~/assets/images/desktop_open_text.gif"),
+      intro_pic_mobile: require("~/assets/images/mobile_open_text.gif"),
       icon_fb: require("~/assets/images/facebook.png"),
       icon_line: require("~/assets/images/line.png"),
       icon_twitter: require("~/assets/images/twitter.png"),
@@ -96,8 +98,9 @@ export default {
 .bg-main {
   background: #e8e4d8;
 
-  @media #{$mq-mini-mobile} {
+  @media #{$mq-tablet} {
     height: auto;
+    padding: 50px 0;
   }
 }
 
@@ -113,5 +116,9 @@ export default {
     width: 75%;
     padding: 24px 43px;
   }
+}
+
+.pu-logo {
+  //max-width: 100%;
 }
 </style>

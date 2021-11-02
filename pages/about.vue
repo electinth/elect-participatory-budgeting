@@ -181,7 +181,7 @@
           <li>Hand social enterprise</li>
           <li>siamlab</li>
         </ul>
-        <div class="d-flex">
+        <div class="d-flex logo-list">
           <img :src="logo_good_society" width="120" alt="" />
           <img :src="logo_glow" width="120" alt="" />
           <img :src="logo_act" width="" alt="" />
@@ -230,6 +230,17 @@
         </div>
       </div>
     </div>
+    <div
+      class="footer text-white d-flex justify-content-center align-items-sm-center"
+    >
+      <div class="text-sm-right px-2">
+        <img :src="logo_white" alt="" />
+      </div>
+      <div class="text-3 mb-0 ml-sm-3 mt-3 mt-sm-0 w-sm-50 d-inline-block">
+        หากมีข้อสงสัยหรือคำแนะนำเพิ่มเติมใด ๆ เกี่ยวกับงานนี้
+        ทักมาหาพวกเราได้ที่ m.me/punchupworld
+      </div>
+    </div>
   </div>
 </template>
 
@@ -270,6 +281,7 @@ export default {
       logo_glow: require("~/assets/images/logo_glow.png"),
       logo_act: require("~/assets/images/logo_act.png"),
       logo_hand: require("~/assets/images/logo_hand.png"),
+      logo_white: require("~/assets/images/logo-white.png"),
     };
   },
   mounted() {
@@ -342,5 +354,24 @@ a {
   padding: 10px;
   margin: auto;
   text-decoration: none;
+}
+
+.footer {
+  background: #000000;
+  padding: 80px;
+
+  @media #{$mq-mini-mobile} {
+    padding: 40px;
+    flex-direction: column;
+  }
+}
+
+.logo-list {
+  @media #{$mq-mini-mobile} {
+    img {
+      max-width: 40px;
+      margin: 0 2px;
+    }
+  }
 }
 </style>

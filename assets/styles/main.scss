@@ -146,83 +146,83 @@ body {
 // ------------ color ----------------
 
 .orange {
-  color: #FF8310;
+  color: #ff8310;
 }
 
 .purple {
-  color: #D170FF;
+  color: #d170ff;
 }
 
 .blue {
-  color: #538DFF;
+  color: #538dff;
 }
 
 .green {
-  color: #6ADC7B;
+  color: #6adc7b;
 }
 
 .green-2 {
-  color: #C3DA14;
+  color: #c3da14;
 }
 
 .red {
-  color: #FF583E;
+  color: #ff583e;
 }
 
 .pink {
-  color: #FF9FDF;
+  color: #ff9fdf;
 }
 
 .gray-1 {
-  color: #B2B2B2;
+  color: #b2b2b2;
 }
 
 .gray-2 {
-  color: #DDDDDD;
+  color: #dddddd;
 }
 
 .gray-3 {
-  color: #E8E4D8;
+  color: #e8e4d8;
 }
 
 .bg-orange {
-  background-color: #FF8310;
+  background-color: #ff8310;
 }
 
 .bg-purple {
-  background-color: #D170FF;
+  background-color: #d170ff;
 }
 
 .bg-blue {
-  background-color: #538DFF !important;
+  background-color: #538dff !important;
 }
 
 .bg-green {
-  background-color: #6ADC7B;
+  background-color: #6adc7b;
 }
 
 .bg-green-2 {
-  background-color: #C3DA14;
+  background-color: #c3da14;
 }
 
 .bg-red {
-  background-color: #FF583E;
+  background-color: #ff583e;
 }
 
 .bg-pink {
-  background-color: #FF9FDF;
+  background-color: #ff9fdf;
 }
 
 .bg-gray-1 {
-  background-color: #B2B2B2;
+  background-color: #b2b2b2;
 }
 
 .bg-gray-2 {
-  background-color: #DDDDDD;
+  background-color: #dddddd;
 }
 
 .bg-gray-3 {
-  background-color: #E8E4D8;
+  background-color: #e8e4d8;
 }
 
 // ----------------------------
@@ -253,7 +253,8 @@ body {
   }
 }
 
-.v-autocomplete-input-group, .book-input {
+.v-autocomplete-input-group,
+.book-input {
   height: 80px;
 }
 
@@ -400,7 +401,6 @@ input[type="search"]:focus::placeholder {
     opacity: 0;
   }
 }
-
 
 .popover {
   z-index: 10;

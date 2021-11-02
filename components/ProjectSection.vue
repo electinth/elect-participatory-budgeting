@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="bg-main">
-      <p class="header-3 text-center w-50 mx-auto mb-5">
+    <div class="bg-main py-5">
+      <p class="header-3 text-center w-sm-50 mx-auto mb-5">
         ตัวอย่างโครงการที่เกิดขึ้นจริงปี 2564 ในแต่ละด้าน
         พอจะมีโครงการไหนที่เคยได้เห็นหรือได้ยินกันบ้างไหม?
       </p>
 
-      <b-tabs v-model="tabIndex" style="width: 1000px" class="mx-auto">
+      <b-tabs v-model="tabIndex" class="mx-auto tab-project">
         <b-tab active title-link-class="tab-1">
           <template #title>
             <img :src="logo_project_1" width="24" alt="" />
@@ -47,6 +47,7 @@
 
                 <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
                 <img
+                  class="project-img"
                   :src="
                     require(`@/assets/images/section_project_bkk/issue_1/${item.path}`)
                   "
@@ -105,7 +106,7 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-             <div class="d-flex text-4 my-1">
+                <div class="d-flex text-4 my-1">
                   <b class="mr-1">สถานะ : </b> {{ item.status }}
                   <img
                     width="20"
@@ -177,7 +178,7 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-          <div class="d-flex text-4 my-1">
+                <div class="d-flex text-4 my-1">
                   <b class="mr-1">สถานะ : </b> {{ item.status }}
                   <img
                     width="20"
@@ -249,7 +250,7 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-                       <div class="d-flex text-4 my-1">
+                <div class="d-flex text-4 my-1">
                   <b class="mr-1">สถานะ : </b> {{ item.status }}
                   <img
                     width="20"
@@ -321,7 +322,7 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-                      <div class="d-flex text-4 my-1">
+                <div class="d-flex text-4 my-1">
                   <b class="mr-1">สถานะ : </b> {{ item.status }}
                   <img
                     width="20"
@@ -391,7 +392,7 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-                       <div class="d-flex text-4 my-1">
+                <div class="d-flex text-4 my-1">
                   <b class="mr-1">สถานะ : </b> {{ item.status }}
                   <img
                     width="20"
@@ -463,7 +464,7 @@
                   <b>สิ้นสุดโครงการ</b> :
                   {{ $moment(item.enddate).format("LL") }}
                 </p>
-                      <div class="d-flex text-4 my-1">
+                <div class="d-flex text-4 my-1">
                   <b class="mr-1">สถานะ : </b> {{ item.status }}
                   <img
                     width="20"
@@ -514,7 +515,12 @@
     </div>
     <div class="bg-main">
       <div class="d-flex justify-content-center h-100 position-relative">
-        <img :src="section_5_pic" alt="" class="pointer mx-3" width="575" />
+        <img
+          :src="section_5_pic"
+          alt=""
+          class="pointer mx-3 section_5_pic"
+          width="575"
+        />
         <div class="section-text">
           <h3 class="header-3">
             ในปีถัดไป 2565 กรุงเทพมหานคร จะมุ่งพัฒนาและขับเคลื่อน “มหานครทั้ง 7
@@ -558,6 +564,12 @@ export default {
         infinite: false,
         responsive: [
           {
+            breakpoint: 769,
+            settings: {
+              slidesToShow: 2,
+            },
+          },
+          {
             breakpoint: 600,
             settings: {
               slidesToShow: 1,
@@ -571,7 +583,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .tab-1 {
   background-color: #538dff !important;
   color: #000 !important;
@@ -617,6 +629,32 @@ export default {
 .tab-content {
   border: 1px solid #000000;
   border-radius: 0px 10px 0px 0px;
+
+  @media #{$mq-mini-mobile} {
+    border-radius: 0;
+  }
+}
+
+.nav {
+  @media #{$mq-mini-mobile} {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  @media #{$mq-mini-mobile} {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    border: 0;
+
+    p {
+      white-space: nowrap;
+    }
+  }
 }
 </style>
 
@@ -624,16 +662,33 @@ export default {
 .bg-main {
   padding: 96px 139px;
   text-align: center;
+
+  @media #{$mq-mobile} {
+    padding: 20px;
+  }
+}
+
+.section_5_pic {
+  @media #{$mq-mini-mobile} {
+    width: 100%;
+  }
 }
 
 .section-text {
   position: absolute;
-  left: 35%;
+  top: 35%;
   width: 365px;
-  left: 51%;
-  -moz-transform: translateX(-50%) translateY(50%);
-  -webkit-transform: translateX(-50%) translateY(50%);
-  transform: translateX(-50%) translateY(50%);
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+
+  @media #{$mq-mini-mobile} {
+    width: 50%;
+    h3 {
+      font-size: 12px;
+    }
+  }
 }
 
 .status {
@@ -645,5 +700,12 @@ export default {
 a {
   word-break: break-all;
   color: #000;
+}
+
+.tab-project {
+  width: 1000px;
+  @media #{$mq-mobile} {
+    width: 100%;
+  }
 }
 </style>

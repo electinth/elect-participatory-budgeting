@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="p-5 text-center" v-if="isShowChooseProject">
+    <div class="p-sm-5 p-3 text-center" v-if="isShowChooseProject">
       <p class="header-3">เลือกโครงการที่อยากพัฒนาเลือกได้ 3 โครงการ</p>
       <b-row class="justify-content-center">
         <b-col cols="2"
           ><img :src="illus_section_05" alt="" class="h-100vh"
         /></b-col>
-        <b-col cols="6">
+        <b-col cols="8" sm="6">
           <div
             class="choice mb-3 mx-auto"
             :class="{ islimit: isLimit && !item.isSelected }"
@@ -55,12 +55,12 @@
       </div>
     </div>
 
-    <div class="h-100vh p-5 text-center">
+    <div class="h-100vh p-3 p-sm-5 text-center h-auto-mobile">
       <p class="header-3 m-0">ไอเดียโดนใจชาวกรุงเทพฯ ผู้ใช้แพลตฟอร์มนี้</p>
       <p class="text-2">(เลือกดูผลโหวตโครงการจากผู้เล่นทั้งหมด)</p>
 
       <div class="d-flex justify-content-center">
-        <div class="d-flex mx-1">
+        <div class="d-flex mx-1 flex-column flex-sm-row text-left">
           <span class="text-3 mr-2 my-auto">ประเภทประชากร</span>
           <b-form-select
             v-model="selected"
@@ -69,9 +69,12 @@
             @change="onChangePeopleType"
           ></b-form-select>
         </div>
-        <div class="d-flex mx-1">
+        <div class="d-flex mx-1 flex-column flex-sm-row text-left">
           <span class="text-3 mr-2 my-auto">พื้นที่</span
-          ><DistrictDropdown @change="onChangeDistrictFilter" />
+          ><DistrictDropdown
+            @change="onChangeDistrictFilter"
+            :disabled="selected == 3"
+          />
         </div>
       </div>
 
@@ -98,8 +101,15 @@
       </div>
 
       <div
-        class="d-flex justify-content-center mx-auto text-left mt-3"
-        style="width: 735px"
+        class="
+          d-flex
+          justify-content-center
+          flex-column flex-lg-row
+          mx-auto
+          text-left
+          mt-3
+          budget-box
+        "
       >
         <p class="m-0 text-3 w-auto">เทียบกับสัดส่วนงบประมาณกรุงเทพฯ ปี 2564</p>
         <div class="chart w-100 d-flex">
@@ -113,7 +123,12 @@
         </div>
       </div>
 
-      <button class="sent-comment text-3 mt-5">เสนอไอเดียเพิ่มเติม</button>
+      <button
+        class="sent-comment text-3 mt-5"
+        @click="$bvModal.show('modal-comment')"
+      >
+        เสนอไอเดียเพิ่มเติม
+      </button>
     </div>
 
     <b-modal
@@ -164,6 +179,37 @@
         </div>
       </div>
     </b-modal>
+
+    <b-modal
+      id="modal-comment"
+      ref="comment-modal"
+      title="Second Modal"
+      no-fade
+      centered
+      hide-footer
+      hide-header
+    >
+      <p class="header-3 text-white text-center">
+        ขอเสนอโครงการเพิ่มเติมเพื่อออกแบบงบประมาณพัฒนาเมือง
+      </p>
+      <div class="comment-box p-4 text-center">
+        <p class="text-1 text-left">มีอะไรเพิ่มเติมอยากเสนอกรุงเทพฯไหม?</p>
+        <div>
+          <textarea
+            name=""
+            class="form-control text-4"
+            v-model="comment"
+            placeholder="เช่น เสนอให้มีโครงการสอนภาษาญี่ปุ่น..."
+            id=""
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+        <button class="sent-comment text-3 mt-3 bg-white" @click="sendComment">
+          ส่ง
+        </button>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -188,6 +234,7 @@ export default {
       tabIndex: 0,
       selected: 1,
       district: null,
+      comment: "",
       illus_section_05: require("~/assets/images/illus_section_05.svg"),
       project: [
         {
@@ -308,7 +355,7 @@ export default {
   mounted() {
     this.getData();
 
-    if (this.$cookies.get("isVoted") === undefined) {
+    if (!this.$cookies.get("isVoted")) {
       this.isShowChooseProject = true;
     } else {
       this.isShowChooseProject = false;
@@ -386,7 +433,7 @@ export default {
               array.push(value.userid);
             }
           } else {
-            if(!value.isInBkk) array.push(value.userid);
+            if (!value.isInBkk) array.push(value.userid);
           }
         }
       } catch (e) {
@@ -431,7 +478,7 @@ export default {
     },
     async sendData() {
       this.isShowLoading = true;
-      this.isShowChooseProject = true;
+      this.isShowChooseProject = false;
 
       var array = [];
       var arrayForExcel = [];
@@ -523,18 +570,34 @@ export default {
       }, 3000);
     },
     async sendComment() {
+      const messageRef = this.$fire.database.ref("user");
+
+      var arrayFb = [];
+
+      try {
+        var data = await messageRef.once("value");
+        var r = data.val();
+
+        for (const [key, value] of Object.entries(r)) {
+          if (value.userid == this.$cookies.get("uuid")) {
+            arrayFb.push(value);
+            break;
+          }
+        }
+      } catch (e) {
+        alert(e);
+        return;
+      }
+
       await this.$axios
         .$post(googleSheetUrlComment, [
           {
-            userid: "Poppap",
-            projectid: "Poppap",
-            isselected: "Poppap",
-            name: "Poppap",
-            dimension: "Poppap",
-            district: "Poppap",
-            province: "Poppap",
-            hashousereg: "Poppap",
-            isinbkk: "Poppap",
+            userid: arrayFb[0].userid,
+            comment: this.comment,
+            district: arrayFb[0].district == "" ? "-" : arrayFb[0].district,
+            province: arrayFb[0].province == "" ? "-" : arrayFb[0].province,
+            hashousereg: arrayFb[0].hasHouseReg != "" ? "มี" : "-",
+            isinbkk: arrayFb[0].isInBkk != "" ? "อยู่" : "ไม่อยู่",
           },
         ])
         .then((response) => {
@@ -543,6 +606,8 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+
+      this.$refs["comment-modal"].hide();
     },
     async onChangeDistrict(val) {
       const ref = this.$fire.database.ref("user");
@@ -660,6 +725,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.h-auto-mobile {
+  @media #{$mq-mini-mobile} {
+    height: auto;
+  }
+}
+
 .choice {
   background-color: #e5e5e5;
   border-radius: 10px;
@@ -719,12 +790,23 @@ export default {
   background: #ececec;
   position: relative;
 
+  @media #{$mq-mobile} {
+    width: 100%;
+  }
+
   .text {
     position: absolute;
     top: 5px;
     z-index: 1;
     justify-content: space-between;
     width: 100%;
+
+    p:first-child {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 50%;
+      overflow: hidden;
+    }
   }
 
   div {
@@ -739,6 +821,9 @@ export default {
   width: 200px;
   font-family: "Anuphan", serif;
   font-size: 14px;
+  @media #{$mq-mini-mobile} {
+    width: 120px;
+  }
 }
 
 .asking-box {
@@ -748,11 +833,25 @@ export default {
   min-height: 340px;
 }
 
+.comment-box {
+  background: #dedede;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  min-height: 340px;
+}
+
 .has-house-reg-btn,
 .isinbkk-btn {
   background: #ffffff;
   border: 1px solid #ffffff;
   padding: 5px;
   width: 50px;
+}
+
+.budget-box {
+  width: 735px;
+  @media #{$mq-mobile} {
+    width: 100%;
+  }
 }
 </style>

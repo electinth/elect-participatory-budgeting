@@ -53,6 +53,38 @@ export default {
             this.$route.params.variation +
             ".png",
         },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content:
+            "พวกเราชาว" +
+            this.$route.params.variation.split("-")[2] +
+            "ต้องการให้ใช้งบเพื่อ" +
+            this.$route.params.variation.split("-")[3] +
+            "",
+        },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content:
+            "ร่วมส่งต่อความฝันของประชาชนที่อยากมีส่วนร่วมในการพัฒนามหานครของพวกเราเอง",
+        },
+        {
+          hid: "twitter:title",
+          name: "twitter:title",
+          content:
+            "พวกเราชาว " +
+            this.$route.params.variation.split("-")[2] +
+            " ต้องการให้ใช้งบเพื่อ" +
+            this.$route.params.variation.split("-")[3] +
+            "",
+        },
+        {
+          hid: "twitter:description",
+          name: "twitter:description",
+          content:
+            "ร่วมส่งต่อความฝันของประชาชนที่อยากมีส่วนร่วมในการพัฒนามหานครของพวกเราเอง",
+        },
       ],
     };
   },
@@ -116,7 +148,9 @@ export default {
     };
   },
   mounted() {
-    window.location.href = "https://electinth.github.io/participatory-budgeting/";
+    console.log(this.$route.params.variation.split("-"));
+    // window.location.href =
+    //   "https://electinth.github.io/participatory-budgeting/";
   },
   methods: {
     test() {

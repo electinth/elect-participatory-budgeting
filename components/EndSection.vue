@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class=" bg-main">
+    <div class="bg-main">
       <p class="w-75 text-center m-auto text-1">
         นี่เป็นเพียงจุดเริ่มต้นของการผลักดันเป็นสู่สังคมที่ดี (Good Society)
         <br /><br />
@@ -41,5 +41,9 @@ export default {
   background: #e8e4d8;
   padding: 96px 139px;
   text-align: center;
+
+  @media #{$mq-mini-mobile} {
+    padding: 36px 10px;
+  }
 }
 </style>

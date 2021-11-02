@@ -1,12 +1,20 @@
 <template>
   <div>
     <div class="bg-main text-center">
-      <p class="header-3 w-75 mx-auto">
+      <p class="header-3 w-sm-75 mx-auto">
         สุดท้ายเราหวังว่า จะเห็นมหานครของเรา
         เป็นไปดั่งที่เราเองวาดฝันและเรามีส่วนร่วมในการกำหนดทิศทางการใช้งบฯได้เอง
       </p>
-      <div class="d-flex justify-content-center my-5">
-        <DistrictDropdown @change="onChangeDistrict" />
+      <div
+        class="
+          d-flex
+          justify-content-center
+          my-5
+          flex-column flex-sm-row
+          align-items-center
+        "
+      >
+        <DistrictDropdown @change="onChangeDistrict" class="mb-3 mb-sm-0" />
         <div class="d-flex mx-1">
           <b-form-select
             v-model="selected"
@@ -29,15 +37,15 @@
         ที่อยากมีส่วนร่วมในการพัฒนามหานครของพวกเราเอง
       </p>
 
-        <div class="d-flex justify-content-center mt-5 align-items-center">
-          <p class="btn-text-1 text mb-0 mr-2">Share</p>
+      <div class="d-flex justify-content-center mt-5 align-items-center">
+        <p class="btn-text-1 text mb-0 mr-2">Share</p>
         <img
           :src="icon_fb"
           class="sharer social-icon pointer mx-1"
           alt=""
           v-sharer
           data-sharer="facebook"
-          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/khlongtoey-6`"
+          :data-url="`https://electinth.github.io/participatory-budgeting/ogimage/khlongtoey-6-${district}-${problem}`"
         />
         <img
           :src="icon_twitter"
@@ -58,7 +66,7 @@
       </div>
     </div>
     <div class="h-100vh bg-main text-center">
-      <p class="text-1 w-50 mx-auto">
+      <p class="text-1 w-sm-50 mx-auto">
         โปรเจกต์นี้ทดลองสร้าง “งบประมาณแบบมีส่วนร่วม” ให้กับจังหวัด/เมืองต่าง ๆ
         ในประเทศไทย โดยเริ่มจากกรุงเทพมหานครเป็นต้นแบบพัฒนาไปสู่เมืองอื่น....
       </p>
@@ -149,7 +157,7 @@ export default {
     return {
       district: "คลองสาน",
       selected: null,
-         icon_fb: require("~/assets/images/facebook.png"),
+      icon_fb: require("~/assets/images/facebook.png"),
       icon_line: require("~/assets/images/line.png"),
       icon_twitter: require("~/assets/images/twitter.png"),
       problem: "ในการจัดการขยะมากขึ้น",
@@ -204,11 +212,11 @@ export default {
   methods: {
     onChangeDistrict(val) {
       if (val != null) this.district = val.replace("เขต", "");
-      else this.district = "คลองสาน"
+      else this.district = "คลองสาน";
     },
     onChangeProblem(val) {
       if (val != null) this.problem = val;
-      else this.district = "ในการจัดการขยะมากขึ้น"
+      else this.district = "ในการจัดการขยะมากขึ้น";
       this.selected = val;
     },
   },
@@ -218,6 +226,10 @@ export default {
 <style lang="scss" scoped>
 .bg-main {
   padding: 100px;
+
+  @media #{$mq-mini-mobile} {
+    padding: 30px;
+  }
 }
 
 .share {
@@ -227,6 +239,9 @@ export default {
 .accordion {
   width: 650px;
   margin: auto;
+  @media #{$mq-mobile} {
+    width: 100%;
+  }
 }
 
 .accordion > .card > .card-header {
@@ -247,13 +262,13 @@ pre {
 
 .ogimage {
   border-radius: 10px;
-    max-width: 1200px;
+  max-width: 1200px;
   margin: auto;
 
   img {
     border-radius: 10px;
     border: 1px solid #000000;
-width: 100%;
+    width: 100%;
   }
 }
 

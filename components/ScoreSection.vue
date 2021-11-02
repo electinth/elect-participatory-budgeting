@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="h-100vh bg-main">
-      <p class="header-3 w-50 m-auto">
+      <p class="header-3 w-sm-50 m-auto">
         ความจริงแล้วหลาย ๆ ประเด็นปัญหาคาใจอยู่ อยู่ในแผนพัฒนา 20 ปี
         เพื่อให้กรุงเทพมหานครเป็น “มหานครแห่งเอเชีย” โดยแบ่งเป้าหมายย่อยออกเป็น
         7 ด้าน
@@ -25,12 +25,12 @@
         </div>
       </div>
 
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center book-box">
         <div v-for="(item, i) in problems.filter((x) => x.id < 5)" :key="i">
           <img
             :src="item.book_img"
             alt=""
-            class="pointer mx-3"
+            class="pointer mx-3 book"
             width="150"
             @click="showResult(item, stars[i].count)"
           />
@@ -55,12 +55,12 @@
         </div>
       </div>
 
-      <div class="d-flex justify-content-center mt-3">
+      <div class="d-flex justify-content-center mt-3 book-box">
         <div v-for="(item, i) in problems.filter((x) => x.id > 4)" :key="i">
           <img
             :src="item.book_img"
             alt=""
-            class="pointer mx-3"
+            class="pointer mx-3 book"
             width="150"
             @click="showResult(item, stars[i + 4].count)"
           />
@@ -96,7 +96,7 @@
         size="xl"
       >
         <div>
-          <b-row v-if="results[0].color != null">
+          <b-row v-if="results[0].color != null" class="book-result">
             <b-col sm="6"
               ><div
                 class="px-3 py-4 result-box ml-auto h-100"
@@ -249,7 +249,7 @@
         </div>
       </b-modal>
     </div>
-    <div class="h-100vh bg-main">
+    <div class="h-100vh bg-main h-100vh-mobile">
       <div class="d-flex justify-content-center h-100 position-relative">
         <img :src="pic_section_02" alt="" class="pointer mx-3" width="550" />
         <h3 class="header-3 w-25 section-text">
@@ -574,6 +574,8 @@ export default {
         alert(e);
       }
 
+      console.log(JSON.stringify(this.overall));
+
       const ref = this.$fire.database.ref("plan");
 
       try {
@@ -729,16 +731,27 @@ export default {
   background: #e8e4d8;
   padding: 65px;
   text-align: center;
+
+  @media #{$mq-mini-mobile} {
+    height: auto;
+    padding: 30px;
+  }
+}
+
+.h-100vh-mobile {
+  @media #{$mq-mini-mobile} {
+    height: 100vh !important;
+  }
 }
 
 .section-text {
   width: 50%;
   position: absolute;
-  top: 35%;
+  top: 50%;
   left: 50%;
-  -moz-transform: translateX(-50%) translateY(50%);
-  -webkit-transform: translateX(-50%) translateY(50%);
-  transform: translateX(-50%) translateY(50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .result-box {
@@ -749,6 +762,10 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  @media #{$mq-mini-mobile} {
+    width: 100%;
+  }
 
   .close-btn {
     position: absolute;
@@ -807,6 +824,30 @@ export default {
 
 .star-box {
   position: absolute;
-  right: 200px;
+  right: 10%;
+
+  @media #{$mq-mini-mobile} {
+    position: relative;
+    //align-items: center;
+  }
+}
+
+.book {
+  @media #{$mq-mini-mobile} {
+    width: 95px;
+  }
+}
+
+.book-box {
+  @media #{$mq-mini-mobile} {
+    flex-wrap: wrap;
+  }
+}
+
+.book-result {
+  @media #{$mq-mini-mobile} {
+    height: 500px;
+    overflow-y: auto;
+  }
 }
 </style>

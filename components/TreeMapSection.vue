@@ -1,20 +1,27 @@
 <template>
   <div>
-    <div class="h-100vh p-5">
+    <div class="h-100vh p-3 p-sm-5 h-auto-mobile">
       <div class="black-box">
         <div class="text-center">
           <img :src="icon_info" alt="" width="50" />
           <p
-            class="header-3 text-white font-weight-bold mx-auto mt-3 mb-5"
+            class="
+              header-3
+              text-white
+              font-weight-bold
+              mx-auto
+              mt-3
+              mb-sm-5 mb-3
+            "
           >
             ขอย้ำว่า! งบประมาณที่ลองเล่นก่อนหน้านี้ยังไม่ใช่
             “งบประมาณเบิกจ่ายใช้จริงๆ”
           </p>
 
-          <b-row>
-            <b-col><img :src="budget_bkk" alt=""></b-col>
+          <b-row class="flex-column flex-lg-row">
+            <b-col><img :src="budget_bkk" alt="" class="budget_bkk" /></b-col>
             <b-col
-              ><div class="white-box">
+              ><div class="white-box mt-3 mt-lg-0">
                 <p class="text-1 m-0">
                   ถึงแม้ว่ากรุงเทพมหานครได้จัดทำและมีระบบติดตามและประเมินผลการใช้จ่ายงบประมาณก็จริง
                 </p>
@@ -32,7 +39,12 @@
                   มาแสดงให้ทุกคนดูกันได้
                 </p>
 
-                <a href="http://dp2.bangkok.go.th/mobile/mymenu.php" class="text-1" target="_blank">ลองกดเพื่อเข้าไปดูระบบ</a>
+                <a
+                  href="http://dp2.bangkok.go.th/mobile/mymenu.php"
+                  class="text-1"
+                  target="_blank"
+                  >ลองกดเพื่อเข้าไปดูระบบ</a
+                >
 
                 <p class="text-4">
                   หมายเหตุ : ทางทีมได้สอบถามไปยังหน่วยงานและได้รับคำตอบว่า
@@ -64,17 +76,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.h-auto-mobile {
+  @media #{$mq-mobile} {
+    height: auto;
+  }
+}
+
 .black-box {
   background: rgba($color: #000000, $alpha: 0.86);
   border: 1px solid #000000;
   border-radius: 10px;
   height: 100%;
   padding: 30px 115px;
+  @media #{$mq-mobile} {
+    padding: 20px;
+  }
 }
 
 .white-box {
   background: white;
   padding: 20px;
   text-align: left;
+}
+
+.budget_bkk {
+  @media #{$mq-mobile} {
+    width: 100%;
+  }
 }
 </style>

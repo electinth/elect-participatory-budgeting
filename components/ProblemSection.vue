@@ -2,20 +2,32 @@
   <div>
     <div class="bg-main text-center">
       <p class="header-3 m-0">
-        รู้หรือไม่<br />กรุงเทพมหานครวางแผนพัฒนาระยะ 20 ปี <br />
+        รู้หรือไม่<br class="d-none d-sm-block" />กรุงเทพมหานครวางแผนพัฒนาระยะ
+        20 ปี <br class="d-none d-sm-block" />
         (พ.ศ. 2556-2575) ขึ้นมา เพื่อจะก้าวไปสู่การเป็น
       </p>
       <div class="header-2 font-weight-bold">“มหานครแห่งเอเชีย”</div>
-      <img :src="illus_open_01" alt="" class="mt-3" width="696" />
+      <img :src="illus_open_01" alt="" class="mt-3 img-mobile" width="696" />
       <p class="header-3 mt-3">แล้วปี 2565 เรากำลังเดินมาถึงครึ่งทางแล้ว</p>
-      <img :src="year_chart" alt="" class="my-3" width="550" />
+      <img
+        :src="year_chart"
+        alt=""
+        class="my-3 img-mobile d-none d-md-block"
+        width="550"
+      />
+      <img
+        :src="year_chart_mobile"
+        alt=""
+        class="my-3 img-mobile d-block d-md-none"
+        width="300"
+      />
       <p class="header-3 mt-5">
         แต่ทุกวันนี้...กรุงเทพมหานครก็ยังดูไม่เหมือนเมืองในฝันที่เราวาดไว้ใช่ไหม?<br />
         แล้วอะไรล่ะที่ยังเป็นปัญหาที่ค้างคาใจคุณอยู่ทุกวันนี้
       </p>
       <p class="text-3">(คลิกเพื่อเลือกปัญหา)</p>
 
-      <div class="d-flex justify-content-center mt-5">
+      <div class="d-flex justify-content-center mt-5 problem-box">
         <div v-for="(item, i) in problems.filter((x) => x.id < 5)" :key="i">
           <div
             @click="showProblemResult(item)"
@@ -34,7 +46,7 @@
         </div>
       </div>
 
-      <div class="d-flex justify-content-center mt-3">
+      <div class="d-flex justify-content-center mt-3 problem-box">
         <div v-for="(item, i) in problems.filter((x) => x.id > 4)" :key="i">
           <div
             @click="showProblemResult(item)"
@@ -98,6 +110,7 @@ export default {
   data() {
     return {
       year_chart: require("~/assets/images/year_chart.png"),
+      year_chart_mobile: require("~/assets/images/year_chart_mobile.png"),
       sample: require("~/assets/images/sample.png"),
       illus_open_01: require("~/assets/images/illus_open_01.png"),
       color: "#FFF",
@@ -190,10 +203,10 @@ export default {
   methods: {
     showProblemResult(data) {
       this.isShow = true;
-           setTimeout(
-          () => document.getElementById("result-box").scrollIntoView(),
-          500
-        );
+      setTimeout(
+        () => document.getElementById("result-box").scrollIntoView(),
+        500
+      );
       this.results[0].color = data.color;
       this.results[0].title = data.name;
       this.results[0].pic = data.img;
@@ -206,14 +219,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.img-mobile {
+  margin: auto;
+  @media #{$mq-mini-mobile} {
+    width: 100%;
+  }
+}
+
 .bg-main {
   background: #e8e4d8;
   padding: 121px;
+  @media #{$mq-mini-mobile} {
+    padding: 50px 20px;
+  }
 }
 
 .result {
   background: #e8e4d8;
   mix-blend-mode: normal;
+  @media #{$mq-mini-mobile} {
+    height: auto;
+  }
 }
 
 .black-box {
@@ -236,6 +262,9 @@ export default {
   width: 383px;
   //background: #ffffff;
   padding: 26px 44px;
+  @media #{$mq-mini-mobile} {
+    width: 90%;
+  }
 }
 
 .chevron-down {
@@ -256,6 +285,15 @@ export default {
 
 .problem-name {
   width: 180px;
+  @media #{$mq-mini-mobile} {
+    width: 140px;
+  }
+}
+
+.problem-box {
+  @media #{$mq-mini-mobile} {
+    flex-wrap: wrap;
+  }
 }
 
 .problem-pic {
@@ -264,7 +302,13 @@ export default {
   margin: 10px auto;
   position: relative;
   background-size: contain;
+  background-repeat: no-repeat;
   cursor: pointer;
+  @media #{$mq-mini-mobile} {
+    width: 110px;
+    height: 110px;
+    margin: 5px auto;
+  }
 }
 
 .problem-pic:hover:before {
