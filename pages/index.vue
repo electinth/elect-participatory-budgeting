@@ -20,12 +20,12 @@
         </nuxt-link>
       </div>
     </div>
-    <!-- <IntroSection />
+    <IntroSection />
     <ProblemSection />
     <ScoreSection />
     <ExploreTreeMap id="explore" />
     <TreeMapSection />
-    <ProjectSection /> -->
+    <ProjectSection />
     <ChooseProjectSection id="idea" />
     <EndSection />
     <VideoSection />
