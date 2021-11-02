@@ -1,1 +1,0 @@
-window.__NUXT__=(function(a){return {staticAssetsBase:"\u002Fparticipatory-budgeting\u002F_nuxt\u002Fstatic\u002F1635796234",layout:"default",error:a,serverRendered:true,routePath:"\u002Ftreemap",config:{_app:{basePath:"\u002Fparticipatory-budgeting\u002F",assetsPath:"\u002Fparticipatory-budgeting\u002F_nuxt\u002F",cdnURL:a}}}}(null));
