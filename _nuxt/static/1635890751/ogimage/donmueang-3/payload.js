@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/ogimage/donmueang-3", {data:[{}],fetch:{},mutations:[]});

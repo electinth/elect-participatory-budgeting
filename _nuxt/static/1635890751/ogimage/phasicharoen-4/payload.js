@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/ogimage/phasicharoen-4", {data:[{}],fetch:{},mutations:[]});

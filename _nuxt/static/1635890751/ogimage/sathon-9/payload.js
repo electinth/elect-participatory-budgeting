@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/ogimage/sathon-9", {data:[{}],fetch:{},mutations:[]});

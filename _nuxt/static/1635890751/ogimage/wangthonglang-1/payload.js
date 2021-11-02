@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/ogimage/wangthonglang-1", {data:[{}],fetch:{},mutations:[]});

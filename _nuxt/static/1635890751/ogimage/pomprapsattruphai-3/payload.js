@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/ogimage/pomprapsattruphai-3", {data:[{}],fetch:{},mutations:[]});

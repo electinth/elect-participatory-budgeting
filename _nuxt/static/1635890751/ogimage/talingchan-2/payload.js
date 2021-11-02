@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/ogimage/talingchan-2", {data:[{}],fetch:{},mutations:[]});
