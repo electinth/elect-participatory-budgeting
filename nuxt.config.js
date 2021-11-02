@@ -1,65 +1,16 @@
 const BASE_URL = "https://electinth.github.io/participatory-budgeting/";
 const array = [];
-const arrayDistrict = [
-  "พระนคร",
-  "ป้อมปราบศัตรูพ่าย",
-  "สัมพันธวงศ์",
-  "บางรัก",
-  "ปทุมวัน",
-  "ยานนาวา",
-  "ดุสิต",
-  "พญาไท",
-  "ห้วยขวาง",
-  "พระโขนง",
-  "บางกะปิ",
-  "บางเขน",
-  "มีนบุรี",
-  "ลาดกระบัง",
-  "หนองจอก",
-  "ธนบุรี",
-  "คลองสาน",
-  "บางกอกใหญ่",
-  "บางกอกน้อย",
-  "ตลิ่งชัน",
-  "ภาษีเจริญ",
-  "หนองแขม",
-  "บางขุนเทียน",
-  "ราษฎร์บูรณะ",
-  "ดอนเมือง",
-  "จตุจักร",
-  "ลาดพร้าว",
-  "บึงกุ่ม",
-  "สาทร",
-  "บางคอแหลม",
-  "บางซื่อ",
-  "ราชเทวี",
-  "คลองเตย",
-  "ประเวศ",
-  "บางพลัด",
-  "จอมทอง",
-  "ดินแดง",
-  "สวนหลวง",
-  "วัฒนา",
-  "บางแค",
-  "หลักสี่",
-  "สายไหม",
-  "คันนายาว",
-  "สะพานสูง",
-  "วังทองหลาง",
-  "คลองสามวา",
-  "บางนา",
-  "ทวีวัฒนา",
-  "ทุ่งครุ",
-  "บางบอน",
-]
+const arrayDistrict = ["bangbon", "bangkapi", "bangkhae", "bangkhen", "bangkholaem", "bangkhunthian", "bangna", "bangphlat", "bangrak", "bangsue", "bangkoknoi", "bangkokyai", "buengkum", "chatuchak", "chomthong", "dindaeng", "donmueang", "dusit", "huaikhwang", "khannayao", "khlongsamwa", "khlongsan", "khlongtoei", "laksi", "latkrabang", "latphrao", "minburi", "nongchok", "nongkhaem", "pathumwan", "phasicharoen", "phayathai", "phrakhanong", "phranakhon", "pomprapsattruphai", "prawet", "ratburana", "ratchathewi", "saimai", "samphanthawong", "saphansung", "sathon", "suanluang", "talingchan", "thawiwatthana", "thonburi", "thungkhru", "wangthonglang", "watthana", "yannawa"]
 
 const arrayProblem = ["ในการจัดการขยะมากขึ้น", "พัฒนาทางเท้าทางข้ามมากขึ้น", "ปรับปรุงการระบายน้ำและจัดการน้ำท่วม", "จัดการการจราจรติดขัด", "ติดตั้งแสงสว่างและกล้องวงจรอย่างทั่วถึง", "เพิ่มพื้นที่สีเขียวให้มากขึ้น", "พัฒนาระบบการศึกษามากขึ้น", "สร้างแพลตฟอร์มการมีส่วนร่วมและแสดงความคิดเห็นในการใช้งบฯ", "จัดระเบียบผังเมืองให้เหมาะสม", "ฟื้นฟูสถานที่ท่องเที่ยวสำคัญ"]
 
 for (var i = 0; i < arrayDistrict.length; i++) {
-  for (var j = 0; j < arrayProblem.length; j++) {
-    array.push("/ogimage/" + arrayDistrict[i] + "-" + arrayProblem[j]);
+  for (var j = 0; j < 10; j++) {
+    array.push("/ogimage/" + arrayDistrict[i] + "-" + (j + 1));
   }
 }
+
+array.push("/ogimage/upcountry")
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
