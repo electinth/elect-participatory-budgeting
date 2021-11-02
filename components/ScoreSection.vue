@@ -721,7 +721,6 @@ export default {
             ) {
               this.$cookies.set("hasAnswer", true);
             } else {
-              console.log(444);
               if (snapshotsUser.val().province != "") {
                 this.$cookies.set("hasAnswer", true);
               }

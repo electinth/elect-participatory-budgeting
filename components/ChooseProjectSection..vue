@@ -427,8 +427,7 @@ export default {
           } else if (this.selected == 2) {
             if (
               value.isInBkk &&
-              !value.hasHouseReg &&
-              value.district == this.district
+              !value.hasHouseReg
             ) {
               array.push(value.userid);
             }
