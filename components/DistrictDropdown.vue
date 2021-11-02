@@ -91,7 +91,7 @@ export default {
         },
         {
           id: "0",
-          en_name: null,
+          en_name: "upcountry",
           th_name: "ต่างจังหวัด",
           zipcode: "00000",
         },
