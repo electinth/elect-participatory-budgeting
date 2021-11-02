@@ -3,21 +3,7 @@
     <b-form-select
       class="select-dropdown"
       v-model="selected"
-      :options="
-        options.sort(function (a, b) {
-          if (a.text == b.text) return 0;
-          if (a.text == 'กรุณาเลือกจังหวัด') return -1;
-          if (b.text == 'กรุณาเลือกจังหวัด') return 1;
-
-          if (a.text < b.text) {
-            return -1;
-          }
-          if (a.text > b.text) {
-            return 1;
-          }
-          return 0;
-        })
-      "
+      :options="options"
       @change="onChange"
     ></b-form-select>
   </div>

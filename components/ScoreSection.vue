@@ -117,6 +117,11 @@
                   </div>
                   <p class="text-2 font-weight-bold">แค่ไหนสำหรับคุณ</p>
                   <p class="text-4 m-0">(กดดาวเพื่อให้คะแนน)</p>
+
+                  <p class="text-danger text-4 mt-2" v-if="isAcceptCookie">
+                    กรุณากดยอมรับคุกกี้ตามเงื่อนไขที่แจ้งไว้
+                  </p>
+
                   <div
                     class="d-flex my-3 justify-content-center"
                     v-if="results[0].star != 0"
@@ -276,6 +281,7 @@ export default {
       isShow: false,
       isShowDistrict: false,
       isShowProvince: false,
+      isAcceptCookie: false,
       problems: [
         {
           id: 1,
@@ -605,9 +611,14 @@ export default {
       }
     },
     async onCheckHasAnswer(star, problemid) {
-      if (this.$cookies.get("hasAnswer") !== undefined) {
-        this.updateVote(star, problemid);
-      } else this.$refs["asking-modal"].show();
+      if (this.$cookies.get("uuid") === undefined) {
+        this.isAcceptCookie = true;
+      } else {
+             this.isAcceptCookie = false;
+        if (this.$cookies.get("hasAnswer") !== undefined) {
+          this.updateVote(star, problemid);
+        } else this.$refs["asking-modal"].show();
+      }
     },
     async getScoreResult() {
       const ref = this.$fire.database
@@ -697,21 +708,21 @@ export default {
 
       try {
         const snapshots = await ref.once("value");
+
         for (const [key, value] of Object.entries(snapshots.val())) {
           if (value.userid == this.$cookies.get("uuid")) {
             const refUser = this.$fire.database.ref("user/" + key);
             const snapshotsUser = await refUser.once("value");
+
             if (
               snapshotsUser.val().isInBkk &&
               snapshotsUser.val().district != "" &&
-              snapshotsUser.val().hasHouseReg != ""
+              snapshotsUser.val().hasHouseReg != null
             ) {
               this.$cookies.set("hasAnswer", true);
             } else {
-              if (
-                !snapshotsUser.val().isInBkk &&
-                snapshotsUser.val().province != ""
-              ) {
+              console.log(444);
+              if (snapshotsUser.val().province != "") {
                 this.$cookies.set("hasAnswer", true);
               }
             }
