@@ -507,10 +507,9 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$route.params.variation.split("-"));
     //this.test();
-    // window.location.href =
-    //   "https://electinth.github.io/participatory-budgeting/";
+    window.location.href =
+      "https://electinth.github.io/participatory-budgeting/";
   },
   methods: {
     test() {

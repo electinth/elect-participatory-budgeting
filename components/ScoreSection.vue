@@ -580,8 +580,6 @@ export default {
         alert(e);
       }
 
-      console.log(JSON.stringify(this.overall));
-
       const ref = this.$fire.database.ref("plan");
 
       try {

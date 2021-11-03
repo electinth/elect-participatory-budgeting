@@ -102,13 +102,6 @@ export default {
     } else {
       this.cookies = false;
     }
-
-    if (this.$cookies.get("district") === undefined)
-      this.$cookies.set("district", "บางบอน");
-    if (this.$cookies.get("problem") === undefined)
-      this.$cookies.set("problem", "ในการจัดการขยะมากขึ้น");
-    if (this.$cookies.get("isUpCountry") === undefined)
-      this.$cookies.set("isUpCountry", false);
   },
   head() {
     return {

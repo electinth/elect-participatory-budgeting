@@ -238,35 +238,23 @@ export default {
         if (val[0].en_name == "upcountry") {
           this.selected = null;
           this.$cookies.set("isUpCountry", true);
-          //this.$store.commit("onChangeUpCountry", true);
-        } else {
-          //this.$store.commit("onChangeUpCountry", false);
-          this.$cookies.set("isUpCountry", false);
-        }
+        } 
 
-        //this.$store.commit("onChangeDistrict", val);
         this.$cookies.set("district", val[0].th_name);
       } else {
         this.district = "bangbon";
-        //this.$store.commit("onChangeDistrict", "bangbon");
         this.$cookies.set("district", "bangbon");
       }
-
-      //console.log(this.$store.state.district);
     },
     onChangeProblem(val) {
       if (val != null) {
         this.problem = val;
         var result = this.options.filter((x) => x.value == val);
-        //this.$store.commit("onChangeProblem", result[0].text);
         this.$cookies.set("problem", result[0].text);
       } else {
         this.problem = 1;
-        //this.$store.commit("onChangeProblem", "ในการจัดการขยะมากขึ้น");
         this.$cookies.set("problem", "ในการจัดการขยะมากขึ้น");
       }
-
-      //console.log(this.$store.state.problem);
     },
   },
 };
