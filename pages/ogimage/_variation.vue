@@ -58,12 +58,17 @@ export default {
         {
           hid: "og:title",
           property: "og:title",
-          content: this.$cookies.get("isUpCountry")
-            ? "พวกเราอยากมีส่วนร่วมกับการออกแบบใช้งบเพื่อพัฒนาเมืองและมีแพลตฟอร์มของเราเช่นกัน"
-            : "พวกเราชาว" +
-              this.$cookies.get("district") +
-              "ต้องการให้ใช้งบเพื่อ" +
-              this.$cookies.get("problem"),
+          content:
+            this.$route.params.variation.split("-")[0] == "upcountry"
+              ? "พวกเราอยากมีส่วนร่วมกับการออกแบบใช้งบเพื่อพัฒนาเมืองและมีแพลตฟอร์มของเราเช่นกัน"
+              : "พวกเราชาว" +
+                this.districts.filter(
+                  (x) => x.en_name == this.$route.params.variation.split("-")[0]
+                )[0].th_name +
+                "ต้องการให้ใช้งบเพื่อ" +
+                this.options.filter(
+                  (x) => x.value == this.$route.params.variation.split("-")[1]
+                )[0].text,
         },
         {
           hid: "og:description",
@@ -74,12 +79,17 @@ export default {
         {
           hid: "twitter:title",
           name: "twitter:title",
-          content: this.$cookies.get("isUpCountry")
-            ? "พวกเราอยากมีส่วนร่วมกับการออกแบบใช้งบเพื่อพัฒนาเมืองและมีแพลตฟอร์มของเราเช่นกัน"
-            : "พวกเราชาว" +
-              this.$cookies.get("district") +
-              "ต้องการให้ใช้งบเพื่อ" +
-              this.$cookies.get("problem"),
+          content:
+            this.$route.params.variation.split("-")[0] == "upcountry"
+              ? "พวกเราอยากมีส่วนร่วมกับการออกแบบใช้งบเพื่อพัฒนาเมืองและมีแพลตฟอร์มของเราเช่นกัน"
+              : "พวกเราชาว" +
+                this.districts.filter(
+                  (x) => x.en_name == this.$route.params.variation.split("-")[0]
+                )[0].th_name +
+                "ต้องการให้ใช้งบเพื่อ" +
+                this.options.filter(
+                  (x) => x.value == this.$route.params.variation.split("-")[1]
+                )[0].text,
         },
         {
           hid: "twitter:description",
@@ -446,11 +456,58 @@ export default {
           zipcode: "10120",
         },
       ],
+      options: [
+        {
+          value: null,
+          text: "เลือกเรื่องที่อยากแชร์",
+        },
+        {
+          value: 1,
+          text: "ในการจัดการขยะมากขึ้น",
+        },
+        {
+          value: 2,
+          text: "พัฒนาทางเท้า ทางข้ามมากขึ้น",
+        },
+        {
+          value: 3,
+          text: "ปรับปรุงการระบายน้ำและจัดการน้ำท่วม ",
+        },
+        {
+          value: 4,
+          text: "จัดการการจราจรติดขัด",
+        },
+        {
+          value: 5,
+          text: "ติดตั้งแสงสว่างและกล้องวงจรอย่างทั่วถึง",
+        },
+        {
+          value: 6,
+          text: "เพิ่มพื้นที่สีเขียวให้มากขึ้น ",
+        },
+        {
+          value: 7,
+          text: "พัฒนาระบบการศึกษามากขึ้น",
+        },
+        {
+          value: 8,
+          text: "สร้างแพลตฟอร์มการมีส่วนร่วมและแสดงความคิดเห็นในการใช้งบฯ",
+        },
+        {
+          value: 9,
+          text: "จัดระเบียบผังเมืองให้เหมาะสม ",
+        },
+        {
+          value: 10,
+          text: "ฟื้นฟูสถานที่ท่องเที่ยวสำคัญ ",
+        },
+      ],
       text: "",
       img: [],
     };
   },
   mounted() {
+    console.log(this.$route.params.variation.split("-"));
     //this.test();
     // window.location.href =
     //   "https://electinth.github.io/participatory-budgeting/";
