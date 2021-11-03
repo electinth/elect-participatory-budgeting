@@ -161,6 +161,8 @@
           </b-collapse>
         </b-card>
       </div>
+
+      <button class="read-btn">อ่านบทความ</button>
     </div>
   </div>
 </template>
@@ -238,7 +240,7 @@ export default {
         if (val[0].en_name == "upcountry") {
           this.selected = null;
           this.$cookies.set("isUpCountry", true);
-        } 
+        }
 
         this.$cookies.set("district", val[0].th_name);
       } else {
@@ -313,5 +315,16 @@ pre {
   width: 200px;
   font-family: "Anuphan", serif;
   font-size: 14px;
+}
+
+.read-btn {
+  background: #ffffff;
+  border: 2px solid #000000;
+  padding: 10px;
+  width: 155px;
+  margin-top: 20%;
+  font-family: "KondolarThai", serif;
+  font-weight: bold;
+  font-size: 19px;
 }
 </style>

@@ -175,11 +175,11 @@
 
         <h1 class="header-2 mt-5 font-weight-bold">Partners</h1>
         <ul class="body-text">
-          <li>GSE</li>
+          <li>Good Society Thailand</li>
           <li>Glow Story</li>
-          <li>ACT Thailand</li>
+          <li>องค์กรต่อต้านคอร์รัปชัน (ประเทศไทย)</li>
           <li>Hand social enterprise</li>
-          <li>siamlab</li>
+          <li>Social Integrity Architecture and Mechanism Design Lab</li>
         </ul>
         <div class="d-flex logo-list">
           <img :src="logo_good_society" width="120" alt="" />
@@ -197,7 +197,7 @@
             target="_blank"
             href="https://docs.google.com/spreadsheets/d/125ybYpPOFaluJEvZtbCqqA-qSVilklT9BftNodBLkPI/edit#gid=1296185986"
             class="header-2 download-btn font-weight-bold"
-            >ดาวน์โหลดข้อมูล</a
+            ><img :src="download_icon" width="30" alt=""> ดาวน์โหลดข้อมูล</a
           >
         </div>
 
@@ -282,6 +282,7 @@ export default {
       logo_act: require("~/assets/images/logo_act.png"),
       logo_hand: require("~/assets/images/logo_hand.png"),
       logo_white: require("~/assets/images/logo-white.png"),
+            download_icon: require("~/assets/images/download-icon.png"),
     };
   },
   mounted() {

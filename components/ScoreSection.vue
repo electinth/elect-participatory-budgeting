@@ -212,6 +212,9 @@
         hide-backdrop
       >
         <div class="asking-box p-3 text-center">
+          <b-button class="close-btn" @click="$bvModal.hide('modal-2')">
+            <font-awesome-icon :icon="['fas', 'times']" class="backward mr-1" />
+          </b-button>
           <p class="text-1 font-weight-bold">ขอสอบถามสั้นๆเกี่ยวกับคุณ</p>
           <p class="text-4">
             คำตอบของคุณจะใช้เพื่อการประมวลผลข้อมูลบนแพลตฟอร์มนี้และรวบรวมเพื่อ
@@ -229,7 +232,11 @@
             </button>
           </div>
           <p class="text-4 mb-0 mt-2" v-if="isShowDistrict">คุณอยู่เขตไหน?</p>
-          <DistrictDropdown @change="onChangeDistrict" v-if="isShowDistrict" type=1 />
+          <DistrictDropdown
+            @change="onChangeDistrict"
+            v-if="isShowDistrict"
+            type="1"
+          />
           <p class="text-4 mb-0 mt-2" v-if="isShowProvince">
             คุณอยู่จังหวัดไหน?
           </p>
@@ -251,6 +258,14 @@
               ไม่มี
             </button>
           </div>
+
+          <button
+            class="has-house-reg-btn btn-text-1 mt-3"
+            @click="onCheckHasCompleteAnswer()"
+            :disabled="isDisabled"
+          >
+            ยืนยัน
+          </button>
         </div>
       </b-modal>
     </div>
@@ -279,6 +294,7 @@ export default {
       star_selected: require("~/assets/images/icon_star_person.svg"),
       star_all: require("~/assets/images/icon_star_all.svg"),
       isShow: false,
+      isDisabled: true,
       isShowDistrict: false,
       isShowProvince: false,
       isAcceptCookie: false,
@@ -504,6 +520,14 @@ export default {
         { plan: 0, count: 0 },
         { plan: 0, count: 0 },
       ],
+      user_info: [
+        {
+          isinbkk: null,
+          district: null,
+          province: null,
+          hashousereg: null,
+        },
+      ],
     };
   },
   created() {
@@ -612,7 +636,7 @@ export default {
       if (this.$cookies.get("uuid") === undefined) {
         this.isAcceptCookie = true;
       } else {
-             this.isAcceptCookie = false;
+        this.isAcceptCookie = false;
         if (this.$cookies.get("hasAnswer") !== undefined) {
           this.updateVote(star, problemid);
         } else this.$refs["asking-modal"].show();
@@ -630,6 +654,8 @@ export default {
       }
     },
     async onChangeDistrict(val) {
+      this.user_info[0].district = val;
+      this.onCheckDisabled();
       const ref = this.$fire.database.ref("user");
 
       try {
@@ -646,6 +672,8 @@ export default {
     },
     async onChangeProvince(val) {
       const ref = this.$fire.database.ref("user");
+      this.user_info[0].province = val;
+      this.onCheckDisabled();
 
       try {
         const snapshots = await ref.once("value");
@@ -656,13 +684,15 @@ export default {
           }
         }
 
-        this.onCheckHasCompleteAnswer();
+        //this.onCheckHasCompleteAnswer();
       } catch (e) {
         alert(e);
       }
     },
     async onClickBkk(val) {
       const ref = this.$fire.database.ref("user");
+      this.user_info[0].isinbkk = val;
+      this.onCheckDisabled();
 
       try {
         const snapshots = await ref.once("value");
@@ -686,6 +716,8 @@ export default {
     },
     async onClickHouseReg(val) {
       const ref = this.$fire.database.ref("user");
+      this.user_info[0].hashousereg = val;
+      this.onCheckDisabled();
 
       try {
         const snapshots = await ref.once("value");
@@ -699,7 +731,7 @@ export default {
         alert(e);
       }
 
-      this.onCheckHasCompleteAnswer();
+      //this.onCheckHasCompleteAnswer();
     },
     async onCheckHasCompleteAnswer(val) {
       const ref = this.$fire.database.ref("user");
@@ -728,6 +760,26 @@ export default {
         }
       } catch (e) {
         alert(e);
+      }
+    },
+    onCheckDisabled() {
+      if (this.user_info[0].isinbkk != null) {
+        if (this.user_info[0].isinbkk) {
+          if (
+            this.user_info[0].district != null &&
+            this.user_info[0].hashousereg != null
+          ) {
+            this.isDisabled = false;
+          } else {
+            this.isDisabled = true;
+          }
+        } else {
+          if (this.user_info[0].province != null) {
+            this.isDisabled = false;
+          } else {
+            this.isDisabled = true;
+          }
+        }
       }
     },
   },
@@ -806,6 +858,20 @@ export default {
   border-radius: 10px;
   color: #fff;
   min-height: 340px;
+
+  .close-btn {
+    position: absolute;
+    background: none;
+    border: none;
+    padding: 0;
+    top: 35px;
+    left: 35px;
+
+    .fa-times {
+      font-size: 20px;
+      color: #fff;
+    }
+  }
 }
 
 .logo-icon {

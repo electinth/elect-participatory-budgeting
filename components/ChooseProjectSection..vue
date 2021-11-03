@@ -20,7 +20,7 @@
             }"
             @click="setSelected(item.id, item.isSelected)"
           >
-            <p class="header-3 m-0">{{ item.name }}</p>
+            <p class="header-3 m-0 font-weight-bold">{{ item.name }}</p>
             <p class="text-4 m-0">({{ item.desc }})</p>
           </div>
 
@@ -146,6 +146,9 @@
       hide-backdrop
     >
       <div class="asking-box p-3 text-center">
+        <b-button class="close-btn" @click="$bvModal.hide('modal-2')">
+          <font-awesome-icon :icon="['fas', 'times']" class="backward mr-1" />
+        </b-button>
         <p class="text-1 font-weight-bold">ขอสอบถามสั้นๆเกี่ยวกับคุณ</p>
         <p class="text-4">
           คำตอบของคุณจะใช้เพื่อการประมวลผลข้อมูลบนแพลตฟอร์มนี้และรวบรวมเพื่อ
@@ -185,6 +188,14 @@
             ไม่มี
           </button>
         </div>
+
+        <button
+          class="has-house-reg-btn btn-text-1 mt-3"
+          @click="onCheckHasCompleteAnswer()"
+          :disabled="isDisabled"
+        >
+          ยืนยัน
+        </button>
       </div>
     </b-modal>
 
@@ -258,6 +269,7 @@ export default {
         autoplay: true,
       },
       tabIndex: 0,
+      isDisabled: true,
       selected: 1,
       district: null,
       comment: "",
@@ -379,6 +391,14 @@ export default {
           text: "คนต่างจังหวัด",
         },
       ],
+      user_info: [
+        {
+          isinbkk: null,
+          district: null,
+          province: null,
+          hashousereg: null,
+        },
+      ],
     };
   },
   mounted() {
@@ -462,7 +482,17 @@ export default {
                 array.push(value.userid);
               }
             } else if (this.selected == 2) {
-              if (value.isInBkk && !value.hasHouseReg) {
+              if (
+                value.isInBkk &&
+                !value.hasHouseReg &&
+                value.district == this.district
+              ) {
+                array.push(value.userid);
+              } else if (
+                value.isInBkk &&
+                !value.hasHouseReg &&
+                this.district == null
+              ) {
                 array.push(value.userid);
               }
             } else {
@@ -645,6 +675,9 @@ export default {
       this.$refs["comment-modal"].hide();
     },
     async onChangeDistrict(val) {
+      this.user_info[0].district = val;
+      this.onCheckDisabled();
+
       const ref = this.$fire.database.ref("user");
 
       try {
@@ -661,7 +694,7 @@ export default {
     },
     onChangeDistrictFilter(val) {
       this.district = null;
-      if (val != null) this.district = "เขต" + val[0].th_name;
+      if (val[0].th_name != "ทุกเขต") this.district = "เขต" + val[0].th_name;
       this.getData();
     },
     onChangePeopleType(val) {
@@ -669,6 +702,8 @@ export default {
       this.getData();
     },
     async onChangeProvince(val) {
+      this.user_info[0].province = val;
+      this.onCheckDisabled();
       const ref = this.$fire.database.ref("user");
 
       try {
@@ -680,12 +715,15 @@ export default {
           }
         }
 
-        this.onCheckHasCompleteAnswer();
+        //this.onCheckHasCompleteAnswer();
       } catch (e) {
         alert(e);
       }
     },
     async onClickBkk(val) {
+      this.user_info[0].isinbkk = val;
+      this.onCheckDisabled();
+
       const ref = this.$fire.database.ref("user");
 
       try {
@@ -709,6 +747,9 @@ export default {
       }
     },
     async onClickHouseReg(val) {
+      this.user_info[0].hashousereg = val;
+      this.onCheckDisabled();
+
       const ref = this.$fire.database.ref("user");
 
       try {
@@ -723,7 +764,7 @@ export default {
         alert(e);
       }
 
-      this.onCheckHasCompleteAnswer();
+      //this.onCheckHasCompleteAnswer();
     },
     async onCheckHasCompleteAnswer(val) {
       const ref = this.$fire.database.ref("user");
@@ -753,6 +794,26 @@ export default {
         }
       } catch (e) {
         alert(e);
+      }
+    },
+    onCheckDisabled() {
+      if (this.user_info[0].isinbkk != null) {
+        if (this.user_info[0].isinbkk) {
+          if (
+            this.user_info[0].district != null &&
+            this.user_info[0].hashousereg != null
+          ) {
+            this.isDisabled = false;
+          } else {
+            this.isDisabled = true;
+          }
+        } else {
+          if (this.user_info[0].province != null) {
+            this.isDisabled = false;
+          } else {
+            this.isDisabled = true;
+          }
+        }
       }
     },
   },
@@ -785,6 +846,10 @@ export default {
   padding: 10px;
   border: 0.75px solid #000000;
   border-radius: 5px;
+}
+
+.sent-comment:disabled {
+  border: 0.75px solid #e5e5e5;
 }
 
 .islimit {
@@ -839,7 +904,9 @@ export default {
     p:first-child {
       white-space: nowrap;
       text-overflow: ellipsis;
-      width: 50%;
+      @media #{$mq-tablet} {
+        width: 50%;
+      }
       overflow: hidden;
     }
   }
@@ -866,6 +933,20 @@ export default {
   border-radius: 10px;
   color: #fff;
   min-height: 340px;
+
+  .close-btn {
+    position: absolute;
+    background: none;
+    border: none;
+    padding: 0;
+    top: 35px;
+    left: 35px;
+
+    .fa-times {
+      font-size: 20px;
+      color: #fff;
+    }
+  }
 }
 
 .comment-box {

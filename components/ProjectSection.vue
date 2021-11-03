@@ -393,7 +393,7 @@
             <VueSlickCarousel v-bind="slickOptions">
               <div
                 v-for="(item, index) in project.filter(
-                  (x) => x.dimension == 'การบริหารจัดการเมืองมหานคร'
+                  (x) => x.dimension == 'มหานครแห่งเศรษฐกิจและการเรียนรู้'
                 )"
                 :key="index"
                 class="text-left px-2"
@@ -424,7 +424,7 @@
                 <img
                   class="project-img"
                   :src="
-                    require(`@/assets/images/section_project_bkk/issue_7/${item.path}`)
+                    require(`@/assets/images/section_project_bkk/issue_6/${item.path}`)
                   "
                   width="100%"
                   alt=""
