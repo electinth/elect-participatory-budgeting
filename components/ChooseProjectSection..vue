@@ -127,8 +127,11 @@
       <button
         class="sent-comment text-3 mt-5"
         @click="$bvModal.show('modal-comment')"
-      > <div class="d-flex"><img :src="icon_idea" width="20" class="mr-2" alt="">
-        เสนอไอเดียเพิ่มเติม</div>
+      >
+        <div class="d-flex">
+          <img :src="icon_idea" width="20" class="mr-2" alt="" />
+          เสนอไอเดียเพิ่มเติม
+        </div>
       </button>
     </div>
 
@@ -442,27 +445,29 @@ export default {
       try {
         const snapshots = await ref.once("value");
 
-        for (const [key, value] of Object.entries(snapshots.val())) {
-          if (this.selected == 1) {
-            if (
-              value.isInBkk &&
-              value.hasHouseReg &&
-              value.district == this.district
-            ) {
-              array.push(value.userid);
-            } else if (
-              value.isInBkk &&
-              value.hasHouseReg &&
-              this.district == null
-            ) {
-              array.push(value.userid);
+        if (snapshots.val() != null) {
+          for (const [key, value] of Object.entries(snapshots.val())) {
+            if (this.selected == 1) {
+              if (
+                value.isInBkk &&
+                value.hasHouseReg &&
+                value.district == this.district
+              ) {
+                array.push(value.userid);
+              } else if (
+                value.isInBkk &&
+                value.hasHouseReg &&
+                this.district == null
+              ) {
+                array.push(value.userid);
+              }
+            } else if (this.selected == 2) {
+              if (value.isInBkk && !value.hasHouseReg) {
+                array.push(value.userid);
+              }
+            } else {
+              if (!value.isInBkk) array.push(value.userid);
             }
-          } else if (this.selected == 2) {
-            if (value.isInBkk && !value.hasHouseReg) {
-              array.push(value.userid);
-            }
-          } else {
-            if (!value.isInBkk) array.push(value.userid);
           }
         }
       } catch (e) {
@@ -473,30 +478,31 @@ export default {
 
       try {
         const snapshots = await refProject.once("value");
-
-        for (const [key, value] of Object.entries(snapshots.val())) {
-          for (const arr of array) {
-            if (arr == value.userid) {
-              if (value.projectid == 1) {
-                this.project_count[0].count += 1;
-              } else if (value.projectid == 2) {
-                this.project_count[1].count += 1;
-              } else if (value.projectid == 3) {
-                this.project_count[2].count += 1;
-              } else if (value.projectid == 4) {
-                this.project_count[3].count += 1;
-              } else if (value.projectid == 5) {
-                this.project_count[4].count += 1;
-              } else if (value.projectid == 6) {
-                this.project_count[5].count += 1;
-              } else if (value.projectid == 7) {
-                this.project_count[6].count += 1;
-              } else if (value.projectid == 8) {
-                this.project_count[7].count += 1;
-              } else if (value.projectid == 9) {
-                this.project_count[8].count += 1;
-              } else {
-                this.project_count[9].count += 1;
+        if (snapshots.val() != null) {
+          for (const [key, value] of Object.entries(snapshots.val())) {
+            for (const arr of array) {
+              if (arr == value.userid) {
+                if (value.projectid == 1) {
+                  this.project_count[0].count += 1;
+                } else if (value.projectid == 2) {
+                  this.project_count[1].count += 1;
+                } else if (value.projectid == 3) {
+                  this.project_count[2].count += 1;
+                } else if (value.projectid == 4) {
+                  this.project_count[3].count += 1;
+                } else if (value.projectid == 5) {
+                  this.project_count[4].count += 1;
+                } else if (value.projectid == 6) {
+                  this.project_count[5].count += 1;
+                } else if (value.projectid == 7) {
+                  this.project_count[6].count += 1;
+                } else if (value.projectid == 8) {
+                  this.project_count[7].count += 1;
+                } else if (value.projectid == 9) {
+                  this.project_count[8].count += 1;
+                } else {
+                  this.project_count[9].count += 1;
+                }
               }
             }
           }
