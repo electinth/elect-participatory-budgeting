@@ -40,7 +40,7 @@ export default {
         {
           hid: "og-image",
           property: "og:image",
-          content: this.$store.state.isUpCountry
+          content: this.$cookies.get("isUpCountry")
             ? "https://d208eq9ndr4893.cloudfront.net/og-image/upcountry.png"
             : "https://d208eq9ndr4893.cloudfront.net/og-image/" +
               this.$route.params.variation +
@@ -49,7 +49,7 @@ export default {
         {
           hid: "twitter:image",
           name: "twitter:image:src",
-          content: this.$store.state.isUpCountry
+          content: this.$cookies.get("isUpCountry")
             ? "https://d208eq9ndr4893.cloudfront.net/og-image/upcountry.png"
             : "https://d208eq9ndr4893.cloudfront.net/og-image/" +
               this.$route.params.variation +
@@ -58,12 +58,12 @@ export default {
         {
           hid: "og:title",
           property: "og:title",
-          content: this.$store.state.isUpCountry
+          content: this.$cookies.get("isUpCountry")
             ? "พวกเราอยากมีส่วนร่วมกับการออกแบบใช้งบเพื่อพัฒนาเมืองและมีแพลตฟอร์มของเราเช่นกัน"
             : "พวกเราชาว" +
-              this.$store.state.district +
+              this.$cookies.get("district") +
               "ต้องการให้ใช้งบเพื่อ" +
-              this.$store.state.problem,
+              this.$cookies.get("problem"),
         },
         {
           hid: "og:description",
@@ -74,12 +74,12 @@ export default {
         {
           hid: "twitter:title",
           name: "twitter:title",
-          content: this.$store.state.isUpCountry
+          content: this.$cookies.get("isUpCountry")
             ? "พวกเราอยากมีส่วนร่วมกับการออกแบบใช้งบเพื่อพัฒนาเมืองและมีแพลตฟอร์มของเราเช่นกัน"
             : "พวกเราชาว" +
-              this.$store.state.district +
+              this.$cookies.get("district") +
               "ต้องการให้ใช้งบเพื่อ" +
-              this.$store.state.problem,
+              this.$cookies.get("problem"),
         },
         {
           hid: "twitter:description",
