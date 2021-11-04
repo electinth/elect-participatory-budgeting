@@ -447,13 +447,7 @@
                   color="#538DFF"
                   :size="18"
                   checked
-                  :disabled="
-                    selectedInner === 'มหานครปลอดภัย' ||
-                    (this.selectedStrategy.length === 1 &&
-                      this.selectedStrategy[0] === 'มหานครปลอดภัย')
-                      ? true
-                      : false
-                  "
+                  :disabled="selectedInner ? true : false"
                 >
                   <div class="label">มหานครปลอดภัย</div>
                 </Checkbox>
@@ -465,13 +459,7 @@
                   color="#6ADC7B"
                   :size="18"
                   checked
-                  :disabled="
-                    selectedInner === 'มหานครสีเขียวสะดวกสบาย' ||
-                    (this.selectedStrategy.length === 1 &&
-                      this.selectedStrategy[0] === 'มหานครสีเขียวสะดวกสบาย')
-                      ? true
-                      : false
-                  "
+                  :disabled="selectedInner ? true : false"
                 >
                   <div class="label">มหานครสีเขียวสะดวกสบาย</div>
                 </Checkbox>
@@ -483,13 +471,7 @@
                   color="#FF583E"
                   :size="18"
                   checked
-                  :disabled="
-                    selectedInner === 'มหานครสำหรับทุกคน' ||
-                    (this.selectedStrategy.length === 1 &&
-                      this.selectedStrategy[0] === 'มหานครสำหรับทุกคน')
-                      ? true
-                      : false
-                  "
+                  :disabled="selectedInner ? true : false"
                 >
                   <div class="label">
                     มหานครสำหรับทุกคน
@@ -503,13 +485,7 @@
                   color="#FF9FDF"
                   :size="18"
                   checked
-                  :disabled="
-                    selectedInner === 'มหานครกระชับ' ||
-                    (this.selectedStrategy.length === 1 &&
-                      this.selectedStrategy[0] === 'มหานครกระชับ')
-                      ? true
-                      : false
-                  "
+                  :disabled="selectedInner ? true : false"
                 >
                   <div class="label">มหานครกระชับ</div>
                 </Checkbox>
@@ -521,13 +497,7 @@
                   color="#FF8310"
                   :size="18"
                   checked
-                  :disabled="
-                    selectedInner === 'มหานครประชาธิปไตย' ||
-                    (this.selectedStrategy.length === 1 &&
-                      this.selectedStrategy[0] === 'มหานครประชาธิปไตย')
-                      ? true
-                      : false
-                  "
+                  :disabled="selectedInner ? true : false"
                 >
                   <div class="label">มหานครประชาธิปไตย</div>
                 </Checkbox>
@@ -539,14 +509,7 @@
                   color="#C3DA14"
                   :size="18"
                   checked
-                  :disabled="
-                    selectedInner === 'มหานครแห่งเศรษฐกิจและเรียนรู้' ||
-                    (this.selectedStrategy.length === 1 &&
-                      this.selectedStrategy[0] ===
-                        'มหานครแห่งเศรษฐกิจและเรียนรู้')
-                      ? true
-                      : false
-                  "
+                  :disabled="selectedInner ? true : false"
                 >
                   <div class="label">มหานครแห่งเศรษฐกิจและเรียนรู้</div>
                 </Checkbox>
@@ -558,13 +521,7 @@
                   color="#D170FF"
                   :size="18"
                   checked
-                  :disabled="
-                    selectedInner === 'การบริหารจัดการเมืองมหานคร' ||
-                    (this.selectedStrategy.length === 1 &&
-                      this.selectedStrategy[0] === 'การบริหารจัดการเมืองมหานคร')
-                      ? true
-                      : false
-                  "
+                  :disabled="selectedInner ? true : false"
                 >
                   <div class="label">การบริหารจัดการเมืองมหานคร</div>
                 </Checkbox>
