@@ -6,8 +6,8 @@
       </div>
       <div class="h-100vh bg-main pt-0">
         <div class="h-100vh d-flex justify-content-center overflow-hidden">
-          <img :src="intro_pic_mobile" class="pu-logo d-block d-md-none w-100" width="" />
-          <img :src="intro_pic" class="pu-logo d-none d-md-block" width="" />
+          <img :src="intro_pic_mobile" class="pu-logo d-block d-lg-none w-100" width="" />
+          <img :src="intro_pic" class="pu-logo d-none d-lg-block" width="" />
         </div>
       </div>
       <div class="h-100vh bg-main d-flex justify-content-center flex-column">
@@ -25,8 +25,7 @@
           </p>
           <p class="text-4 mt-5 text-uppercase">
             โปรเจกต์นี้เป็นเพียงจุดเริ่มต้นที่ตั้งใจให้ทุกคน
-            ได้ทดลองมีส่วนร่วมกับงบประมาณ<br />
-            เพื่อจะผลักดันสังคมให้ดีขึ้นได้ (Good Society)<br />
+          ได้มีส่วนร่วมทดลองออกแบบงบประมาณ<br />ที่จะผลักดันให้เมืองของเราน่าอยู่ สร้างสังคมที่ดี (Good Society)<br />
             โดยเริ่มจากกรุงเทพมหานครเพื่อเป็นต้นแบบส่งต่อไปยังจังหวัดอื่นๆ
           </p>
         </div>

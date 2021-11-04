@@ -225,6 +225,8 @@ export default {
       background: transparent;
       color: #fff;
       padding: 0 20px;
+      height: 45px;
+      margin: auto 0;
 
       @media #{$mq-mini-mobile} {
         width: 100px;

@@ -822,7 +822,7 @@ export default {
 
 <style lang="scss" scoped>
 .h-auto-mobile {
-  @media #{$mq-mini-mobile} {
+  @media #{$mq-small-laptop} {
     height: auto;
   }
 }

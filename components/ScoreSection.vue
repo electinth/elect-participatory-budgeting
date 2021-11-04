@@ -12,8 +12,8 @@
       </p>
       <p class="text-3">(คลิกเพื่อเลือกให้คะแนน)</p>
 
-      <div class="star-box">
-        <div class="d-flex flex-column mt-2">
+      <div class="star-box mb-3">
+        <div class="d-flex flex-column mt-2 align-items-center align-content-lg-end">
           <div class="d-flex mx-2">
             <img :src="star_all" alt="" width="15" class="mr-1" />
             <p class="m-0 text-4">ค่าเฉลี่ยทุกคน</p>
@@ -179,7 +179,7 @@
                 }"
               >
                 <div
-                  class="bg-white p-2 my-2"
+                  class="bg-white p-2 my-2 w-100"
                   v-for="(data, a) in results[0].dimension"
                   :key="a"
                 >
@@ -188,7 +188,7 @@
                       <p class="text-4 font-weight-bold m-0">{{ data.name }}</p>
                     </div>
                     <div class="line"></div>
-                    <div class="m-auto">
+                    <div class="m-auto problem-desc">
                       <p class="text-4 pl-2 m-0">
                         {{ data.desc }}
                       </p>
@@ -853,6 +853,10 @@ export default {
   margin: auto;
 }
 
+.problem-desc {
+  flex: 0 0 70%;
+}
+
 .asking-box {
   background: rgba($color: #000000, $alpha: 0.86);
   border-radius: 10px;
@@ -900,8 +904,10 @@ export default {
   position: absolute;
   right: 10%;
 
-  @media #{$mq-mini-mobile} {
+  @media #{$mq-tablet} {
     position: relative;
+    width: 100%;
+    right: 0;
     //align-items: center;
   }
 }

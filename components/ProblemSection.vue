@@ -139,7 +139,7 @@ export default {
         },
         {
           id: 2,
-          name: "พื้นที่สีเขียว และสวนสาธารณะ",
+          name: "พื้นที่สีเขียวและสวนสาธารณะ",
           img: require("~/assets/images/problem/problem_2.png"),
           color: "#6ADC7B",
           dimemsion: "พื้นที่สวนสาธารณะ พื้นที่สีเขียวกระจายทั่วพื้นที่",
@@ -148,7 +148,7 @@ export default {
         },
         {
           id: 3,
-          name: "การทุจริต คอร์รัปชั่น",
+          name: "การทุจริตคอร์รัปชั่น",
           img: require("~/assets/images/problem/problem_3.png"),
           color: "#FF8310",
           dimemsion: "การเมืองสีขาว",
@@ -158,7 +158,7 @@ export default {
         },
         {
           id: 4,
-          name: "สาธารณูปโภคพื้นฐาน ให้ผู้พิการ",
+          name: "สาธารณูปโภคพื้นฐานให้ผู้พิการ",
           img: require("~/assets/images/problem/problem_4.png"),
           color: "#FF583E",
           dimemsion:
@@ -169,7 +169,7 @@ export default {
         },
         {
           id: 5,
-          name: "ระบบสารสนเทศ ในการให้บริการ ประชาชน",
+          name: "ระบบสารสนเทศในการให้บริการประชาชน",
           img: require("~/assets/images/problem/problem_5.png"),
           color: "#D170FF",
           dimemsion: "เทคโนโลยีสารสนเทศ",
@@ -179,7 +179,7 @@ export default {
         },
         {
           id: 6,
-          name: "แหล่งท่องเที่ยว เสื่อมโทรม",
+          name: "แหล่งท่องเที่ยวเสื่อมโทรม",
           img: require("~/assets/images/problem/problem_6.png"),
           color: "#C3DA14",
           dimemsion: "\nเมืองแห่งนักท่องเที่ยวระดับโลก",
@@ -189,7 +189,7 @@ export default {
         },
         {
           id: 7,
-          name: "การจัดระบียบ ความหนาแน่น ของเมือง",
+          name: "การจัดระบียบความหนาแน่นของเมือง",
           img: require("~/assets/images/problem/problem_7.png"),
           color: "#FF9FDF",
           dimemsion: "\nกรุงเทพมหานครเติบโตอย่างเป็นระเบียบตามผังเมืองรวม",

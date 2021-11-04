@@ -169,11 +169,6 @@
         </div>
 
         <h1 class="header-2 mt-5 font-weight-bold">Partners</h1>
-        <p class="body-text">
-          ผศ.ดร.ทวิดา กมลเวชช ที่ปรึกษาการพัฒนาการจัดทำแผนกรุงเทพมหานคร
-        </p>
-
-        <h1 class="header-2 mt-5 font-weight-bold">Partners</h1>
         <ul class="body-text">
           <li>Good Society Thailand</li>
           <li>Glow Story</li>

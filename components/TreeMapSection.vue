@@ -77,7 +77,7 @@ export default {
 
 <style lang="scss" scoped>
 .h-auto-mobile {
-  @media #{$mq-mobile} {
+  @media #{$mq-small-laptop} {
     height: auto;
   }
 }

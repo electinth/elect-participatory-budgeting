@@ -7,7 +7,7 @@
       </p>
 
       <b-tabs v-model="tabIndex" class="mx-auto tab-project">
-        <b-tab active title-link-class="tab-1">
+        <b-tab active title-link-class="tab-1" @click="resetSlide(1)">
           <template #title>
             <img :src="logo_project_1" width="24" alt="" />
             <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 0">
@@ -15,7 +15,7 @@
             </p>
           </template>
           <div class="p-4">
-            <VueSlickCarousel v-bind="slickOptions">
+            <VueSlickCarousel v-bind="slickOptions" ref="slide-1">
               <div
                 v-for="(item, index) in project.filter(
                   (x) => x.dimension == 'มหานครปลอดภัย'
@@ -82,7 +82,7 @@
           </div>
         </b-tab>
 
-        <b-tab title-link-class="tab-2">
+        <b-tab title-link-class="tab-2" @click="resetSlide(2)">
           <template #title>
             <img :src="logo_project_2" width="24" alt="" />
             <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 1">
@@ -90,7 +90,7 @@
             </p>
           </template>
           <div class="p-4">
-            <VueSlickCarousel v-bind="slickOptions">
+            <VueSlickCarousel v-bind="slickOptions" ref="slide-2">
               <div
                 v-for="(item, index) in project.filter(
                   (x) => x.dimension == 'มหานครสีเขียวสะดวกสบาย'
@@ -157,7 +157,7 @@
           </div>
         </b-tab>
 
-        <b-tab title-link-class="tab-3">
+        <b-tab title-link-class="tab-3" @click="resetSlide(3)">
           <template #title>
             <img :src="logo_project_3" width="24" alt="" />
             <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 2">
@@ -165,7 +165,7 @@
             </p>
           </template>
           <div class="p-4">
-            <VueSlickCarousel v-bind="slickOptions">
+            <VueSlickCarousel v-bind="slickOptions" ref="slide-3">
               <div
                 v-for="(item, index) in project.filter(
                   (x) => x.dimension == 'มหานครสำหรับทุกคน'
@@ -232,7 +232,7 @@
           </div>
         </b-tab>
 
-        <b-tab title-link-class="tab-4">
+        <b-tab title-link-class="tab-4" @click="resetSlide(4)">
           <template #title>
             <img :src="logo_project_4" width="24" alt="" />
             <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 3">
@@ -240,7 +240,7 @@
             </p>
           </template>
           <div class="p-4">
-            <VueSlickCarousel v-bind="slickOptions">
+            <VueSlickCarousel v-bind="slickOptions" ref="slide-4">
               <div
                 v-for="(item, index) in project.filter(
                   (x) => x.dimension == 'มหานครกระชับ'
@@ -307,7 +307,7 @@
           </div>
         </b-tab>
 
-        <b-tab title-link-class="tab-5">
+        <b-tab title-link-class="tab-5" @click="resetSlide(5)">
           <template #title>
             <img :src="logo_project_5" width="24" alt="" />
             <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 4">
@@ -315,7 +315,7 @@
             </p>
           </template>
           <div class="p-4">
-            <VueSlickCarousel v-bind="slickOptions">
+            <VueSlickCarousel v-bind="slickOptions" ref="slide-5">
               <div
                 v-for="(item, index) in project.filter(
                   (x) => x.dimension == 'มหานครประชาธิปไตย'
@@ -382,7 +382,7 @@
           </div>
         </b-tab>
 
-        <b-tab title-link-class="tab-6">
+        <b-tab title-link-class="tab-6" @click="resetSlide(6)">
           <template #title>
             <img :src="logo_project_6" width="24" alt="" />
             <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 5">
@@ -390,7 +390,7 @@
             </p>
           </template>
           <div class="p-4">
-            <VueSlickCarousel v-bind="slickOptions">
+            <VueSlickCarousel v-bind="slickOptions" ref="slide-6">
               <div
                 v-for="(item, index) in project.filter(
                   (x) => x.dimension == 'มหานครแห่งเศรษฐกิจและการเรียนรู้'
@@ -457,7 +457,7 @@
           </div>
         </b-tab>
 
-        <b-tab title-link-class="tab-7">
+        <b-tab title-link-class="tab-7" @click="resetSlide(7)">
           <template #title>
             <img :src="logo_project_7" width="24" alt="" />
             <p class="m-0 text-3 d-inline-block" v-if="tabIndex == 6">
@@ -465,7 +465,7 @@
             </p>
           </template>
           <div class="p-4">
-            <VueSlickCarousel v-bind="slickOptions">
+            <VueSlickCarousel v-bind="slickOptions" ref="slide-7">
               <div
                 v-for="(item, index) in project.filter(
                   (x) => x.dimension == 'การบริหารจัดการเมืองมหานคร'
@@ -581,22 +581,35 @@ export default {
         infinite: false,
         responsive: [
           {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            },
+          },
+          {
             breakpoint: 769,
             settings: {
               slidesToShow: 2,
+              slidesToScroll: 1,
             },
           },
           {
             breakpoint: 600,
             settings: {
               slidesToShow: 1,
+              slidesToScroll: 1,
             },
           },
         ],
       },
     };
   },
-  methods: {},
+  methods: {
+    resetSlide(id) {
+      this.$refs["slide-" + id].goTo(0);
+    },
+  },
 };
 </script>
 
@@ -721,7 +734,7 @@ a {
 }
 
 .tab-project {
-  width: 1000px;
+  max-width: 1000px;
   @media #{$mq-mobile} {
     width: 100%;
   }
