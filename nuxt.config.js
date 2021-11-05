@@ -65,9 +65,9 @@ export default {
   // generate: {
   //   dir: 'dist/booksonshelf',
   // },
-  // router: {
-  //   base: "/participatory-budgeting/"
-  // },
+  router: {
+    base: "/participatory-budgeting/"
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
