@@ -276,6 +276,7 @@ export default {
 
   @media #{$mq-mini-mobile} {
     flex-direction: column;
+    padding: 40px;
   }
 }
 </style>

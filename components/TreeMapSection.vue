@@ -19,7 +19,9 @@
           </p>
 
           <b-row class="flex-column flex-lg-row">
-            <b-col><img :src="budget_bkk" alt="" class="budget_bkk" /></b-col>
+            <b-col
+              ><img :src="budget_bkk" alt="" class="budget_bkk mb-3 mb-xl-0"
+            /></b-col>
             <b-col
               ><div class="white-box mt-3 mt-lg-0">
                 <p class="text-1 m-0">
@@ -97,6 +99,12 @@ export default {
   background: white;
   padding: 20px;
   text-align: left;
+}
+
+.budget_bkk {
+  @media #{$mq-mobile} {
+    width: 100%;
+  }
 }
 
 .budget_bkk {

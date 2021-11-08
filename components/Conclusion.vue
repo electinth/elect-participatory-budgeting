@@ -86,7 +86,7 @@
         />
       </div>
     </div>
-    <div class=" bg-main text-center">
+    <div class="bg-main text-center">
       <p class="text-1 w-sm-50 mx-auto">
         โปรเจกต์นี้ทดลองสร้าง “งบประมาณแบบมีส่วนร่วม” ให้กับจังหวัด/เมืองต่าง ๆ
         ในประเทศไทย โดยเริ่มจากกรุงเทพมหานครเป็นต้นแบบพัฒนาไปสู่เมืองอื่น....
@@ -97,9 +97,14 @@
       <div class="accordion" role="tablist">
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-button block v-b-toggle.accordion-1 class="text-1 btn-accordion"
-              >งบประมาณแบบมีส่วนร่วม คืออะไร?</b-button
-            >
+            <b-button block v-b-toggle.accordion-1 class="text-1 btn-accordion d-flex justify-content-between"
+              >งบประมาณแบบมีส่วนร่วม คืออะไร?
+              <span class="when-closed">
+                <font-awesome-icon icon="chevron-down" />
+              </span>
+              <span class="when-opened">
+                <font-awesome-icon icon="chevron-up" /> </span
+            ></b-button>
           </b-card-header>
           <b-collapse
             id="accordion-1"
@@ -120,8 +125,13 @@
 
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-button block v-b-toggle.accordion-2 class="text-1 btn-accordion"
-              >ทำอย่างไรจะเป็นงบประมาณแบบมีส่วนร่วม?</b-button
+            <b-button block v-b-toggle.accordion-2 class="text-1 btn-accordion d-flex justify-content-between"
+              >ทำอย่างไรจะเป็นงบประมาณแบบมีส่วนร่วม? <span class="when-closed">
+                <font-awesome-icon icon="chevron-down" />
+              </span>
+              <span class="when-opened">
+                <font-awesome-icon icon="chevron-up" /> </span
+            ></b-button
             >
           </b-card-header>
           <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
@@ -145,8 +155,13 @@
 
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-button block v-b-toggle.accordion-3 class="text-1 btn-accordion"
-              >ตัวอย่างงบประมาณแบบมีส่วนร่วมที่เกิดขึ้นแล้ว</b-button
+            <b-button block v-b-toggle.accordion-3 class="text-1 btn-accordion d-flex justify-content-between"
+              >ตัวอย่างงบประมาณแบบมีส่วนร่วมที่เกิดขึ้นแล้ว <span class="when-closed">
+                <font-awesome-icon icon="chevron-down" />
+              </span>
+              <span class="when-opened">
+                <font-awesome-icon icon="chevron-up" /> </span
+            ></b-button
             >
           </b-card-header>
           <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
@@ -326,5 +341,10 @@ pre {
   font-family: "KondolarThai", serif;
   font-weight: bold;
   font-size: 19px;
+}
+
+.collapsed > .when-opened,
+:not(.collapsed) > .when-closed {
+  display: none;
 }
 </style>

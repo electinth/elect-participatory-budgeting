@@ -54,7 +54,7 @@
                   width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 w-75">
+                <p class="text-4 mb-0 mt-2">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
 
@@ -70,11 +70,11 @@
                     }}</span>
                     <span v-if="item.used != '-'">บาท</span>
                   </p>
-                  <p class="text-4 m-0 w-75">
+                  <p class="text-4 m-0">
                     <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                   </p>
                   <div class="text-4 m-0">
-                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                    <a :href="item.link" class="" target="_blank">ลิงค์</a>
                   </div>
                 </div>
               </div>
@@ -129,7 +129,7 @@
                   width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 w-75">
+                <p class="text-4 mb-0 mt-2 ">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
 
@@ -145,11 +145,11 @@
                     }}</span>
                     <span v-if="item.used != '-'">บาท</span>
                   </p>
-                  <p class="text-4 m-0 w-75">
+                  <p class="text-4 m-0 ">
                     <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                   </p>
                   <div class="text-4 m-0">
-                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                    <a :href="item.link" class="" target="_blank">ลิงค์</a>
                   </div>
                 </div>
               </div>
@@ -204,7 +204,7 @@
                   width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 w-75">
+                <p class="text-4 mb-0 mt-2 ">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
 
@@ -220,11 +220,11 @@
                     }}</span>
                     <span v-if="item.used != '-'">บาท</span>
                   </p>
-                  <p class="text-4 m-0 w-75">
+                  <p class="text-4 m-0 ">
                     <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                   </p>
                   <div class="text-4 m-0">
-                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                    <a :href="item.link" class="" target="_blank">ลิงค์</a>
                   </div>
                 </div>
               </div>
@@ -279,7 +279,7 @@
                   width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 w-75">
+                <p class="text-4 mb-0 mt-2 ">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
 
@@ -295,11 +295,11 @@
                     }}</span>
                     <span v-if="item.used != '-'">บาท</span>
                   </p>
-                  <p class="text-4 m-0 w-75">
+                  <p class="text-4 m-0 ">
                     <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                   </p>
                   <div class="text-4 m-0">
-                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                    <a :href="item.link" class="" target="_blank">ลิงค์</a>
                   </div>
                 </div>
               </div>
@@ -354,7 +354,7 @@
                   width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 w-75">
+                <p class="text-4 mb-0 mt-2 ">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
 
@@ -370,11 +370,11 @@
                     }}</span>
                     <span v-if="item.used != '-'">บาท</span>
                   </p>
-                  <p class="text-4 m-0 w-75">
+                  <p class="text-4 m-0 ">
                     <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                   </p>
                   <div class="text-4 m-0">
-                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                    <a :href="item.link" class="" target="_blank">ลิงค์</a>
                   </div>
                 </div>
               </div>
@@ -429,7 +429,7 @@
                   width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 w-75">
+                <p class="text-4 mb-0 mt-2 ">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
 
@@ -445,11 +445,11 @@
                     }}</span>
                     <span v-if="item.used != '-'">บาท</span>
                   </p>
-                  <p class="text-4 m-0 w-75">
+                  <p class="text-4 m-0 ">
                     <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                   </p>
                   <div class="text-4 m-0">
-                    <a :href="item.link" class="w-75" target="_blank">ลิงค์</a>
+                    <a :href="item.link" class="" target="_blank">ลิงค์</a>
                   </div>
                 </div>
               </div>
@@ -493,7 +493,7 @@
                     alt=""
                   />
                 </div>
-                <p class="text-1 font-weight-bold w-75">{{ item.name }}</p>
+                <p class="text-1 font-weight-bold ">{{ item.name }}</p>
                 <img
                   :src="
                     require(`@/assets/images/section_project_bkk/issue_7/${item.path}`)
@@ -501,7 +501,7 @@
                   width="75%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 w-75">
+                <p class="text-4 mb-0 mt-2 ">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
                 <p class="text-4 m-0">
@@ -515,15 +515,12 @@
                   }}</span>
                   <span v-if="item.used != '-'">บาท</span>
                 </p>
-                <p class="text-4 m-0 w-75">
+                <p class="text-4 m-0 ">
                   <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                 </p>
-                <div class="text-4 m-0">
-                  <b>ลิงค์</b> :
-                  <a :href="item.link" class="w-75" target="_blank">{{
-                    item.link
-                  }}</a>
-                </div>
+             <div class="text-4 m-0">
+                    <a :href="item.link" class="" target="_blank">ลิงค์</a>
+                  </div>
               </div>
             </VueSlickCarousel>
           </div>
@@ -579,6 +576,7 @@ export default {
         slidesToScroll: 3,
         dots: true,
         infinite: false,
+        centerPadding: '20px',
         responsive: [
           {
             breakpoint: 1200,
@@ -673,13 +671,16 @@ export default {
   }
 }
 
+.nav-tabs .nav-link {
+  border-color: #000 !important;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   @media #{$mq-mini-mobile} {
     display: flex;
     align-items: center;
     height: 100%;
-    border: 0;
 
     p {
       white-space: nowrap;

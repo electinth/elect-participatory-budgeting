@@ -25,7 +25,7 @@
         แต่ทุกวันนี้...กรุงเทพมหานครก็ยังดูไม่เหมือนเมืองในฝันที่เราวาดไว้ใช่ไหม?<br />
         แล้วอะไรล่ะที่ยังเป็นปัญหาที่ค้างคาใจคุณอยู่ทุกวันนี้
       </p>
-      <p class="text-3">(คลิกเพื่อเลือกปัญหา)</p>
+      <p class="text-3 sub">(คลิกเพื่อเลือกปัญหา)</p>
 
       <div class="d-flex justify-content-center mt-5 problem-box">
         <div v-for="(item, i) in problems.filter((x) => x.id < 5)" :key="i">
@@ -66,7 +66,14 @@
       </div>
     </div>
     <div
-      class="h-100vh result d-flex justify-content-center align-items-center"
+      class="
+        h-100vh
+        result
+        d-flex
+        flex-column
+        justify-content-center
+        align-items-center
+      "
       v-if="isShow"
       id="result-box"
     >
@@ -82,7 +89,7 @@
           ยังเป็นปัญหาที่ยังค้างคาใจคุณอยู่
         </p>
         <p class="text-4 m-0">
-          กรุงเทพมหานครวางแผนแก้ไขประเด็นนี้เช่นกัน เพื่อกรุงเทพมหานครเป็น
+          กรุงเทพมหานครวางแผนแก้ไขประเด็นนี้เช่นกันเพื่อกรุงเทพมหานครเป็น
         </p>
         <p class="text-2 m-0 font-weight-bold">{{ results[0].side }}</p>
         <div class="header-3 header-box my-3">
@@ -90,15 +97,20 @@
         </div>
 
         <div class="text-2 institute-box">
-          หน่วยงาน <b> “ต้องรับผิดชอบ ในการแก้ปัญหานี้”</b> คือ
-          <!-- <ul class="text-left">
-            <li>สำนักการระบายน้ำ</li>
-            <li>สำนักสิ่งแวดล้อม</li>
-            <li>สำนักงานเขต</li>
-          </ul> -->
-          {{ results[0].institute }}
+          หน่วยงานที่ <b> “ต้องรับผิดชอบในการแก้ปัญหานี้”</b> คือ
+          <ul class="text-left" v-if="results[0].institute.length > 0">
+            <li v-for="(item,i) in results[0].institute" :key="i">{{item.name}}</li>
+          </ul>
         </div>
       </div>
+
+      <img
+        :src="arrow_desktop"
+        alt=""
+        class="mt-5 d-none d-md-block"
+        width="75"
+      />
+      <img :src="arrow_mobile" alt="" class="mt-5 d-block d-md-none" />
     </div>
   </div>
 </template>
@@ -109,13 +121,15 @@ export default {
   components: {},
   data() {
     return {
-      year_chart: require("~/assets/images/year_chart.png"),
-      year_chart_mobile: require("~/assets/images/year_chart_mobile.png"),
+      year_chart: require("~/assets/images/desktop_timeline.svg"),
+      year_chart_mobile: require("~/assets/images/mobile_timeline.svg"),
       sample: require("~/assets/images/sample.png"),
       illus_open_01: require("~/assets/images/illus_open_01.png"),
       color: "#FFF",
       title: "น้ำเน่าเสีย ขยะ ฝุ่นละออง",
       pic: require("~/assets/images/problem/problem_1.png"),
+      arrow_desktop: require("~/assets/images/arrow_desktop.gif"),
+      arrow_mobile: require("~/assets/images/arrow_mobile.gif"),
       results: [
         {
           color: "#FFF",
@@ -134,7 +148,17 @@ export default {
           img: require("~/assets/images/problem/problem_1.png"),
           color: "#538DFF",
           dimemsion: "ปลอดมลพิษ",
-          institute: '"สำนักการระบายน้ำ \nสำนักสิ่งแวดล้อม\nสำนักงานเขต"',
+          institute: [
+            {
+              name: "สำนักการระบายน้ำ",
+            },
+            {
+              name: "สำนักสิ่งแวดล้อม",
+            },
+             {
+              name: "สำนักงานเขต",
+            },
+          ],
           side: "มหานครปลอดภัย",
         },
         {
@@ -143,8 +167,18 @@ export default {
           img: require("~/assets/images/problem/problem_2.png"),
           color: "#6ADC7B",
           dimemsion: "พื้นที่สวนสาธารณะ พื้นที่สีเขียวกระจายทั่วพื้นที่",
-          institute: "สำนักสิ่งแวดล้อม \nสำนักผังเมือง \nสำนักงานเขต",
-          side: "\nมหานครสีเขียวสะดวกสบาย",
+          institute: [
+            {
+              name: "สำนักสิ่งแวดล้อม",
+            },
+            {
+              name: "สำนักผังเมือง",
+            },
+            {
+              name: "สำนักงานเขต",
+            },
+          ],
+          side: "มหานครสีเขียวสะดวกสบาย",
         },
         {
           id: 3,
@@ -152,9 +186,15 @@ export default {
           img: require("~/assets/images/problem/problem_3.png"),
           color: "#FF8310",
           dimemsion: "การเมืองสีขาว",
-          institute:
-            "สำนักงานคณะกรรมการข้าราชการกรุงเทพมหานคร \nสำนักปลัดกรุงเทพมหานคร",
-          side: "\nมหานครประชาธิปไตย",
+          institute: [
+            {
+              name: "สำนักงานคณะกรรมการข้าราชการกรุงเทพมหานคร",
+            },
+            {
+              name: "สำนักปลัดกรุงเทพมหานคร",
+            },
+          ],
+          side: "มหานครประชาธิปไตย",
         },
         {
           id: 4,
@@ -163,9 +203,24 @@ export default {
           color: "#FF583E",
           dimemsion:
             "การจัดสิ่งอำนวยความสะดวก สวัสดิการและการสงเคราะห์ และการดูแลสุขภาพให้กับผู้สูงอายุคนพิการ และผู้ด้อยโอกาส",
-          institute:
-            "หน่วยงานในสังกัด กทม. ได้แก่ \nสำนักพัฒนาสังคม \nสำนักอนามัย \nสำนักการโยธา \nสำนักงานเขต\n\nหน่วยงานนอกสังกัด กทม. ได้แก่ กระทรวงแรงงานกระทรวงพัฒนาสังคมและความมั่นคงของมนุษย์กรมโยธาธิการ",
-          side: "\nมหานครสำหรับทุกคน",
+          institute: [
+            {
+              name: "สำนักพัฒนาสังคม",
+            },
+            {
+              name: "สำนักอนามัย",
+            },
+            {
+              name: "สำนักการโยธา",
+            },
+            {
+              name: "สำนักงานเขต",
+            },
+            {
+              name: "กระทรวงแรงงานกระทรวงพัฒนาสังคมและความมั่นคงของมนุษย์กรมโยธาธิการ",
+            },
+          ],
+          side: "มหานครสำหรับทุกคน",
         },
         {
           id: 5,
@@ -173,28 +228,53 @@ export default {
           img: require("~/assets/images/problem/problem_5.png"),
           color: "#D170FF",
           dimemsion: "เทคโนโลยีสารสนเทศ",
-          institute:
-            "สำนักยุทธศาสตร์และประเมินผล หน่วยงานด้านไอทีภายในสำนักและเขตต่าง ๆ ",
-          side: "\nการบริหารจัดการเมืองมหานคร",
+          institute: [
+            {
+              name: "สำนักยุทธศาสตร์และประเมินผล",
+            },
+            {
+              name: "หน่วยงานด้านไอทีภายในสำนักและเขตต่าง ๆ",
+            },
+          ],
+          side: "การบริหารจัดการเมืองมหานคร",
         },
         {
           id: 6,
           name: "แหล่งท่องเที่ยวเสื่อมโทรม",
           img: require("~/assets/images/problem/problem_6.png"),
           color: "#C3DA14",
-          dimemsion: "\nเมืองแห่งนักท่องเที่ยวระดับโลก",
-          institute:
-            "หน่วยงานในสังกัด กทม. ได้แก่ \nสำนักวัฒนธรรม กีฬาและการท่องเที่ยว \nสำนักยุทธศาสตร์และประเมินผล\n\nส่วนราชการ/หน่วยงานภายนอก กทม. ได้แก่ \nกรมการท่องเที่ยว\nการท่องเที่ยวแห่งประเทศไทย\n",
-          side: "\nมหานครแห่งเศรษฐกิจและเรียนรู้",
+          dimemsion: "เมืองแห่งนักท่องเที่ยวระดับโลก",
+          institute: [
+            {
+              name: "สำนักวัฒนธรรม กีฬาและการท่องเที่ยว ",
+            },
+            {
+              name: "สำนักยุทธศาสตร์และประเมินผล",
+            },
+            {
+              name: "กรมการท่องเที่ยว",
+            },
+            {
+              name: "การท่องเที่ยวแห่งประเทศไทย",
+            },
+          ],
+          side: "มหานครแห่งเศรษฐกิจและเรียนรู้",
         },
         {
           id: 7,
           name: "การจัดระบียบความหนาแน่นของเมือง",
           img: require("~/assets/images/problem/problem_7.png"),
           color: "#FF9FDF",
-          dimemsion: "\nกรุงเทพมหานครเติบโตอย่างเป็นระเบียบตามผังเมืองรวม",
-          institute: "สำนักผังเมือง สำนักงานเขต",
-          side: "\nมหานครกระชับ",
+          dimemsion: "กรุงเทพมหานครเติบโตอย่างเป็นระเบียบตามผังเมืองรวม",
+          institute: [
+            {
+              name: "สำนักผังเมือง",
+            },
+            {
+              name: "สำนักงานเขต",
+            },
+          ],
+          side: "มหานครกระชับ",
         },
       ],
     };
@@ -221,9 +301,13 @@ export default {
 <style lang="scss" scoped>
 .img-mobile {
   margin: auto;
-  @media #{$mq-mini-mobile} {
+  @media #{$mq-mobile} {
     width: 100%;
   }
+}
+
+.sub {
+  color: #737373;
 }
 
 .bg-main {
@@ -280,7 +364,7 @@ export default {
 .institute-box {
   background: #f4f4f4;
   border: 1px solid #000000;
-  padding: 10px 50px;
+  padding: 10px;
 }
 
 .problem-name {
@@ -330,5 +414,8 @@ export default {
     var(--varName) 0%,
     rgba(83, 141, 255, 0) 100%
   );
+}
+.sub {
+  color: #737373;
 }
 </style>

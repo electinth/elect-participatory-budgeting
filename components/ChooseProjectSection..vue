@@ -3,10 +3,11 @@
     <div class="p-sm-5 p-3 text-center" v-if="isShowChooseProject">
       <p class="header-3">เลือกโครงการที่อยากพัฒนาเลือกได้ 3 โครงการ</p>
       <b-row class="justify-content-center">
-        <b-col cols="2"
-          ><img :src="illus_section_05" alt="" class="h-100vh"
-        /></b-col>
-        <b-col cols="8" sm="6">
+        <b-col cols="2" class="d-none d-sm-block">
+          <!-- <img :src="illus_section_05" alt="" class="h-100vh" /> -->
+          <div class="coin-img"></div>
+        </b-col>
+        <b-col cols="12" sm="8">
           <div
             class="choice mb-3 mx-auto"
             :class="{ islimit: isLimit && !item.isSelected }"
@@ -23,28 +24,34 @@
             <p class="header-3 m-0 font-weight-bold">{{ item.name }}</p>
             <p class="text-4 m-0">({{ item.desc }})</p>
           </div>
-
-          <button
-            class="sent-comment text-3"
-            :disabled="selected_project.length == 0"
-            @click="sendData"
-          >
-            ส่งความคิดเห็น
-          </button>
         </b-col>
-        <b-col cols="2"
-          ><img :src="illus_section_05" alt="" class="h-100vh"
-        /></b-col>
+        <b-col cols="2" class="d-none d-sm-block">
+          <div class="coin-img"></div>
+        </b-col>
       </b-row>
+
+      <div class="text-center">
+        <button
+          class="sent-comment text-3"
+          :disabled="selected_project.length == 0"
+          @click="sendData"
+        >
+          ส่งความคิดเห็น
+        </button>
+        <img
+          :src="illus_section_05_horizontal"
+          alt=""
+          class="w-100 d-block d-sm-none my-3"
+        />
+      </div>
     </div>
 
     <div
       class="h-100vh bg-main p-5 loading-div"
       :class="{ 'd-none': !isShowLoading }"
-      :test="isShowLoading"
     >
       <div class="d-flex justify-content-center h-100 position-relative">
-        <div class="w-50"><lottie :options="defaultOptions"></lottie></div>
+        <div class="w-sm-50"><lottie :options="defaultOptions"></lottie></div>
       </div>
       <div class="section-text text-center">
         <h3 class="header-2 font-weight-bold">เรากำลังส่งข้อมูลของคุณ...</h3>
@@ -55,9 +62,9 @@
       </div>
     </div>
 
-    <div class="h-100vh p-3 p-sm-5 text-center h-auto-mobile">
+    <div class="p-3 p-sm-5 text-center h-auto-mobile" id="vote-result">
       <p class="header-3 m-0">ไอเดียโดนใจชาวกรุงเทพฯ ผู้ใช้แพลตฟอร์มนี้</p>
-      <p class="text-2">(เลือกดูผลโหวตโครงการจากผู้เล่นทั้งหมด)</p>
+      <p class="text-2 sub">(เลือกดูผลโหวตโครงการจากผู้เล่นทั้งหมด)</p>
 
       <div class="d-flex justify-content-center">
         <div class="d-flex mx-1 flex-column flex-sm-row text-left">
@@ -81,8 +88,8 @@
 
       <div v-for="(item, index) in project" :key="index" class="chart-box">
         <div class="d-flex text px-3">
-          <p class="text-1 m-0">{{ item.name }}</p>
-          <p class="text-1 m-0">
+          <p class="text-1 my-auto">{{ item.name }}</p>
+          <p class="text-1 my-auto">
             ({{
               project_count[index].count != 0
                 ? parseInt(100 / project_count[index].count) + "%"
@@ -121,6 +128,49 @@
           <div class="bg-orange chart" style="width: 0.18%"></div>
           <div class="bg-green-2 chart" style="width: 9.26%"></div>
           <div class="bg-purple chart" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div
+        class="
+          d-flex
+          flex-column flex-sm-row
+          text-left
+          mt-5
+          justify-content-center
+        "
+      >
+        <div>
+          <div class="d-flex align-items-center">
+            <div class="bg-blue project-hover mr-3"></div>
+            <p class="text-3 m-0">มหานครปลอดภัย</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="bg-green project-hover mr-3"></div>
+            <p class="text-3 m-0">มหานครสีเขียวสะดวกสบาย</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="bg-red project-hover mr-3"></div>
+            <p class="text-3 m-0">มหานครสำหรับทุกคน</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="bg-pink project-hover mr-3"></div>
+            <p class="text-3 m-0">มหานครกระชับ</p>
+          </div>
+        </div>
+        <div class="ml-0 ml-md-4">
+          <div class="d-flex align-items-center">
+            <div class="bg-orange project-hover mr-3"></div>
+            <p class="text-3 m-0">มหานครประชาธิปไตย</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="bg-green-2 project-hover mr-3"></div>
+            <p class="text-3 m-0">มหานครแห่งเศรษฐกิจและเรียนรู้</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="bg-purple project-hover mr-3"></div>
+            <p class="text-3 m-0">การบริหารจัดการเมืองมหานคร</p>
+          </div>
         </div>
       </div>
 
@@ -247,6 +297,22 @@
         </p>
       </div>
     </b-modal>
+
+    <b-modal
+      id="modal-success"
+      ref="success-modal"
+      title="Second Modal"
+      centered
+      hide-footer
+      hide-header
+      hide-backdrop
+      no-close-on-backdrop
+    >
+      <div class="asking-box p-4 text-center" style="min-height: auto">
+        <img :src="icon_info" alt="" width="100" />
+        <p class="text-1 text-center mt-3">ส่งสำเร็จ</p>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -274,6 +340,7 @@ export default {
       district: null,
       comment: "",
       illus_section_05: require("~/assets/images/illus_section_05.svg"),
+      illus_section_05_horizontal: require("~/assets/images/illus_section_05_horizontal.svg"),
       icon_info: require("~/assets/images/icon_info.svg"),
       icon_idea: require("~/assets/images/icon_idea.svg"),
       project: [
@@ -388,7 +455,7 @@ export default {
         },
         {
           value: 3,
-          text: "คนต่างจังหวัด",
+          text: "คนจังหวัดอื่นๆ",
         },
       ],
       user_info: [
@@ -453,7 +520,7 @@ export default {
       }
     },
     async getData() {
-      this.isShowLoading = false;
+      this.isShowLoading = true;
 
       this.project_count.forEach((element, i) => {
         element.count = 0;
@@ -542,8 +609,7 @@ export default {
       }
     },
     async sendData() {
-      this.isShowLoading = true;
-      this.isShowChooseProject = false;
+      this.isShowLoading = false;
 
       var array = [];
       var arrayForExcel = [];
@@ -630,8 +696,13 @@ export default {
 
       this.$cookies.set("isVoted", true);
 
+      this.isLimit = true;
+
       setTimeout(() => {
         this.getData();
+
+        var element = document.getElementById("vote-result");
+        element.scrollIntoView();
       }, 3000);
     },
     async sendComment() {
@@ -667,12 +738,16 @@ export default {
         ])
         .then((response) => {
           console.log("send");
+
+          this.$refs["success-modal"].show();
+          setTimeout(() => {
+            this.$refs["comment-modal"].hide();
+            this.$refs["success-modal"].hide();
+          }, 2000);
         })
         .catch((error) => {
           console.log(error);
         });
-
-      this.$refs["comment-modal"].hide();
     },
     async onChangeDistrict(val) {
       this.user_info[0].district = val;
@@ -827,6 +902,14 @@ export default {
   }
 }
 
+.coin-img {
+  background-image: url("@/assets/images/illus_section_05.svg");
+  height: 100%;
+  background-repeat: no-repeat repeat;
+  background-size: contain;
+  background-position: center;
+}
+
 .choice {
   background-color: #e5e5e5;
   border-radius: 10px;
@@ -901,13 +984,18 @@ export default {
     justify-content: space-between;
     width: 100%;
 
+    @media #{$mq-tablet} {
+      top: 0;
+    }
+
     p:first-child {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      @media #{$mq-tablet} {
-        width: 50%;
+      // white-space: nowrap;
+      // text-overflow: ellipsis;
+      @media #{$mq-mini-mobile} {
+        width: 75%;
+        font-size: 11px;
       }
-      overflow: hidden;
+      //overflow: hidden;
     }
   }
 
@@ -954,6 +1042,9 @@ export default {
   border: 1px solid #000000;
   border-radius: 10px;
   min-height: 340px;
+  @media #{$mq-mini-mobile} {
+    min-height: auto;
+  }
 }
 
 .has-house-reg-btn,
@@ -969,5 +1060,15 @@ export default {
   @media #{$mq-mobile} {
     width: 100%;
   }
+}
+
+.project-hover {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+.sub {
+  color: #737373;
 }
 </style>

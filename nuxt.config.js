@@ -125,6 +125,7 @@ export default {
       solid: [
         "faStar",
         "faChevronDown",
+        "faChevronUp",
         "faArrowDown",
         "faArrowRight",
         "faTimes"

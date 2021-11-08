@@ -42,7 +42,7 @@ export default {
   padding: 96px 139px;
   text-align: center;
 
-  @media #{$mq-mini-mobile} {
+  @media #{$mq-mobile} {
     padding: 36px 10px;
   }
 }

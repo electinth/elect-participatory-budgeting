@@ -92,7 +92,7 @@ export default {
         {
           id: "0",
           en_name: "upcountry",
-          th_name: "ต่างจังหวัด",
+          th_name: "จังหวัดอื่นๆ",
           zipcode: "00000",
         },
       {
@@ -408,13 +408,13 @@ export default {
         (x) =>
           x.th_name != "เลือกพื้นที่ของคุณ" &&
           x.th_name != "ทุกเขต" &&
-          x.th_name != "ต่างจังหวัด"
+          x.th_name != "จังหวัดอื่นๆ"
       );
     else if (this.type == 2)
       this.districts = this.districts.filter(
         (x) =>
           x.th_name != "กรุณาเลือกเขต" &&
-          x.th_name != "ต่างจังหวัด" &&
+          x.th_name != "จังหวัดอื่นๆ" &&
           x.th_name != "เลือกพื้นที่ของคุณ"
       );
     else

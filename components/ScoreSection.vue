@@ -10,10 +10,17 @@
         แล้วใน 7 ด้านนี้ที่ผ่านมาคุณคิดว่ากรุงเทพฯ ทำได้ดีมากแค่ไหน
         ลองมาให้คะแนนกันหน่อย
       </p>
-      <p class="text-3">(คลิกเพื่อเลือกให้คะแนน)</p>
+      <p class="text-3 sub">(คลิกเพื่อเลือกให้คะแนน)</p>
 
       <div class="star-box mb-3">
-        <div class="d-flex flex-column mt-2 align-items-center align-content-lg-end">
+        <div
+          class="
+            d-flex
+            flex-column
+            mt-2
+            align-items-center align-content-lg-end
+          "
+        >
           <div class="d-flex mx-2">
             <img :src="star_all" alt="" width="15" class="mr-1" />
             <p class="m-0 text-4">ค่าเฉลี่ยทุกคน</p>
@@ -26,7 +33,11 @@
       </div>
 
       <div class="d-flex justify-content-center book-box">
-        <div v-for="(item, i) in problems.filter((x) => x.id < 5)" :key="i">
+        <div
+          v-for="(item, i) in problems.filter((x) => x.id < 5)"
+          :key="i"
+          class="mb-3"
+        >
           <img
             :src="item.book_img"
             alt=""
@@ -37,7 +48,7 @@
           <div class="d-flex justify-content-center mt-2">
             <div class="d-flex mx-2">
               <img :src="star_all" alt="" width="15" class="mr-1" />
-              <p class="m-0 text-4">
+              <p class="my-0 text-4">
                 {{
                   isNaN(overall[i].plan / overall[i].count)
                     ? 0
@@ -47,7 +58,7 @@
             </div>
             <div class="d-flex mx-2">
               <img :src="star_selected" alt="" width="15" class="mr-1" />
-              <p class="m-0 text-4">
+              <p class="my-0 text-4">
                 {{ stars[i].count != "" ? stars[i].count : 0 }}
               </p>
             </div>
@@ -56,7 +67,11 @@
       </div>
 
       <div class="d-flex justify-content-center mt-3 book-box">
-        <div v-for="(item, i) in problems.filter((x) => x.id > 4)" :key="i">
+        <div
+          v-for="(item, i) in problems.filter((x) => x.id > 4)"
+          :key="i"
+          class="mb-3"
+        >
           <img
             :src="item.book_img"
             alt=""
@@ -94,10 +109,12 @@
         hide-header
         hide-backdrop
         size="xl"
+        content-class="justify-content-center w-auto"
+        class="testes"
       >
         <div>
           <b-row v-if="results[0].color != null" class="book-result">
-            <b-col sm="6"
+            <b-col class="book-box" cols="12" lg="6"
               ><div
                 class="px-3 py-4 result-box ml-auto h-100"
                 :style="{
@@ -171,7 +188,7 @@
                 </div>
               </div></b-col
             >
-            <b-col sm="6">
+            <b-col class="book-box" cols="12" lg="6">
               <div
                 class="result-box px-3 py-4 h-100 justify-content-start"
                 :style="{
@@ -224,10 +241,24 @@
             คุณใช้ชีวิตอยู่ในกรุงเทพมหานครหรือไม่? (เรียน/ทำงาน/พักอาศัย)
           </p>
           <div class="text-center">
-            <button class="isinbkk-btn btn-text-1" @click="onClickBkk(true)">
+            <button
+              class="isinbkk-btn btn-text-1"
+              @click="onClickBkk(true)"
+              :class="{
+                selected:
+                  user_info[0].isinbkk == true && user_info[0].isinbkk != null,
+              }"
+            >
               ใช่
             </button>
-            <button class="isinbkk-btn btn-text-1" @click="onClickBkk(false)">
+            <button
+              class="isinbkk-btn btn-text-1"
+              @click="onClickBkk(false)"
+              :class="{
+                selected:
+                  user_info[0].isinbkk == false && user_info[0].isinbkk != null,
+              }"
+            >
               ไม่ใช่
             </button>
           </div>
@@ -248,12 +279,22 @@
             <button
               class="has-house-reg-btn btn-text-1"
               @click="onClickHouseReg(true)"
+              :class="{
+                selected:
+                  user_info[0].hashousereg == true &&
+                  user_info[0].hashousereg != null,
+              }"
             >
               มี
             </button>
             <button
               class="has-house-reg-btn btn-text-1"
               @click="onClickHouseReg(false)"
+              :class="{
+                selected:
+                  user_info[0].hashousereg == false &&
+                  user_info[0].hashousereg != null,
+              }"
             >
               ไม่มี
             </button>
@@ -272,7 +313,7 @@
     <div class="h-100vh bg-main h-100vh-mobile">
       <div class="d-flex justify-content-center h-100 position-relative">
         <img :src="pic_section_02" alt="" class="pointer mx-3" width="550" />
-        <h3 class="header-3 w-25 section-text">
+        <h3 class="header-3 section-text">
           เพื่อพัฒนาสู่มหานคร 7 ด้านนั้น ลองมาดูกันว่ากรุงเทพฯ ใช้งบประมาณ ปี
           2561 - 2565 กับเรื่องเหล่านั้นยังไงบ้าง?
         </h3>
@@ -731,7 +772,7 @@ export default {
         alert(e);
       }
 
-      //this.onCheckHasCompleteAnswer();
+      this.onCheckHasCompleteAnswer();
     },
     async onCheckHasCompleteAnswer(val) {
       const ref = this.$fire.database.ref("user");
@@ -786,16 +827,28 @@ export default {
 };
 </script>
 
+<style>
+.modal-xl {
+  justify-content: center;
+}
+</style>
+
 <style lang="scss" scoped>
 .bg-main {
   background: #e8e4d8;
   padding: 65px;
   text-align: center;
 
-  @media #{$mq-mini-mobile} {
+  @media #{$mq-tablet} {
     height: auto;
     padding: 30px;
   }
+}
+
+.selected {
+  background: #ccc !important;
+  border-color: #ccc !important;
+  font-weight: 600;
 }
 
 .h-100vh-mobile {
@@ -805,7 +858,7 @@ export default {
 }
 
 .section-text {
-  width: 50%;
+  width: 40%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -823,7 +876,7 @@ export default {
   justify-content: center;
   flex-direction: column;
 
-  @media #{$mq-mini-mobile} {
+  @media #{$mq-mobile} {
     width: 100%;
   }
 
@@ -925,9 +978,29 @@ export default {
 }
 
 .book-result {
-  @media #{$mq-mini-mobile} {
+  @media #{$mq-mobile} {
     height: 500px;
     overflow-y: auto;
+
+    .book-box {
+      padding: 0;
+    }
   }
+}
+
+.book-result::-webkit-scrollbar-track {
+  padding: 10px;
+  background: #fff;
+}
+
+.book-result::-webkit-scrollbar {
+  width: 5px;
+}
+
+.book-result::-webkit-scrollbar-thumb {
+  background: #000;
+}
+.sub {
+  color: #737373;
 }
 </style>
