@@ -34,6 +34,7 @@
         <button
           class="sent-comment text-3"
           :disabled="selected_project.length == 0"
+          v-if="isHide"
           @click="sendData"
         >
           ส่งความคิดเห็น
@@ -457,6 +458,7 @@ export default {
       isLimit: false,
       isShowChooseProject: true,
       isShowLoading: false,
+      isHide: false,
       isShowDistrict: false,
       isShowProvince: false,
       isAcceptCookie: false,
@@ -626,6 +628,8 @@ export default {
     },
     async sendData() {
       this.isShowLoading = true;
+      this.isHide = true;
+      this.selected_project = []
 
       var array = [];
       var arrayForExcel = [];
