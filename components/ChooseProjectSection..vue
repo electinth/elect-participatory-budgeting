@@ -34,7 +34,7 @@
         <button
           class="sent-comment text-3"
           :disabled="selected_project.length == 0"
-          v-if="isHide"
+          v-if="!isHide"
           @click="sendData"
         >
           ส่งความคิดเห็น
@@ -209,16 +209,24 @@
           คุณใช้ชีวิตอยู่ในกรุงเทพมหานครหรือไม่? (เรียน/ทำงาน/พักอาศัย)
         </p>
         <div class="text-center">
-          <button class="isinbkk-btn btn-text-1" @click="onClickBkk(true)"    :class="{
-                selected:
-                  user_info[0].isinbkk == true && user_info[0].isinbkk != null,
-              }">
+          <button
+            class="isinbkk-btn btn-text-1"
+            @click="onClickBkk(true)"
+            :class="{
+              selected:
+                user_info[0].isinbkk == true && user_info[0].isinbkk != null,
+            }"
+          >
             ใช่
           </button>
-          <button class="isinbkk-btn btn-text-1" @click="onClickBkk(false)"    :class="{
-                selected:
-                  user_info[0].isinbkk == false && user_info[0].isinbkk != null,
-              }">
+          <button
+            class="isinbkk-btn btn-text-1"
+            @click="onClickBkk(false)"
+            :class="{
+              selected:
+                user_info[0].isinbkk == false && user_info[0].isinbkk != null,
+            }"
+          >
             ไม่ใช่
           </button>
         </div>
@@ -236,10 +244,10 @@
             class="has-house-reg-btn btn-text-1"
             @click="onClickHouseReg(true)"
             :class="{
-                selected:
-                  user_info[0].hashousereg == true &&
-                  user_info[0].hashousereg != null,
-              }"
+              selected:
+                user_info[0].hashousereg == true &&
+                user_info[0].hashousereg != null,
+            }"
           >
             มี
           </button>
@@ -247,10 +255,10 @@
             class="has-house-reg-btn btn-text-1"
             @click="onClickHouseReg(false)"
             :class="{
-                selected:
-                  user_info[0].hashousereg == false &&
-                  user_info[0].hashousereg != null,
-              }"
+              selected:
+                user_info[0].hashousereg == false &&
+                user_info[0].hashousereg != null,
+            }"
           >
             ไม่มี
           </button>
@@ -490,9 +498,11 @@ export default {
     this.getData();
 
     if (!this.$cookies.get("isVoted")) {
-      this.isShowChooseProject = true;
+      //this.isShowChooseProject = true;
+      this.isHide = true;
     } else {
-      this.isShowChooseProject = false;
+      this.isHide = false;
+      //this.isShowChooseProject = false;
     }
   },
   computed: {
@@ -629,7 +639,7 @@ export default {
     async sendData() {
       this.isShowLoading = true;
       this.isHide = true;
-      this.selected_project = []
+      this.selected_project = [];
 
       var array = [];
       var arrayForExcel = [];
@@ -814,7 +824,7 @@ export default {
       }
     },
     async onClickBkk(val) {
-       if (val) {
+      if (val) {
         this.isShowDistrict = true;
         this.isShowProvince = false;
         this.user_info[0].district = null;
@@ -877,14 +887,14 @@ export default {
               snapshotsUser.val().hasHouseReg != ""
             ) {
               this.$cookies.set("hasAnswer", true);
-                this.$refs["asking-modal"].hide();
+              this.$refs["asking-modal"].hide();
             } else {
               if (
                 !snapshotsUser.val().isInBkk &&
                 snapshotsUser.val().province != ""
               ) {
                 this.$cookies.set("hasAnswer", true);
-                  this.$refs["asking-modal"].hide();
+                this.$refs["asking-modal"].hide();
               }
             }
           }
