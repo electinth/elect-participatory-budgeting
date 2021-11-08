@@ -246,7 +246,7 @@
               @click="onClickBkk(true)"
               :class="{
                 selected:
-                  user_info[0].isinbkk == true && user_info[0].isinbkk != null,
+                  user_info[0].isinbkk == true || user_info[0].isinbkk != null,
               }"
             >
               ใช่
@@ -256,7 +256,7 @@
               @click="onClickBkk(false)"
               :class="{
                 selected:
-                  user_info[0].isinbkk == false && user_info[0].isinbkk != null,
+                  user_info[0].isinbkk == false || user_info[0].isinbkk != null,
               }"
             >
               ไม่ใช่
@@ -281,7 +281,7 @@
               @click="onClickHouseReg(true)"
               :class="{
                 selected:
-                  user_info[0].hashousereg == true &&
+                  user_info[0].hashousereg == true ||
                   user_info[0].hashousereg != null,
               }"
             >
@@ -292,7 +292,7 @@
               @click="onClickHouseReg(false)"
               :class="{
                 selected:
-                  user_info[0].hashousereg == false &&
+                  user_info[0].hashousereg == false ||
                   user_info[0].hashousereg != null,
               }"
             >

@@ -208,10 +208,16 @@
           คุณใช้ชีวิตอยู่ในกรุงเทพมหานครหรือไม่? (เรียน/ทำงาน/พักอาศัย)
         </p>
         <div class="text-center">
-          <button class="isinbkk-btn btn-text-1" @click="onClickBkk(true)">
+          <button class="isinbkk-btn btn-text-1" @click="onClickBkk(true)"    :class="{
+                selected:
+                  user_info[0].isinbkk == true || user_info[0].isinbkk != null,
+              }">
             ใช่
           </button>
-          <button class="isinbkk-btn btn-text-1" @click="onClickBkk(false)">
+          <button class="isinbkk-btn btn-text-1" @click="onClickBkk(false)"    :class="{
+                selected:
+                  user_info[0].isinbkk == false || user_info[0].isinbkk != null,
+              }">
             ไม่ใช่
           </button>
         </div>
@@ -228,12 +234,22 @@
           <button
             class="has-house-reg-btn btn-text-1"
             @click="onClickHouseReg(true)"
+            :class="{
+                selected:
+                  user_info[0].hashousereg == true ||
+                  user_info[0].hashousereg != null,
+              }"
           >
             มี
           </button>
           <button
             class="has-house-reg-btn btn-text-1"
             @click="onClickHouseReg(false)"
+            :class="{
+                selected:
+                  user_info[0].hashousereg == false ||
+                  user_info[0].hashousereg != null,
+              }"
           >
             ไม่มี
           </button>
