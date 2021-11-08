@@ -246,7 +246,7 @@
               @click="onClickBkk(true)"
               :class="{
                 selected:
-                  user_info[0].isinbkk == true || user_info[0].isinbkk != null,
+                  user_info[0].isinbkk == true && user_info[0].isinbkk != null,
               }"
             >
               ใช่
@@ -256,7 +256,7 @@
               @click="onClickBkk(false)"
               :class="{
                 selected:
-                  user_info[0].isinbkk == false || user_info[0].isinbkk != null,
+                  user_info[0].isinbkk == false && user_info[0].isinbkk != null,
               }"
             >
               ไม่ใช่
@@ -281,7 +281,7 @@
               @click="onClickHouseReg(true)"
               :class="{
                 selected:
-                  user_info[0].hashousereg == true ||
+                  user_info[0].hashousereg == true &&
                   user_info[0].hashousereg != null,
               }"
             >
@@ -292,7 +292,7 @@
               @click="onClickHouseReg(false)"
               :class="{
                 selected:
-                  user_info[0].hashousereg == false ||
+                  user_info[0].hashousereg == false &&
                   user_info[0].hashousereg != null,
               }"
             >
@@ -724,13 +724,22 @@ export default {
             refUser.child("province").set(val);
           }
         }
-
-        //this.onCheckHasCompleteAnswer();
       } catch (e) {
         alert(e);
       }
     },
     async onClickBkk(val) {
+      if (val) {
+        this.isShowDistrict = true;
+        this.isShowProvince = false;
+        this.user_info[0].district = null;
+        this.user_info[0].hashousereg = null;
+      } else {
+        this.user_info[0].province = null;
+        this.isShowDistrict = false;
+        this.isShowProvince = true;
+      }
+
       const ref = this.$fire.database.ref("user");
       this.user_info[0].isinbkk = val;
       this.onCheckDisabled();
@@ -745,14 +754,6 @@ export default {
         }
       } catch (e) {
         alert(e);
-      }
-
-      if (val) {
-        this.isShowDistrict = true;
-        this.isShowProvince = false;
-      } else {
-        this.isShowDistrict = false;
-        this.isShowProvince = true;
       }
     },
     async onClickHouseReg(val) {
@@ -771,8 +772,6 @@ export default {
       } catch (e) {
         alert(e);
       }
-
-      this.onCheckHasCompleteAnswer();
     },
     async onCheckHasCompleteAnswer(val) {
       const ref = this.$fire.database.ref("user");
@@ -791,12 +790,13 @@ export default {
               snapshotsUser.val().hasHouseReg != null
             ) {
               this.$cookies.set("hasAnswer", true);
+              this.$refs["asking-modal"].hide();
             } else {
               if (snapshotsUser.val().province != "") {
                 this.$cookies.set("hasAnswer", true);
+                this.$refs["asking-modal"].hide();
               }
             }
-            this.$refs["asking-modal"].hide();
           }
         }
       } catch (e) {

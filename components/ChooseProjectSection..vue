@@ -210,13 +210,13 @@
         <div class="text-center">
           <button class="isinbkk-btn btn-text-1" @click="onClickBkk(true)"    :class="{
                 selected:
-                  user_info[0].isinbkk == true || user_info[0].isinbkk != null,
+                  user_info[0].isinbkk == true && user_info[0].isinbkk != null,
               }">
             ใช่
           </button>
           <button class="isinbkk-btn btn-text-1" @click="onClickBkk(false)"    :class="{
                 selected:
-                  user_info[0].isinbkk == false || user_info[0].isinbkk != null,
+                  user_info[0].isinbkk == false && user_info[0].isinbkk != null,
               }">
             ไม่ใช่
           </button>
@@ -236,7 +236,7 @@
             @click="onClickHouseReg(true)"
             :class="{
                 selected:
-                  user_info[0].hashousereg == true ||
+                  user_info[0].hashousereg == true &&
                   user_info[0].hashousereg != null,
               }"
           >
@@ -247,7 +247,7 @@
             @click="onClickHouseReg(false)"
             :class="{
                 selected:
-                  user_info[0].hashousereg == false ||
+                  user_info[0].hashousereg == false &&
                   user_info[0].hashousereg != null,
               }"
           >
@@ -536,7 +536,7 @@ export default {
       }
     },
     async getData() {
-      this.isShowLoading = true;
+      this.isShowLoading = false;
 
       this.project_count.forEach((element, i) => {
         element.count = 0;
@@ -625,7 +625,7 @@ export default {
       }
     },
     async sendData() {
-      this.isShowLoading = false;
+      this.isShowLoading = true;
 
       var array = [];
       var arrayForExcel = [];
@@ -805,13 +805,22 @@ export default {
             refUser.child("province").set(val);
           }
         }
-
-        //this.onCheckHasCompleteAnswer();
       } catch (e) {
         alert(e);
       }
     },
     async onClickBkk(val) {
+       if (val) {
+        this.isShowDistrict = true;
+        this.isShowProvince = false;
+        this.user_info[0].district = null;
+        this.user_info[0].hashousereg = null;
+      } else {
+        this.user_info[0].province = null;
+        this.isShowDistrict = false;
+        this.isShowProvince = true;
+      }
+
       this.user_info[0].isinbkk = val;
       this.onCheckDisabled();
 
@@ -827,14 +836,6 @@ export default {
         }
       } catch (e) {
         alert(e);
-      }
-
-      if (val) {
-        this.isShowDistrict = true;
-        this.isShowProvince = false;
-      } else {
-        this.isShowDistrict = false;
-        this.isShowProvince = true;
       }
     },
     async onClickHouseReg(val) {
@@ -872,15 +873,16 @@ export default {
               snapshotsUser.val().hasHouseReg != ""
             ) {
               this.$cookies.set("hasAnswer", true);
+                this.$refs["asking-modal"].hide();
             } else {
               if (
                 !snapshotsUser.val().isInBkk &&
                 snapshotsUser.val().province != ""
               ) {
                 this.$cookies.set("hasAnswer", true);
+                  this.$refs["asking-modal"].hide();
               }
             }
-            this.$refs["asking-modal"].hide();
           }
         }
       } catch (e) {
