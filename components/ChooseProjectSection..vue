@@ -10,7 +10,10 @@
         <b-col cols="12" sm="8">
           <div
             class="choice mb-3 mx-auto"
-            :class="[{ islimit: isLimit && !item.isSelected },{'islimit' : isHide}]"
+            :class="[
+              { islimit: isLimit && !item.isSelected },
+              { islimit: isHide },
+            ]"
             v-for="(item, index) in project"
             :key="index"
             :style="{
@@ -500,7 +503,10 @@ export default {
   mounted() {
     this.getData();
 
-    if (!this.$cookies.get("isVoted") || this.$cookies.get("isVoted") === undefined) {
+    if (
+      !this.$cookies.get("isVoted") ||
+      this.$cookies.get("isVoted") === undefined
+    ) {
       //this.isShowChooseProject = true;
       this.isHide = false;
     } else {
@@ -642,11 +648,6 @@ export default {
     async sendData() {
       this.isShowLoading = true;
       this.isHide = true;
-      this.selected_project = [];
-
-      this.project.forEach(element => {
-        element.isSelected = false
-      });
 
       var array = [];
       var arrayForExcel = [];
@@ -737,6 +738,10 @@ export default {
 
       setTimeout(() => {
         this.getData();
+
+        this.project.forEach((element) => {
+          element.isSelected = false;
+        });
 
         var element = document.getElementById("vote-result");
         element.scrollIntoView();
