@@ -39,12 +39,36 @@
         align-items-sm-center
       "
     >
-      <div class="text-sm-right px-2">
-        <img :src="logo_white" alt="" />
-      </div>
-      <div class="text-3 mb-0 ml-sm-3 mt-3 mt-sm-0 w-sm-50 d-inline-block">
-        หากมีข้อสงสัยหรือคำแนะนำเพิ่มเติมใด ๆ เกี่ยวกับงานนี้
-        ทักมาหาพวกเราได้ที่ m.me/punchupworld
+      <div class="container">
+        <div class="d-flex justify-content-between">
+          <img :src="logo_white" alt="" width="64" />
+          <div class="social">
+            <a href="https://instagram.com/punchup.world" target="_blank">
+              <font-awesome-icon
+                :icon="['fab', 'instagram']"
+                class="backward mr-1"
+            /></a>
+            <a href="https://twitter.com/punchupworld" target="_blank">
+              <font-awesome-icon
+                :icon="['fab', 'twitter']"
+                class="backward mr-1"
+            /></a>
+            <a href="https://www.facebook.com/punchupworld" target="_blank">
+              <font-awesome-icon
+                :icon="['fab', 'facebook']"
+                class="backward mr-1"
+            /></a>
+            <a href="https://linkedin.com/company/punchupworld" target="_blank">
+              <font-awesome-icon
+                :icon="['fab', 'linkedin']"
+                class="backward mr-1"
+            /></a>
+          </div>
+        </div>
+        <div class="text-3 mt-3 d-inline-block">
+          <b>Contact us </b> <br />
+          E-mail : hi@punchup.world
+        </div>
       </div>
     </div>
     <div class="cookie-tab" v-if="cookies">
@@ -74,7 +98,7 @@ export default {
       uuid: uuid.v1(),
       cookies: false,
       logo: require("~/assets/images/logo-black.png"),
-      logo_white: require("~/assets/images/logo-white.png"),
+      logo_white: require("~/assets/images/symbol-mint.png"),
       menu_list: [
         {
           name: "Home",
@@ -272,11 +296,22 @@ export default {
 
 .footer {
   background: #000000;
-  padding: 80px;
+  padding: 40px;
 
   @media #{$mq-mini-mobile} {
     flex-direction: column;
-    padding: 40px;
+    padding: 20px;
+  }
+}
+
+.social a {
+  color: #fff;
+  padding: 10px 0;
+  margin-left: 30px;
+  font-size: 24px;
+
+  @media #{$mq-mini-mobile} {
+    margin-left: 10px;
   }
 }
 </style>

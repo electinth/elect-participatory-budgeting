@@ -4,7 +4,7 @@
       <p class="header-3 m-0">
         รู้หรือไม่<br class="d-none d-sm-block" />กรุงเทพมหานครวางแผนพัฒนาระยะ
         20 ปี <br class="d-none d-sm-block" />
-        (พ.ศ. 2556-2575) ขึ้นมา เพื่อจะก้าวไปสู่การเป็น
+        (พ.ศ. 2556-2575) ขึ้นมาเพื่อจะก้าวไปสู่การเป็น
       </p>
       <div class="header-2 font-weight-bold">“มหานครแห่งเอเชีย”</div>
       <img :src="illus_open_01" alt="" class="mt-3 img-mobile" width="696" />

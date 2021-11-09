@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-main py-5">
+    <div class="min-h-screen bg-main py-5">
       <p class="header-3 text-center w-sm-50 mx-auto mb-5">
         ตัวอย่างโครงการที่เกิดขึ้นจริงปี 2564 ในแต่ละด้าน
         พอจะมีโครงการไหนที่เคยได้เห็นหรือได้ยินกันบ้างไหม?
@@ -129,7 +129,7 @@
                   width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 ">
+                <p class="text-4 mb-0 mt-2">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
 
@@ -145,7 +145,7 @@
                     }}</span>
                     <span v-if="item.used != '-'">บาท</span>
                   </p>
-                  <p class="text-4 m-0 ">
+                  <p class="text-4 m-0">
                     <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                   </p>
                   <div class="text-4 m-0">
@@ -204,7 +204,7 @@
                   width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 ">
+                <p class="text-4 mb-0 mt-2">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
 
@@ -220,7 +220,7 @@
                     }}</span>
                     <span v-if="item.used != '-'">บาท</span>
                   </p>
-                  <p class="text-4 m-0 ">
+                  <p class="text-4 m-0">
                     <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                   </p>
                   <div class="text-4 m-0">
@@ -279,7 +279,7 @@
                   width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 ">
+                <p class="text-4 mb-0 mt-2">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
 
@@ -295,7 +295,7 @@
                     }}</span>
                     <span v-if="item.used != '-'">บาท</span>
                   </p>
-                  <p class="text-4 m-0 ">
+                  <p class="text-4 m-0">
                     <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                   </p>
                   <div class="text-4 m-0">
@@ -354,7 +354,7 @@
                   width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 ">
+                <p class="text-4 mb-0 mt-2">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
 
@@ -370,7 +370,7 @@
                     }}</span>
                     <span v-if="item.used != '-'">บาท</span>
                   </p>
-                  <p class="text-4 m-0 ">
+                  <p class="text-4 m-0">
                     <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                   </p>
                   <div class="text-4 m-0">
@@ -429,7 +429,7 @@
                   width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 ">
+                <p class="text-4 mb-0 mt-2">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
 
@@ -445,7 +445,7 @@
                     }}</span>
                     <span v-if="item.used != '-'">บาท</span>
                   </p>
-                  <p class="text-4 m-0 ">
+                  <p class="text-4 m-0">
                     <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
                   </p>
                   <div class="text-4 m-0">
@@ -471,7 +471,7 @@
                   (x) => x.dimension == 'การบริหารจัดการเมืองมหานคร'
                 )"
                 :key="index"
-                class="text-left"
+                class="text-left px-2"
               >
                 <p class="text-4 m-0">
                   <b>เริ่มต้นโครงการ</b> :
@@ -493,57 +493,55 @@
                     alt=""
                   />
                 </div>
-                <p class="text-1 font-weight-bold ">{{ item.name }}</p>
+                <p class="text-1 font-weight-bold">{{ item.name }}</p>
                 <img
                   :src="
                     require(`@/assets/images/section_project_bkk/issue_7/${item.path}`)
                   "
-                  width="75%"
+                  width="100%"
                   alt=""
                 />
-                <p class="text-4 mb-0 mt-2 ">
+                <p class="text-4 mb-0 mt-2">
                   <b>ผลลัพธ์</b> : {{ item.result }}
                 </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้รับ : </b>
-                  <span class="status">{{ item.budget }}</span> บาท
-                </p>
-                <p class="text-4 m-0">
-                  <b>งบประมาณที่ได้ใช้ไป : </b>
-                  <span :class="{ status: item.used != '-' }">{{
-                    item.used
-                  }}</span>
-                  <span v-if="item.used != '-'">บาท</span>
-                </p>
-                <p class="text-4 m-0 ">
-                  <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
-                </p>
-             <div class="text-4 m-0">
+
+                <div class="p-2 border-dark border mt-2">
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้รับ : </b>
+                    <span class="status">{{ item.budget }}</span> บาท
+                  </p>
+                  <p class="text-4 m-0">
+                    <b>งบประมาณที่ได้ใช้ไป : </b>
+                    <span :class="{ status: item.used != '-' }">{{
+                      item.used
+                    }}</span>
+                    <span v-if="item.used != '-'">บาท</span>
+                  </p>
+                  <p class="text-4 m-0">
+                    <b>หน่วยงานที่รับผิดชอบ</b> : {{ item.institude }}
+                  </p>
+                  <div class="text-4 m-0">
                     <a :href="item.link" class="" target="_blank">ลิงค์</a>
                   </div>
+                </div>
               </div>
             </VueSlickCarousel>
           </div>
         </b-tab>
       </b-tabs>
     </div>
-    <div class="bg-main">
+    <div class="bg-main min-h-screen ">
       <div class="d-flex justify-content-center h-100 position-relative">
-        <img
-          :src="section_5_pic"
-          alt=""
-          class="pointer mx-3 section_5_pic"
-          width="575"
-        />
+        <img :src="section_5_pic" alt="" class="mx-3 section_5_pic" />
         <div class="section-text">
           <h3 class="header-3">
-            ในปีถัดไป 2565 กรุงเทพมหานคร จะมุ่งพัฒนาและขับเคลื่อน “มหานครทั้ง 7
-            ด้าน” ให้เกิดขึ้นต่อไป
+            ในปีถัดไป 2565 กรุงเทพมหานครจะมุ่งพัฒนาและขับเคลื่อน <b> “มหานครทั้ง 7
+            ด้าน”</b> ให้เกิดขึ้นต่อไป
           </h3>
           <br />
           <h3 class="text-1">
             ถ้าบางส่วนของงบฯ ที่คุณมีส่วนช่วยตัดสินใจให้ถูกใช้อย่างตรงจุดได้
-            (Participatory Budgeting)
+            (Bangkok Budgeting)
           </h3>
           <br />
           <h3 class="text-1">คุณคิดว่าควรนำไปพัฒนากับเรื่องอะไรบ้าง?</h3>
@@ -576,7 +574,7 @@ export default {
         slidesToScroll: 3,
         dots: true,
         infinite: false,
-        centerPadding: '20px',
+        centerPadding: "50px",
         responsive: [
           {
             breakpoint: 1200,
@@ -700,6 +698,7 @@ export default {
 }
 
 .section_5_pic {
+  max-width: 600px;
   @media #{$mq-mini-mobile} {
     width: 100%;
   }
@@ -708,14 +707,13 @@ export default {
 .section-text {
   position: absolute;
   top: 35%;
-  width: 365px;
+  width: 50%;
   left: 50%;
   -moz-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
 
   @media #{$mq-mini-mobile} {
-    width: 50%;
     h3 {
       font-size: 12px;
     }

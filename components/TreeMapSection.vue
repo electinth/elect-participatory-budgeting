@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="h-100vh p-3 p-sm-5 h-auto-mobile">
+    <div class="min-h-screen  p-3 p-sm-5 h-auto-mobile">
       <div class="black-box">
         <div class="text-center">
           <img :src="icon_info" alt="" width="50" />

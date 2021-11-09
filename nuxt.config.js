@@ -128,7 +128,13 @@ export default {
         "faChevronUp",
         "faArrowDown",
         "faArrowRight",
-        "faTimes"
+        "faTimes",
+      ],
+      brands:[
+        "faInstagram",
+        "faFacebook",
+        "faTwitter",
+        "faLinkedin",
       ]
     }
   },

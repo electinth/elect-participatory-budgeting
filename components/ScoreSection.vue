@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="h-100vh bg-main">
+    <div class="min-h-screen  bg-main">
       <p class="header-3 w-sm-50 m-auto">
         ความจริงแล้วหลาย ๆ ประเด็นปัญหาคาใจอยู่ อยู่ในแผนพัฒนา 20 ปี
         เพื่อให้กรุงเทพมหานครเป็น “มหานครแห่งเอเชีย” โดยแบ่งเป้าหมายย่อยออกเป็น
@@ -310,11 +310,11 @@
         </div>
       </b-modal>
     </div>
-    <div class="h-100vh bg-main h-100vh-mobile">
+    <div class="min-h-screen  bg-main p-0 p-md-5">
       <div class="d-flex justify-content-center h-100 position-relative">
-        <img :src="pic_section_02" alt="" class="pointer mx-3" width="550" />
+        <img :src="pic_section_02" alt="" class="pointer mx-3 pic_section_02" />
         <h3 class="header-3 section-text">
-          เพื่อพัฒนาสู่มหานคร 7 ด้านนั้น ลองมาดูกันว่ากรุงเทพฯ ใช้งบประมาณ ปี
+          เพื่อพัฒนาสู่มหานคร 7 ด้านนั้น ลองมาดูกันว่ากรุงเทพฯ ใช้งบประมาณปี
           2561 - 2565 กับเรื่องเหล่านั้นยังไงบ้าง?
         </h3>
       </div>
@@ -840,7 +840,7 @@ export default {
   text-align: center;
 
   @media #{$mq-tablet} {
-    height: auto;
+    // height: auto;
     padding: 30px;
   }
 }
@@ -858,13 +858,17 @@ export default {
 }
 
 .section-text {
-  width: 40%;
+  max-width: 500px;
   position: absolute;
   top: 50%;
   left: 50%;
   -moz-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
+
+    @media #{$mq-mini-mobile} {
+    width: 50%;
+  }
 }
 
 .result-box {
@@ -1002,5 +1006,8 @@ export default {
 }
 .sub {
   color: #737373;
+}
+.pic_section_02 {
+  max-width: 600px;
 }
 </style>

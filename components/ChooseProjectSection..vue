@@ -10,7 +10,7 @@
         <b-col cols="12" sm="8">
           <div
             class="choice mb-3 mx-auto"
-            :class="{ islimit: isLimit && !item.isSelected }"
+            :class="[{ islimit: isLimit && !item.isSelected },{'islimit' : isHide}]"
             v-for="(item, index) in project"
             :key="index"
             :style="{
@@ -48,17 +48,20 @@
     </div>
 
     <div
-      class="h-100vh bg-main p-5 loading-div"
+      class="h-100vh bg-main loading-div p-xl-5"
       :class="{ 'd-none': !isShowLoading }"
     >
       <div class="d-flex justify-content-center h-100 position-relative">
-        <div class="w-sm-50"><lottie :options="defaultOptions"></lottie></div>
+        <div class="lottie-img">
+          <lottie :options="defaultOptions"></lottie>
+        </div>
       </div>
       <div class="section-text text-center">
-        <h3 class="header-2 font-weight-bold">เรากำลังส่งข้อมูลของคุณ...</h3>
-        <p class="text-1 w-50 mx-auto">
-          ข้อมูลนี้จะรวบรวมยื่นต่อ ผู้ว่าราชการจังหวัดกรุงเทพมหานคร
-          และหน่วยงานที่เกี่ยวข้องต่อไป
+        <h3 class="header-2 font-weight-bold m-auto">
+          เรากำลังส่งข้อมูลของคุณ...
+        </h3>
+        <p class="text-1 mx-auto">
+          ข้อมูลนี้จะรวบรวมยื่นต่อผู้ว่าราชการจังหวัดกรุงเทพมหานครและหน่วยงานที่เกี่ยวข้องต่อไป
         </p>
       </div>
     </div>
@@ -144,33 +147,33 @@
         <div>
           <div class="d-flex align-items-center">
             <div class="bg-blue project-hover mr-3"></div>
-            <p class="text-3 m-0">มหานครปลอดภัย</p>
+            <p class="text-3 m-0">มหานครปลอดภัย (57.81%)</p>
           </div>
           <div class="d-flex align-items-center">
             <div class="bg-green project-hover mr-3"></div>
-            <p class="text-3 m-0">มหานครสีเขียวสะดวกสบาย</p>
+            <p class="text-3 m-0">มหานครสีเขียวสะดวกสบาย (13.45%)</p>
           </div>
           <div class="d-flex align-items-center">
             <div class="bg-red project-hover mr-3"></div>
-            <p class="text-3 m-0">มหานครสำหรับทุกคน</p>
+            <p class="text-3 m-0">มหานครสำหรับทุกคน (19.02%)</p>
           </div>
           <div class="d-flex align-items-center">
             <div class="bg-pink project-hover mr-3"></div>
-            <p class="text-3 m-0">มหานครกระชับ</p>
+            <p class="text-3 m-0">มหานครกระชับ (0.28%)</p>
           </div>
         </div>
         <div class="ml-0 ml-md-4">
           <div class="d-flex align-items-center">
             <div class="bg-orange project-hover mr-3"></div>
-            <p class="text-3 m-0">มหานครประชาธิปไตย</p>
+            <p class="text-3 m-0">มหานครประชาธิปไตย (0.18%)</p>
           </div>
           <div class="d-flex align-items-center">
             <div class="bg-green-2 project-hover mr-3"></div>
-            <p class="text-3 m-0">มหานครแห่งเศรษฐกิจและเรียนรู้</p>
+            <p class="text-3 m-0">มหานครแห่งเศรษฐกิจและเรียนรู้ (9.26%)</p>
           </div>
           <div class="d-flex align-items-center">
             <div class="bg-purple project-hover mr-3"></div>
-            <p class="text-3 m-0">การบริหารจัดการเมืองมหานคร</p>
+            <p class="text-3 m-0">การบริหารจัดการเมืองมหานคร (0%)</p>
           </div>
         </div>
       </div>
@@ -466,7 +469,7 @@ export default {
       isLimit: false,
       isShowChooseProject: true,
       isShowLoading: false,
-      isHide: false,
+      isHide: true,
       isShowDistrict: false,
       isShowProvince: false,
       isAcceptCookie: false,
@@ -497,11 +500,11 @@ export default {
   mounted() {
     this.getData();
 
-    if (!this.$cookies.get("isVoted")) {
+    if (!this.$cookies.get("isVoted") || this.$cookies.get("isVoted") === undefined) {
       //this.isShowChooseProject = true;
-      this.isHide = true;
-    } else {
       this.isHide = false;
+    } else {
+      this.isHide = true;
       //this.isShowChooseProject = false;
     }
   },
@@ -640,6 +643,10 @@ export default {
       this.isShowLoading = true;
       this.isHide = true;
       this.selected_project = [];
+
+      this.project.forEach(element => {
+        element.isSelected = false
+      });
 
       var array = [];
       var arrayForExcel = [];
@@ -974,14 +981,27 @@ export default {
 
 .section-text {
   position: absolute;
-  top: 52%;
+  top: 50%;
   left: 50%;
   -moz-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
+  width: 500px;
 
   p {
-    margin-top: 50%;
+    margin-top: 75%;
+  }
+
+  @media #{$mq-tablet} {
+    max-width: 384px;
+  }
+
+  @media #{$mq-mini-mobile} {
+    width: 100%;
+
+    p {
+      margin-top: 85%;
+    }
   }
 }
 
@@ -1011,7 +1031,7 @@ export default {
 
   .text {
     position: absolute;
-    top: 5px;
+    //top: 5px;
     z-index: 1;
     justify-content: space-between;
     width: 100%;
@@ -1102,5 +1122,16 @@ export default {
 
 .sub {
   color: #737373;
+}
+
+.lottie-img {
+  max-width: 992px;
+  overflow: hidden;
+  @media #{$mq-tablet} {
+    max-width: 600px;
+  }
+  @media #{$mq-mini-mobile} {
+    min-width: 600px;
+  }
 }
 </style>
