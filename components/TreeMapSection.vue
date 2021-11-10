@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="min-h-screen  p-3 p-sm-5 h-auto-mobile">
+    <div class="min-h-screen p-3 p-sm-5 h-auto-mobile">
       <div class="black-box">
         <div class="text-center">
           <img :src="icon_info" alt="" width="50" />
@@ -18,12 +18,12 @@
             “งบประมาณเบิกจ่ายใช้จริงๆ”
           </p>
 
-          <b-row class="flex-column flex-lg-row">
+          <b-row class="flex-column flex-xl-row">
             <b-col
               ><img :src="budget_bkk" alt="" class="budget_bkk mb-3 mb-xl-0"
             /></b-col>
             <b-col
-              ><div class="white-box mt-3 mt-lg-0">
+              ><div class="white-box mt-3 mt-xl-0">
                 <p class="text-1 m-0">
                   ถึงแม้ว่ากรุงเทพมหานครได้จัดทำและมีระบบติดตามและประเมินผลการใช้จ่ายงบประมาณก็จริง
                 </p>
@@ -90,6 +90,8 @@ export default {
   border-radius: 10px;
   height: 100%;
   padding: 30px 115px;
+  max-width: 1200px;
+  margin: auto;
   @media #{$mq-mobile} {
     padding: 20px;
   }

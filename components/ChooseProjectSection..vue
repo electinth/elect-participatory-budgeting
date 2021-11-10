@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="p-sm-5 p-3 text-center" v-if="isShowChooseProject">
+    <div
+      class="p-sm-5 p-3 text-center project-wrapper"
+      v-if="isShowChooseProject"
+    >
       <p class="header-3">เลือกโครงการที่อยากพัฒนาเลือกได้ 3 โครงการ</p>
       <b-row class="justify-content-center">
         <b-col cols="2" class="d-none d-sm-block">
@@ -703,8 +706,7 @@ export default {
           arrayFb[0].province == "" ? "-" : arrayFb[0].province;
 
         if (arrayFb[0].isInBkk) {
-          if (arrayFb[0].hasHouseReg)
-            arrayForExcel[i].hashousereg = "มี";
+          if (arrayFb[0].hasHouseReg) arrayForExcel[i].hashousereg = "มี";
           else arrayForExcel[i].hashousereg = "ไม่มี";
         } else arrayForExcel[i].hashousereg = "-";
 
@@ -1153,5 +1155,10 @@ export default {
   @media #{$mq-mini-mobile} {
     min-width: 600px;
   }
+}
+
+.project-wrapper {
+  max-width: 1200px;
+  margin: auto;
 }
 </style>
