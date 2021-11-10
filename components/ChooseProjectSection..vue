@@ -583,7 +583,7 @@ export default {
                 value.hasHouseReg &&
                 this.district == null
               ) {
-                array.push(value.userid); 
+                array.push(value.userid);
               }
             } else if (this.selected == 2) {
               if (
@@ -677,6 +677,7 @@ export default {
           province: "",
           hashousereg: "",
           isinbkk: "",
+          date: this.$moment().format("DD-MM-YYYY"),
         });
       }
 
@@ -700,13 +701,13 @@ export default {
           arrayFb[0].district == "" ? "-" : arrayFb[0].district;
         arrayForExcel[i].province =
           arrayFb[0].province == "" ? "-" : arrayFb[0].province;
-        if ((arrayForExcel[i].hashousereg == ""))
-          arrayForExcel[i].hashousereg = "-";
-        else if (arrayForExcel[i].hashousereg)
-          arrayForExcel[i].hashousereg = "ีมี";
-        else {
-          arrayForExcel[i].hashousereg = "ไม่มี";
-        }
+
+        if (arrayFb[0].isInBkk) {
+          if (arrayFb[0].hasHouseReg)
+            arrayForExcel[i].hashousereg = "มี";
+          else arrayForExcel[i].hashousereg = "ไม่มี";
+        } else arrayForExcel[i].hashousereg = "-";
+
         arrayForExcel[i].isinbkk = arrayFb[0].isInBkk ? "อยู่" : "ไม่อยู่";
       }
 
@@ -782,6 +783,7 @@ export default {
             province: arrayFb[0].province == "" ? "-" : arrayFb[0].province,
             hashousereg: arrayFb[0].hasHouseReg != "" ? "มี" : "-",
             isinbkk: arrayFb[0].isInBkk != "" ? "อยู่" : "ไม่อยู่",
+            date: this.$moment().format("DD-MM-YYYY"),
           },
         ])
         .then((response) => {
