@@ -739,7 +739,7 @@ export default {
           console.log(error);
         });
 
-      //this.$cookies.set("isVoted", true);
+      this.$cookies.set("isVoted", true);
 
       this.isLimit = true;
 
