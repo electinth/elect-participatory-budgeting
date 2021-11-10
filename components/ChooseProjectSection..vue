@@ -572,7 +572,6 @@ export default {
         if (snapshots.val() != null) {
           for (const [key, value] of Object.entries(snapshots.val())) {
             if (this.selected == 1) {
-              console.log(this.district);
               if (
                 value.isInBkk &&
                 value.hasHouseReg &&
