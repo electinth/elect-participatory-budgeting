@@ -707,7 +707,7 @@ export default {
 .section-text {
   position: absolute;
   top: 35%;
-  width: 50%;
+  max-width: 480px;
   left: 50%;
   -moz-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="min-h-screen  bg-main">
+    <div class="min-h-screen bg-main">
       <p class="header-3 w-sm-50 m-auto">
         ความจริงแล้วหลาย ๆ ประเด็นปัญหาคาใจอยู่ อยู่ในแผนพัฒนา 20 ปี
         เพื่อให้กรุงเทพมหานครเป็น “มหานครแห่งเอเชีย” โดยแบ่งเป้าหมายย่อยออกเป็น
@@ -310,7 +310,7 @@
         </div>
       </b-modal>
     </div>
-    <div class="min-h-screen  bg-main p-0 p-md-5">
+    <div class="min-h-screen bg-main p-0 p-md-5">
       <div class="d-flex justify-content-center h-100 position-relative">
         <img :src="pic_section_02" alt="" class="pointer mx-3 pic_section_02" />
         <h3 class="header-3 section-text">
@@ -750,6 +750,13 @@ export default {
           if (value.userid == this.$cookies.get("uuid")) {
             const refUser = this.$fire.database.ref("user/" + key);
             refUser.child("isInBkk").set(val);
+
+            if (val) {
+              refUser.child("province").set("");
+            } else {
+              refUser.child("district").set("");
+              refUser.child("hasHouseReg").set("");
+            }
           }
         }
       } catch (e) {
@@ -866,7 +873,7 @@ export default {
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
 
-    @media #{$mq-mini-mobile} {
+  @media #{$mq-mini-mobile} {
     width: 50%;
   }
 }

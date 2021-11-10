@@ -132,9 +132,9 @@
           <div class="bg-green chart" style="width: 13.45%"></div>
           <div class="bg-red chart" style="width: 19.02%"></div>
           <div class="bg-pink chart" style="width: 0.28%"></div>
-          <div class="bg-orange chart" style="width: 0.18%"></div>
-          <div class="bg-green-2 chart" style="width: 9.26%"></div>
-          <div class="bg-purple chart" style="width: 0%"></div>
+          <div class="bg-green-2 chart" style="width: 0.18%"></div>
+          <div class="bg-purple chart" style="width: 9.26%"></div>
+          <div class="bg-orange chart" style="width: 0%"></div>
         </div>
       </div>
 
@@ -167,16 +167,16 @@
         </div>
         <div class="ml-0 ml-md-4">
           <div class="d-flex align-items-center">
-            <div class="bg-orange project-hover mr-3"></div>
-            <p class="text-3 m-0">มหานครประชาธิปไตย (0.18%)</p>
-          </div>
-          <div class="d-flex align-items-center">
             <div class="bg-green-2 project-hover mr-3"></div>
-            <p class="text-3 m-0">มหานครแห่งเศรษฐกิจและเรียนรู้ (9.26%)</p>
+            <p class="text-3 m-0">มหานครแห่งเศรษฐกิจและเรียนรู้ (0.18%)</p>
           </div>
           <div class="d-flex align-items-center">
             <div class="bg-purple project-hover mr-3"></div>
-            <p class="text-3 m-0">การบริหารจัดการเมืองมหานคร (0%)</p>
+            <p class="text-3 m-0">การบริหารจัดการเมืองมหานคร (9.26%)</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="bg-orange project-hover mr-3"></div>
+            <p class="text-3 m-0">มหานครประชาธิปไตย (0%)</p>
           </div>
         </div>
       </div>
@@ -572,6 +572,7 @@ export default {
         if (snapshots.val() != null) {
           for (const [key, value] of Object.entries(snapshots.val())) {
             if (this.selected == 1) {
+              console.log(this.district);
               if (
                 value.isInBkk &&
                 value.hasHouseReg &&
@@ -583,7 +584,7 @@ export default {
                 value.hasHouseReg &&
                 this.district == null
               ) {
-                array.push(value.userid);
+                array.push(value.userid); 
               }
             } else if (this.selected == 2) {
               if (
@@ -700,7 +701,13 @@ export default {
           arrayFb[0].district == "" ? "-" : arrayFb[0].district;
         arrayForExcel[i].province =
           arrayFb[0].province == "" ? "-" : arrayFb[0].province;
-        arrayForExcel[i].hashousereg = arrayFb[0].hasHouseReg ? "มี" : "ไม่มี";
+        if ((arrayForExcel[i].hashousereg == ""))
+          arrayForExcel[i].hashousereg = "-";
+        else if (arrayForExcel[i].hashousereg)
+          arrayForExcel[i].hashousereg = "ีมี";
+        else {
+          arrayForExcel[i].hashousereg = "ไม่มี";
+        }
         arrayForExcel[i].isinbkk = arrayFb[0].isInBkk ? "อยู่" : "ไม่อยู่";
       }
 
@@ -732,7 +739,7 @@ export default {
           console.log(error);
         });
 
-      this.$cookies.set("isVoted", true);
+      //this.$cookies.set("isVoted", true);
 
       this.isLimit = true;
 
@@ -858,6 +865,13 @@ export default {
           if (value.userid == this.$cookies.get("uuid")) {
             const refUser = this.$fire.database.ref("user/" + key);
             refUser.child("isInBkk").set(val);
+
+            if (val) {
+              refUser.child("province").set("");
+            } else {
+              refUser.child("district").set("");
+              refUser.child("hasHouseReg").set("");
+            }
           }
         }
       } catch (e) {

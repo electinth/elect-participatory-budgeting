@@ -4,16 +4,23 @@
       <div class="position-absolute w-100 logo-box p-2 p-sm-4">
         <a href="https://punchup.world/project/" target="_blank"> </a>
       </div>
-      <div class="h-100vh bg-main pt-0">
+      <div class="bg-main pt-0">
         <div class="d-flex justify-content-center overflow-hidden">
-          <img :src="intro_pic_mobile" class="pu-logo d-block d-xl-none" width="" />
-          <img :src="intro_pic" class="pu-logo d-none d-xl-block" width="" />
+          <img
+            :src="intro_pic_mobile"
+            class="intro_pic d-block d-xl-none"
+            width=""
+          />
+          <img :src="intro_pic" class="intro_pic d-none d-xl-block" width="" />
         </div>
       </div>
-      <div class="h-100vh bg-main d-flex justify-content-center flex-column">
+      <div
+        class="min-h-screen bg-main d-flex justify-content-center flex-column"
+      >
         <div class="black-box text-center">
           <p class="text-1 m-0">
-            ทุกวันนี้เมืองที่เราใช้ชีวิตยังมีหลายอย่างไม่ได้เป็นแบบที่เราวาดฝันไว้ใช่ไหม? <br /><br />
+            ทุกวันนี้เมืองที่เราใช้ชีวิตยังมีหลายอย่างไม่ได้เป็นแบบที่เราวาดฝันไว้ใช่ไหม?
+            <br /><br />
 
             เราเองในฐานะประชาชนผู้เสียภาษีทางตรงและทางอ้อมก็ควรได้ร่วมออกแบบการใช้งบประมาณของเมืองเพื่อสร้างเมืองในแบบที่เราต้องการได้
           </p>
@@ -21,7 +28,10 @@
             ถ้างั้นขอชวนมาลองเริ่มต้นที่เมืองหลวงอย่างกรุงเทพมหานครกันก่อนเลย!!
           </p>
           <p class="text-4 mt-5 text-uppercase">
-            โปรเจกต์นี้เป็นเพียงจุดเริ่มต้นที่ตั้งใจให้ทุกคนได้มีส่วนร่วมทดลองออกแบบงบประมาณ<br class="d-none d-sm-block"/>ที่จะผลักดันให้เมืองของเราน่าอยู่ สร้างสังคมที่ดี (Good Society)<br class="d-none d-sm-block"/>
+            โปรเจกต์นี้เป็นเพียงจุดเริ่มต้นที่ตั้งใจให้ทุกคนได้มีส่วนร่วมทดลองออกแบบงบประมาณ<br
+              class="d-none d-sm-block"
+            />ที่จะผลักดันให้เมืองของเราน่าอยู่ สร้างสังคมที่ดี (Good
+            Society)<br class="d-none d-sm-block" />
             โดยเริ่มจากกรุงเทพมหานครเพื่อเป็นต้นแบบส่งต่อไปยังจังหวัดอื่นๆ
           </p>
         </div>
@@ -114,6 +124,10 @@ export default {
 }
 
 .pu-logo {
+  width: 100vw;
+}
+
+.intro_pic {
   width: 100vw;
 }
 </style>
