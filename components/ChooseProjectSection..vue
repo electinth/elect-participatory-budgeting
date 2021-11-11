@@ -184,10 +184,7 @@
         </div>
       </div>
 
-      <button
-        class="sent-comment text-3 mt-5"
-        @click="$bvModal.show('modal-comment')"
-      >
+      <button class="sent-comment text-3 mt-5" @click="showModalComment">
         <div class="d-flex">
           <img :src="icon_idea" width="20" class="mr-2" alt="" />
           เสนอไอเดียเพิ่มเติม
@@ -327,7 +324,7 @@
       <div class="asking-box p-4 text-center" style="min-height: auto">
         <img :src="icon_info" alt="" width="100" />
         <p class="text-1 text-center mt-3">
-          กรุณากดยอมรับคุกกี้ก่อนโหวตโครงการ
+          กรุณากดยอมรับคุกกี้ก่อน{{ alertText }}
         </p>
       </div>
     </b-modal>
@@ -368,6 +365,7 @@ export default {
         loop: true,
         autoplay: true,
       },
+      alertText: "",
       tabIndex: 0,
       isDisabled: true,
       selected: 1,
@@ -525,8 +523,25 @@ export default {
     },
   },
   methods: {
+    showModalComment() {
+      if (this.$cookies.get("uuid") === undefined) {
+        this.alertText = "เสนอไอเดียเพิ่มเติม";
+        this.$refs["cookie-modal"].show();
+        setTimeout(() => {
+          this.$refs["cookie-modal"].hide();
+        }, 2000);
+      } else {
+        if (
+          this.$cookies.get("hasAnswer") !== undefined &&
+          this.$cookies.get("hasAnswer")
+        )
+          this.$refs["comment-modal"].show();
+        else this.$refs["asking-modal"].show();
+      }
+    },
     setSelected(id, val) {
       if (this.$cookies.get("uuid") === undefined) {
+        this.alertText = "โหวตโครงการ";
         this.$refs["cookie-modal"].show();
         setTimeout(() => {
           this.$refs["cookie-modal"].hide();
